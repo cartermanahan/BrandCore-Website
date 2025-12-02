@@ -1,0 +1,318 @@
+/* ================================
+   main.css – Global Styles
+   BrandCore · System-style stack
+=================================== */
+
+:root {
+    /* Dark Mode Base */
+    --bg-primary-dark: #050712;
+    --text-primary-dark: #ffffff;
+    --surface-dark: rgba(12, 14, 30, 0.96);
+    --surface-soft-dark: rgba(16, 18, 36, 0.96);
+    --border-subtle-dark: rgba(255, 255, 255, 0.06);
+    --border-strong-dark: rgba(255, 255, 255, 0.18);
+    --overlay-dark: rgba(0, 0, 0, 0.5);
+
+    /* Light Mode Base */
+    --bg-primary-light: #f5f5f7;
+    --text-primary-light: #0b0b10;
+    --surface-light: #ffffff;
+    --border-subtle-light: rgba(0, 0, 0, 0.06);
+    --border-strong-light: rgba(0, 0, 0, 0.16);
+    --overlay-light: rgba(0, 0, 0, 0.06);
+
+    /* Accent – slightly deeper than iOS blue */
+    --accent-color: #6366F1;
+
+    /* Buttons – dark theme */
+    --btn-border-dark: rgba(255, 255, 255, 0.7);
+    --btn-text-dark: #ffffff;
+    --btn-hover-bg-dark: #ffffff;
+    --btn-hover-text-dark: #050712;
+
+    /* Buttons – light theme */
+    --btn-border-light: #0b0b10;
+    --btn-text-light: #0b0b10;
+    --btn-hover-bg-light: #0b0b10;
+    --btn-hover-text-light: #ffffff;
+
+    /* Layout */
+    --page-max-width: 1120px;
+}
+
+/* Global scale – slightly zoomed out */
+html {
+    font-size: 90%;
+    scroll-behavior: smooth;
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 100%;
+    }
+}
+
+/* Reset-ish */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top, #141629 0%, #050712 40%, #010007 100%);
+    color: var(--text-primary-dark);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+                 "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* Prevent right-side overflow on mobile */
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+    margin: 0 0 0.75rem;
+    font-weight: 600;
+    color: var(--text-primary-dark);
+}
+
+p {
+    margin: 0 0 1rem;
+    color: var(--text-primary-dark);
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.2s ease, opacity 0.2s ease, transform 0.15s ease;
+}
+
+a:hover {
+    opacity: 0.9;
+}
+
+/* Layout container */
+.container {
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Generic card shell */
+.card {
+    background: var(--surface-soft-dark);
+    border-radius: 20px;
+    border: 1px solid var(--border-subtle-dark);
+    box-shadow: 0 18px 50px var(--overlay-dark);
+    padding: 20px 22px;
+}
+
+/* Buttons – base */
+.btn,
+button.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    padding: 10px 22px;
+    border-radius: 999px;
+    border: 1px solid var(--btn-border-dark);
+    background: transparent;
+    color: var(--btn-text-dark);
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+
+    cursor: pointer;
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.15s ease,
+        box-shadow 0.25s ease;
+}
+
+.btn:hover,
+button.btn:hover {
+    background: var(--btn-hover-bg-dark);
+    color: var(--btn-hover-text-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Sections */
+.page-section {
+    padding: 72px 20px 80px;
+}
+
+@media (max-width: 768px) {
+    .page-section {
+        padding: 60px 16px 64px;
+    }
+}
+
+.section-title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    width: 72px;
+    height: 2px;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, var(--accent-color), var(--accent-color));
+    opacity: 0.9;
+}
+
+.section-intro {
+    max-width: 640px;
+    margin: 0 auto 32px;
+    text-align: center;
+    opacity: 0.9;
+}
+
+/* Scroll reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 600ms ease-out, transform 600ms ease-out;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Footer */
+.site-footer {
+    background: #050712;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 18px 18px 22px;
+    margin-top: 40px;
+}
+
+.footer-inner {
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    font-size: 0.9rem;
+}
+
+.footer-left p {
+    margin: 0;
+}
+
+.footer-sub {
+    margin-top: 2px;
+    font-size: 0.82rem;
+    opacity: 0.7;
+}
+
+.footer-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.footer-right .social-link {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.footer-right .social-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.footer-right .social-link:hover {
+    transform: translateY(-1px) scale(1.05);
+    filter: brightness(1.15);
+}
+
+@media (max-width: 700px) {
+    .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* Light mode overrides */
+@media (prefers-color-scheme: light) {
+    body {
+        background:
+            radial-gradient(circle at top, #ffffff 0%, #f5f5f7 40%, #e5e5ea 100%);
+        color: var(--text-primary-light);
+    }
+
+    h1, h2, h3, h4, p {
+        color: var(--text-primary-light);
+    }
+
+    .card {
+        background: var(--surface-light);
+        border-color: var(--border-subtle-light);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .btn,
+    button.btn {
+        border-color: var(--btn-border-light);
+        color: var(--btn-text-light);
+    }
+
+    .btn:hover,
+    button.btn:hover {
+        background: var(--btn-hover-bg-light);
+        color: var(--btn-hover-text-light);
+        box-shadow: 0 10px 26px rgba(0, 0, 0, 0.2);
+    }
+
+    .site-footer {
+        background: #f5f5f7;
+        border-top-color: var(--border-subtle-light);
+    }
+
+    .footer-left p,
+    .footer-sub {
+        color: var(--text-primary-light);
+    }
+
+    .footer-right .social-link img {
+        filter: brightness(0.3);
+    }
+}
+
+/* HTML background fallback */
+html {
+    background: #050712;
+}
+
+@media (prefers-color-scheme: light) {
+    html {
+        background: #ffffff;
+    }
+}
