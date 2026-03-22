@@ -1,456 +1,742 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BrandCore – Turn an idea into a full brand in one sitting</title>
-    <meta name="description" content="BrandCore turns a rough idea into a full brand pack – positioning, story, visuals, logo direction, launch plan and ad scripts – ready to ship in under an hour." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="../styles/main.css" />
-    <link rel="stylesheet" href="../styles/home.css" />
-    <link rel="stylesheet" href="../styles/navbar.css" />
+  <title>BrandFounder — Turn your idea into a real brand</title>
+  <meta
+    name="description"
+    content="BrandFounder turns your idea into a complete brand pack inside the app — strategy, visuals, pricing, launch planning, promotion workflows, and ready-to-use outputs."
+  />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../images/logos/brandcore-logo.png" />
+  <meta property="og:title" content="BrandFounder — Turn your idea into a real brand" />
+  <meta
+    property="og:description"
+    content="Create a full brand pack in the app with positioning, visuals, pricing guidance, launch structure, promotion workflows, and usable outputs."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="../images/logos/brandfounder-logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- Scripts -->
-    <script src="../scripts/navbar.js" defer></script>
+  <link rel="icon" type="image/png" href="../images/logos/brandfounder-logo.png" />
+
+  <link rel="stylesheet" href="../styles/main.css" />
+  <link rel="stylesheet" href="../styles/navbar.css" />
+  <link rel="stylesheet" href="../styles/home.css" />
+
+  <script src="../scripts/navbar.js" defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "BrandFounder",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "iOS, macOS",
+    "offers": {
+      "@type": "Offer",
+      "price": "24.99",
+      "priceCurrency": "GBP"
+    },
+    "description": "BrandFounder turns your idea into a complete brand pack with visuals, positioning, launch direction and promotion outputs."
+  }
+  </script>
 </head>
 <body>
-    <!-- NAVBAR -->
-    <header class="navbar">
-        <div class="container">
-            <div class="logo-container">
-                <img src="../images/logos/brandcore-logo.png" alt="BrandCore logo" class="logo-icon" />
-                <a href="home.html" class="logo">BrandCore</a>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="navbar">
+    <div class="container">
+      <div class="logo-container">
+        <img
+          src="../images/logos/brandfounder-logo.png"
+          alt="BrandFounder logo"
+          class="logo-icon"
+          width="28"
+          height="28"
+          decoding="async"
+        />
+        <a href="home.html" class="logo" aria-label="BrandFounder home">BrandFounder</a>
+      </div>
+
+      <nav class="nav-links" aria-label="Primary">
+        <button
+          class="menu-toggle"
+          id="menu-toggle"
+          type="button"
+          aria-label="Toggle menu"
+          aria-controls="nav-menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+
+        <ul id="nav-menu">
+          <li><a href="#how-it-works">How it works</a></li>
+          <li><a href="#examples">Examples</a></li>
+          <li><a href="#inside">Inside the pack</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li>
+            <a
+              href="https://apps.apple.com/gb/search?term=BrandFounder"
+              class="nav-cta"
+              aria-label="Search BrandFounder on the App Store"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              App Store
+            </a>
+          </li>
+          <li><a href="privacy-policy.html" class="nav-legal">Privacy</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-section hero-section" id="top">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="hero-brand">
+            <img
+              src="../images/logos/brandfounder-logo.png"
+              alt="BrandFounder mark"
+              class="hero-logo"
+              width="84"
+              height="84"
+              decoding="async"
+            />
+            <div class="hero-brand-text">
+              <div class="tag-pill">
+                <span class="live-dot" aria-hidden="true"></span>
+                <span>iOS out now · macOS coming soon</span>
+              </div>
             </div>
+          </div>
 
-            <nav class="nav-links">
-                <div class="menu-toggle" id="menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+          <h1 class="hero-title">
+            Turn your idea into a brand you can actually launch.
+          </h1>
 
-                <ul>
-                    <li><a href="#product">Product</a></li>
-                    <li><a href="#how-it-works">How it works</a></li>
-                    <li><a href="#sample-output">What you get</a></li>
-                    <li><a href="#who-its-for">Who it’s for</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#early-access" class="nav-cta">Get early access</a></li>
-                    <li><a href="privacy-policy.html" class="nav-legal">Privacy</a></li>
-                </ul>
-            </nav>
+          <p class="hero-subtitle">
+            BrandFounder helps you build a complete brand pack inside the app, with strategy, visuals, launch structure,
+            and promotion tools designed to turn an early idea into something clearer, sharper, and ready to use.
+          </p>
+
+          <div class="hero-trust" aria-label="Key benefits">
+            <span class="hero-trust-item">Launch-ready outputs</span>
+            <span class="hero-trust-item">Promotion included</span>
+          </div>
+
+          <div class="hero-value-pills" aria-label="Highlights">
+            <span class="value-pill">£24.99</span>
+            <span class="value-pill">One complete package</span>
+            <span class="value-pill">Built for founders</span>
+          </div>
+
+          <div class="hero-cta-row">
+            <a
+              href="https://apps.apple.com/gb/search?term=BrandFounder"
+              class="btn btn-primary"
+              aria-label="Search BrandFounder on the App Store"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Search BrandFounder on the App Store
+            </a>
+
+            <a href="#examples" class="btn btn-secondary">See examples</a>
+          </div>
+
+          <div class="hero-platforms">
+            <span class="platform-label">Available platforms</span>
+            <div class="platform-badges" role="list">
+              <div class="platform-badge" role="listitem">
+                <img src="../images/icons/ios-icon.png" alt="" width="20" height="20" loading="lazy" decoding="async" />
+                <span>iOS</span>
+                <span class="live-now">Out now</span>
+              </div>
+              <div class="platform-badge" role="listitem">
+                <img src="../images/icons/macos-icon.png" alt="" width="20" height="20" loading="lazy" decoding="async" />
+                <span>macOS</span>
+                <span class="coming-soon">Coming soon</span>
+              </div>
+            </div>
+          </div>
+
+          <p class="hero-fine">
+            Build a brand pack, tighten the offer, shape the visuals, and get your first launch direction in one place.
+          </p>
         </div>
-    </header>
 
-    <main>
-        <!-- HERO / PRODUCT -->
-        <section id="product" class="page-section hero-section">
-            <div class="container hero-grid">
-                <!-- LEFT: COPY -->
-                <div class="hero-copy reveal">
-                    <div class="tag-pill">Early access · AI brand engine</div>
-                    <h1 class="hero-title">
-                        Go from idea name<br />
-                        to full brand in one sitting.
-                    </h1>
-                    <p class="hero-subtitle">
-                        BrandCore takes the kind of vague idea most people sit on for years and turns it into a full
-                        brand pack: positioning, story, visual direction, logo concepts, launch plan and ad scripts –
-                        ready to ship, not just brainstorm.
-                    </p>
-
-                    <div class="hero-trust">
-                        <span class="hero-trust-item">Built for first-time founders</span>
-                        <span class="hero-trust-dot">•</span>
-                        <span class="hero-trust-item">No agency retainers</span>
-                        <span class="hero-trust-dot">•</span>
-                        <span class="hero-trust-item">Downloadable in minutes</span>
-                    </div>
-
-                    <div class="hero-value-pills">
-                        <span class="value-pill">Full brand pack in under an hour</span>
-                        <span class="value-pill">Marketing plan, scripts &amp; visuals</span>
-                        <span class="value-pill">Calibrated for solo builders</span>
-                    </div>
-
-                    <div class="hero-cta-row">
-                        <a href="#pricing" class="btn btn-primary">View early-access pricing</a>
-                        <a href="#sample-output" class="btn btn-secondary">See what you get</a>
-                    </div>
-
-                    <form class="hero-form" action="#" method="post">
-                        <label class="hero-form-label" for="hero-email">
-                            Join the early list to get the first macOS &amp; iOS builds.
-                        </label>
-                        <div class="hero-form-row">
-                            <input
-                                id="hero-email"
-                                name="email"
-                                type="email"
-                                required
-                                placeholder="you@startup.co"
-                                autocomplete="email"
-                            />
-                            <button type="submit" class="btn btn-primary hero-form-btn">
-                                Get on the list
-                            </button>
-                        </div>
-                        <p class="hero-form-note">
-                            Be in the first wave before pricing goes up for agencies and bigger teams.
-                        </p>
-                    </form>
-
-                    <div class="hero-platforms">
-                        <span class="platform-label">Launching on</span>
-                        <div class="platform-badges">
-                            <div class="platform-badge">
-                                <img src="../images/icons/macos-icon.png" alt="macOS icon" />
-                                <span>macOS</span>
-                            </div>
-                            <div class="platform-badge">
-                                <img src="../images/icons/ios-icon.png" alt="iOS icon" />
-                                <span>iOS</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- RIGHT: PREVIEW CARD -->
-                <div class="hero-visual reveal">
-                    <div class="card hero-card">
-                        <div class="hero-card-header">
-                            <span class="hero-card-label">BrandCore pack preview</span>
-                            <span class="hero-card-tag">Idea in → Full brand out</span>
-                        </div>
-
-                        <div class="hero-card-body">
-                            <!-- TEXT LEFT -->
-                            <div class="hero-card-summary">
-                                <h2>“Nova Brew Co.” – from 2 lines to a full brand</h2>
-                                <p>
-                                    Input: “Coffee brand for young founders who work in deep-focus blocks.”
-                                    BrandCore turns that into a full system you can actually launch with.
-                                </p>
-                                <ul>
-                                    <li>Positioning: “Coffee for people who actually ship things.”</li>
-                                    <li>Messaging: landing-page copy, one-liners &amp; ad hooks.</li>
-                                    <li>Visuals: colour palette, mood, logo directions, asset list.</li>
-                                    <li>Go-to-market: launch sequence, content schedule, ad angles.</li>
-                                    <li>Export: clean PDF pack + text you can paste straight into your tools.</li>
-                                </ul>
-                            </div>
-
-                            <!-- IMAGE RIGHT -->
-                            <img
-                                src="../images/brandcore-hero-mock.png"
-                                alt="BrandCore app preview – generated brand direction and messaging"
-                                class="hero-card-image"
-                            />
-                        </div>
-
-                        <div class="hero-card-footer">
-                            <span>Generated from: idea name, short description and your target audience.</span>
-                        </div>
-                    </div>
-                </div>
+        <div class="hero-visual reveal">
+          <div class="hero-showcase">
+            <div class="hero-showcase-main">
+              <img
+                src="../images/mockups/brand-package.png"
+                alt="Brand pack visual generated with BrandFounder"
+                class="hero-package-image"
+                width="1200"
+                height="900"
+                loading="eager"
+                decoding="async"
+              />
             </div>
-        </section>
 
-        <!-- HOW IT WORKS -->
-        <section id="how-it-works" class="page-section how-section">
-            <div class="container">
-                <h2 class="section-title reveal">From “I’ve got an idea” to “I have a brand”</h2>
-                <p class="section-intro reveal">
-                    No 40-page agency questionnaire. No spending six months guessing. BrandCore takes a lean amount
-                    of input and turns it into a structured brand you can ship with this month.
-                </p>
-
-                <div class="steps-grid">
-                    <div class="card step-card reveal">
-                        <div class="step-badge">01</div>
-                        <h3>Drop in your idea</h3>
-                        <p>
-                            Name your idea, describe it in plain language, choose your target audience and share a bit
-                            about why you’re building it. That’s it – no jargon, no marketing degree required.
-                        </p>
-                    </div>
-
-                    <div class="card step-card reveal">
-                        <div class="step-badge">02</div>
-                        <h3>Brand engine goes to work</h3>
-                        <p>
-                            BrandCore maps your inputs against live market signals, competitor patterns and proven
-                            positioning playbooks to build a full brand system instead of a random wall of AI text.
-                        </p>
-                    </div>
-
-                    <div class="card step-card reveal">
-                        <div class="step-badge">03</div>
-                        <h3>Download your brand pack</h3>
-                        <p>
-                            You leave with a downloadable pack: strategy, messaging, visuals, logo directions, ad
-                            scripts and a launch plan. Plug it into your site, social, App Store listing and investor
-                            deck straight away.
-                        </p>
-                    </div>
-                </div>
+            <div class="hero-phone-card">
+              <div class="hero-phone-frame">
+                <picture>
+                  <source srcset="../images/mockups/app-home-screen-dark.png" media="(prefers-color-scheme: dark)" />
+                  <img
+                    src="../images/mockups/app-home-screen.png"
+                    alt="BrandFounder app home screen"
+                    class="hero-phone-image"
+                    width="900"
+                    height="1300"
+                    loading="eager"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
             </div>
-        </section>
 
-        <!-- WHAT YOU GET / OUTPUTS -->
-        <section id="sample-output" class="page-section outputs-section">
-            <div class="container">
-                <h2 class="section-title reveal">Everything inside your BrandCore pack</h2>
-                <p class="section-intro reveal">
-                    Think of it as the starter brand deck you wish you had: one place with enough clarity to move, not
-                    another “ideas doc” that lives in your notes app forever.
-                </p>
-
-                <div class="outputs-grid">
-                    <div class="card output-card reveal">
-                        <h3>Brand strategy &amp; positioning</h3>
-                        <p>
-                            Clear positioning statement, audience breakdown, value prop and brand story – written so you
-                            can explain it to a co-founder, investor or first customer without rambling.
-                        </p>
-                    </div>
-
-                    <div class="card output-card reveal">
-                        <h3>Messaging &amp; ad scripts</h3>
-                        <p>
-                            Landing-page structure, hero lines, bullets, email intros and multiple ad scripts tuned to
-                            your audience. Copy you can paste straight into your website and campaigns.
-                        </p>
-                    </div>
-
-                    <div class="card output-card reveal">
-                        <h3>Visual direction &amp; logo ideas</h3>
-                        <p>
-                            Colour palette, mood, typography direction and logo concepts. Enough for you or a designer
-                            to spin up a first visual system without staring at a blank Figma file.
-                        </p>
-                    </div>
-
-                    <div class="card output-card reveal">
-                        <h3>Competitor &amp; market snapshot</h3>
-                        <p>
-                            A concise view of where your idea sits versus similar products – what they’re saying, where
-                            they’re weak, and how you can position around them.
-                        </p>
-                    </div>
-
-                    <div class="card output-card reveal">
-                        <h3>Launch &amp; content plan</h3>
-                        <p>
-                            Suggested 2–4 week launch sequence, content themes and posting cadence so you’re not
-                            winging it day-to-day on social and email.
-                        </p>
-                    </div>
-
-                    <div class="card output-card reveal">
-                        <h3>Export-ready PDF &amp; text</h3>
-                        <p>
-                            A clean, downloadable PDF for your brand pack plus text you can copy into Notion, docs,
-                            your CMS or wherever you run your projects.
-                        </p>
-                    </div>
-                </div>
+            <div class="hero-showcase-badges" aria-label="Core app areas">
+              <div class="hero-showcase-pill">
+                <strong>Brand</strong>
+                <span>Identity + visuals</span>
+              </div>
+              <div class="hero-showcase-pill">
+                <strong>Launch</strong>
+                <span>Checklist + rollout</span>
+              </div>
+              <div class="hero-showcase-pill">
+                <strong>Promote</strong>
+                <span>Concepts + prompts</span>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <!-- WHO IT'S FOR -->
-        <section id="who-its-for" class="page-section personas-section">
-            <div class="container">
-                <h2 class="section-title reveal">Exactly who BrandCore is built for</h2>
-                <p class="section-intro reveal">
-                    If you’re serious enough to sit down and do the work, BrandCore is the unfair head-start.
-                </p>
+    <section id="how-it-works" class="page-section how-section">
+      <div class="container">
+        <h2 class="section-title reveal">How it works</h2>
+        <p class="section-intro reveal">
+          Fast in. Clean out.
+        </p>
 
-                <div class="personas-grid">
-                    <div class="card persona-card reveal">
-                        <h3>Young founders &amp; students</h3>
-                        <p>
-                            You’ve got an idea name, a half-written notes doc and a decent work ethic. BrandCore gives
-                            you a full brand pack so you can launch something real instead of “one day”.
-                        </p>
-                    </div>
+        <div class="steps-grid">
+          <div class="card step-card reveal">
+            <div class="step-badge">01</div>
+            <h3>Start with the idea</h3>
+            <p>Name it, define the product, set the audience and tone.</p>
+          </div>
 
-                    <div class="card persona-card reveal">
-                        <h3>Solo builders &amp; indie devs</h3>
-                        <p>
-                            You can ship product but don’t want to become a full-time marketer. Use BrandCore to lock
-                            in a clear story, visuals and launch plan while you keep building.
-                        </p>
-                    </div>
+          <div class="card step-card reveal">
+            <div class="step-badge">02</div>
+            <h3>Generate the package</h3>
+            <p>Get the brand system, visuals, positioning, and structure.</p>
+          </div>
 
-                    <div class="card persona-card reveal">
-                        <h3>Small teams &amp; future agencies</h3>
-                        <p>
-                            Use BrandCore as the first pass for new ideas, internal tools or client concepts. Get a
-                            tight starting point in minutes, then layer your judgement and experience on top.
-                        </p>
-                    </div>
-                </div>
+          <div class="card step-card reveal">
+            <div class="step-badge">03</div>
+            <h3>Launch and promote</h3>
+            <p>Use the built-in launch plan and promotion workflow to move.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="examples" class="page-section examples-section">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="section-title">Examples generated in app</h2>
+          <p class="section-intro">
+            Real brand outputs built inside BrandFounder.
+          </p>
+        </div>
+
+        <div class="examples-carousel reveal" aria-label="Example brand packs">
+          <article class="example-card">
+            <div class="example-card-top">
+              <span class="example-badge">SERVICE</span>
+              <span class="example-meta">Promote workflow</span>
             </div>
-        </section>
 
-        <!-- PRICING / PACKAGES -->
-        <section id="pricing" class="page-section pricing-section">
-            <div class="container">
-                <h2 class="section-title reveal">Early-access pricing for people who actually ship</h2>
-                <p class="section-intro reveal">
-                    BrandCore will eventually be priced for teams and agencies. Early access is deliberately tilted in
-                    favour of solo builders and young founders who move first.
-                </p>
-
-                <div class="pricing-grid">
-                    <!-- Tier 1 -->
-                    <div class="card pricing-card reveal">
-                        <div class="pricing-badge">Starter</div>
-                        <h3>One Idea, One Brand</h3>
-                        <p class="pricing-tagline">
-                            Perfect if you’ve got a single idea you want to take seriously this year.
-                        </p>
-                        <p class="pricing-price">
-                            <span class="pricing-currency">£</span>29
-                            <span class="pricing-period">one-time</span>
-                        </p>
-                        <ul class="pricing-list">
-                            <li>1 BrandCore pack for a single idea</li>
-                            <li>Full strategy, messaging &amp; visuals</li>
-                            <li>Downloadable PDF + copy export</li>
-                            <li>Email support for basic questions</li>
-                        </ul>
-                        <a href="#early-access" class="btn btn-secondary pricing-btn">
-                            Start with Starter
-                        </a>
-                    </div>
-
-                    <!-- Tier 2 (Featured) -->
-                    <div class="card pricing-card pricing-card-featured reveal">
-                        <div class="pricing-badge">Builder</div>
-                        <h3>Serious Solo Builder</h3>
-                        <p class="pricing-tagline">
-                            For the person who knows they’ll have more than one idea – or wants room to iterate.
-                        </p>
-                        <p class="pricing-price">
-                            <span class="pricing-currency">£</span>79
-                            <span class="pricing-period">early-access</span>
-                        </p>
-                        <ul class="pricing-list">
-                            <li>Up to 3 BrandCore packs (3 ideas)</li>
-                            <li>All Starter features included</li>
-                            <li>Priority access to new pack types</li>
-                            <li>Early-bird pricing locked in</li>
-                        </ul>
-                        <a href="#early-access" class="btn btn-primary pricing-btn">
-                            Join as a Builder
-                        </a>
-                        <p class="pricing-note">Most solo founders should start here.</p>
-                    </div>
-
-                    <!-- Tier 3 -->
-                    <div class="card pricing-card pricing-card-disabled reveal">
-                        <div class="pricing-badge">Studio</div>
-                        <h3>Teams &amp; Agencies</h3>
-                        <p class="pricing-tagline">
-                            For studios and teams who want BrandCore as a first-pass engine for client work and new bets.
-                        </p>
-                        <p class="pricing-price">
-                            <span class="pricing-coming-soon">Coming soon</span>
-                        </p>
-                        <ul class="pricing-list">
-                            <li>Higher volume of brand packs</li>
-                            <li>Team workflows &amp; shared libraries</li>
-                            <li>Priority roadmap input</li>
-                            <li>Designed for serious operators</li>
-                        </ul>
-                        <a href="#early-access" class="btn btn-secondary pricing-btn" aria-disabled="true">
-                            Join studio waitlist
-                        </a>
-                    </div>
-                </div>
-
-                <p class="pricing-footnote">
-                    *Pricing and features may adjust before public launch. Early-access customers keep their original tier.
-                </p>
+            <div class="example-visual">
+              <picture>
+                <source srcset="../images/mockups/iphone-self-package-dark.png" media="(prefers-color-scheme: dark)" />
+                <img
+                  src="../images/mockups/iphone-self-package.png"
+                  alt="Self Package shown inside the BrandFounder app on iPhone"
+                  class="example-phone-image"
+                  width="900"
+                  height="1300"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
             </div>
-        </section>
 
-        <!-- EARLY ACCESS CTA -->
-        <section id="early-access" class="page-section cta-section">
-            <div class="container cta-inner reveal">
-                <div class="cta-copy">
-                    <h2>Get a head-start while everyone else is still “thinking about it”.</h2>
-                    <p>
-                        BrandCore is the kind of tool that quietly gives you an unfair advantage: one evening of input
-                        for a brand pack most people would spend half a year circling. Join the early wave before it’s
-                        priced for larger teams.
-                    </p>
-                </div>
-
-                <form class="cta-form" action="#" method="post">
-                    <div class="cta-form-row">
-                        <input
-                            type="email"
-                            name="email"
-                            required
-                            placeholder="you@startup.co"
-                            autocomplete="email"
-                        />
-                        <button type="submit" class="btn btn-primary">
-                            Join early access
-                        </button>
-                    </div>
-                    <div class="cta-meta">
-                        <span>Light updates only. Unsubscribe anytime.</span>
-                        <a href="privacy-policy.html">Privacy</a>
-                        <a href="terms-of-service.html">Terms</a>
-                    </div>
-                </form>
+            <div class="example-copy">
+              <h3>Self Package</h3>
+              <p>Sharper positioning, clearer promotion planning, and a cleaner premium direction.</p>
+              <ul class="example-list">
+                <li>Promotion plan</li>
+                <li>Tool stack and prompts</li>
+                <li>Short-form growth direction</li>
+              </ul>
             </div>
-        </section>
-    </main>
+          </article>
 
-    <!-- FOOTER -->
+          <article class="example-card">
+            <div class="example-card-top">
+              <span class="example-badge">HEALTH</span>
+              <span class="example-meta">Copy workflow</span>
+            </div>
+
+            <div class="example-visual">
+              <picture>
+                <source srcset="../images/mockups/iphone-endometer-dark.png" media="(prefers-color-scheme: dark)" />
+                <img
+                  src="../images/mockups/iphone-endometer.png"
+                  alt="Endometer shown inside the BrandFounder app on iPhone"
+                  class="example-phone-image"
+                  width="900"
+                  height="1300"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+            </div>
+
+            <div class="example-copy">
+              <h3>Endometer</h3>
+              <p>Stronger health branding with clearer copy, ad concepts, and launch-ready creative structure.</p>
+              <ul class="example-list">
+                <li>Ad studio outputs</li>
+                <li>Hooks and concepts</li>
+                <li>Production-ready briefs</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="example-card">
+            <div class="example-card-top">
+              <span class="example-badge">PRODUCT</span>
+              <span class="example-meta">Launch workflow</span>
+            </div>
+
+            <div class="example-visual">
+              <picture>
+                <source srcset="../images/mockups/iphone-ringkey-dark.png" media="(prefers-color-scheme: dark)" />
+                <img
+                  src="../images/mockups/iphone-ringkey.png"
+                  alt="Ringkey shown inside the BrandFounder app on iPhone"
+                  class="example-phone-image"
+                  width="900"
+                  height="1300"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+            </div>
+
+            <div class="example-copy">
+              <h3>Ringkey</h3>
+              <p>A smart ring that senses your door handle and unlocks it as you open. Built into a clearer product launch system.</p>
+              <ul class="example-list">
+                <li>Launch checklist</li>
+                <li>Pre-launch setup</li>
+                <li>Channel-by-channel rollout</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="inside" class="page-section package-section">
+      <div class="container">
+        <div class="package-grid">
+          <div class="card package-copy-card reveal">
+            <span class="section-kicker">Inside the package</span>
+            <h2 class="package-title">What you actually get</h2>
+            <p class="package-subtitle">
+              The essentials, properly structured.
+            </p>
+
+            <div class="package-points">
+              <div class="package-point">
+                <h3>Overview</h3>
+                <p>Identity summary, tagline, vocabulary, visuals, pricing, and your edge.</p>
+              </div>
+              <div class="package-point">
+                <h3>Launch</h3>
+                <p>Day 0 setup, checklist, and a 30-day plan that gives the brand momentum.</p>
+              </div>
+              <div class="package-point">
+                <h3>Promote</h3>
+                <p>Tool stack, exact steps, prompts, concepts, tests, and what to avoid.</p>
+              </div>
+            </div>
+
+            <div class="package-actions">
+              <a
+                href="https://apps.apple.com/gb/search?term=BrandFounder"
+                class="btn btn-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Get the app
+              </a>
+              <a href="privacy-policy.html" class="btn btn-secondary">Privacy</a>
+            </div>
+          </div>
+
+          <div class="card package-visual-card reveal">
+            <div class="package-visual-head">
+              <h3>One package. Clear outputs.</h3>
+              <p>Brand package visual and app-generated structure.</p>
+            </div>
+
+            <figure class="package-figure">
+              <img
+                src="../images/mockups/brand-package.png"
+                alt="Brand package visual generated with BrandFounder"
+                class="package-image"
+                width="1200"
+                height="900"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+
+            <div class="package-chip-row">
+              <span class="package-chip">Generated in app</span>
+              <span class="package-chip">Ready to use</span>
+              <span class="package-chip">Built for launch</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section pricing-section" id="pricing">
+      <div class="container">
+        <div class="pricing-shell reveal">
+          <span class="pricing-badge">Simple pricing</span>
+          <h2 class="pricing-title">One package for £24.99</h2>
+          <p class="pricing-copy">
+            No tiers. No clutter. Just the full package.
+          </p>
+
+          <a
+            href="https://apps.apple.com/gb/search?term=BrandFounder"
+            class="btn btn-primary pricing-button"
+            aria-label="Search BrandFounder on the App Store"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Search BrandFounder on the App Store
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="page-section faq-section">
+      <div class="container">
+        <h2 class="section-title reveal">FAQ</h2>
+        <p class="section-intro reveal">Only the useful bits.</p>
+
+        <div class="faq-grid">
+          <details class="card faq-card reveal">
+            <summary>Is this actually generated inside the app?</summary>
+            <div class="faq-answer">
+              <p>
+                Yes. The examples shown here come from BrandFounder’s real in-app generation flows. That includes brand
+                direction, visual outputs, launch planning, and promotion structure. They are here to show the kind of work
+                the product actually produces, not fictional agency case studies made outside the app.
+              </p>
+            </div>
+          </details>
+
+          <details class="card faq-card reveal">
+            <summary>What do I get for £24.99?</summary>
+            <div class="faq-answer">
+              <p>
+                You get one complete brand package generated inside the app. That includes brand direction, positioning,
+                messaging, pricing guidance, visual outputs, launch structure, and promotion workflows. In practical terms,
+                it gives you something you can actually use to present the idea, publish content, and move toward launch,
+                rather than leaving you with a few nice-looking graphics and no real plan.
+              </p>
+            </div>
+          </details>
+
+          <details class="card faq-card reveal">
+            <summary>What is actually inside the brand pack?</summary>
+            <div class="faq-answer">
+              <p>
+                The pack is broader than just visual assets. It includes your brand foundation, market angle, pricing
+                guidance, visual direction, ready-to-use branded assets, launch structure, and promotion support. Depending
+                on the workflow, that can include logo output, social graphics, messaging direction, launch checklists,
+                rollout plans, prompts, concepts, and creative guidance you can actually work from.
+              </p>
+            </div>
+          </details>
+
+          <details class="card faq-card reveal">
+            <summary>Do I need design or branding experience?</summary>
+            <div class="faq-answer">
+              <p>
+                No. BrandFounder is built for founders, side-project builders, and early-stage operators who have the idea
+                but not the time or specialist background to build a coherent brand pack from scratch. The app helps turn a
+                rough concept into something clearer, sharper, and more presentable.
+              </p>
+            </div>
+          </details>
+
+          <details class="card faq-card reveal">
+            <summary>Who is BrandFounder for?</summary>
+            <div class="faq-answer">
+              <p>
+                It is for people at the early stage of building something real: founders, solo builders, creators,
+                consultants, and product people who want stronger branding and clearer launch direction without dragging the
+                process out across multiple tools and freelancers.
+              </p>
+            </div>
+          </details>
+
+          <details class="card faq-card reveal">
+            <summary>What happens if generation fails after purchase?</summary>
+            <div class="faq-answer">
+              <p>
+                If a purchase succeeds but generation is interrupted or fails, the paid package remains linked to your
+                account so you can retry without paying again. You should not be charged twice for the same unlocked pack.
+              </p>
+            </div>
+          </details>
+
+          <details class="card faq-card reveal">
+            <summary>Can I restore purchases?</summary>
+            <div class="faq-answer">
+              <p>
+                Yes. You can restore purchases through the app to re-sync your App Store purchase state on the device. This
+                is useful if you reinstall the app, switch devices, or had an interrupted purchase flow.
+              </p>
+            </div>
+          </details>
+
+          <details class="card faq-card reveal">
+            <summary>Who handles billing and refunds?</summary>
+            <div class="faq-answer">
+              <p>
+                Payments are handled through Apple’s App Store purchase system. Refunds are also handled by Apple under App
+                Store policies rather than directly inside BrandFounder.
+              </p>
+            </div>
+          </details>
+
+          <details class="card faq-card reveal">
+            <summary>Do you store my brand data?</summary>
+            <div class="faq-answer">
+              <p>
+                Yes. Saved brands, generated packs, and related assets are stored so they remain available across sessions
+                and devices when you are signed in. That is what allows your projects to persist instead of disappearing
+                after each session.
+              </p>
+            </div>
+          </details>
+
+          <details class="card faq-card reveal">
+            <summary>Do you collect analytics or review my inputs?</summary>
+            <div class="faq-answer">
+              <p>
+                Analytics and optional input-sharing depend on your privacy settings in the app. If those settings are off,
+                new create inputs are not added to the shared input collection. Privacy controls can be changed at any time.
+              </p>
+            </div>
+          </details>
+
+          <details class="card faq-card reveal">
+            <summary>Can I delete my data?</summary>
+            <div class="faq-answer">
+              <p>
+                Yes. The app includes a delete-data option for removing local drafts, caches, and associated account data.
+                The privacy policy explains this in more detail.
+              </p>
+            </div>
+          </details>
+
+          <details class="card faq-card reveal">
+            <summary>Is macOS available?</summary>
+            <div class="faq-answer">
+              <p>
+                Not yet. iOS is the live focus right now. macOS is planned, but the current product and examples are centred
+                on the iPhone experience.
+              </p>
+            </div>
+          </details>
+
+          <details class="card faq-card reveal">
+            <summary>Where do I find the app?</summary>
+            <div class="faq-answer">
+              <p>
+                Once the listing is live, search for BrandFounder on the App Store or use the direct App Store link from
+                this site. Until then, the site is here to show what the product does and what the in-app outputs look like.
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <footer class="site-footer">
-        <div class="footer-inner">
-            <div class="footer-left">
-                <p>© 2025 BrandCore.</p>
-                <p class="footer-sub">iOS &amp; macOS tools by Carter Manahan.</p>
-            </div>
-
-            <div class="footer-right">
-                <a href="privacy-policy.html">Privacy Policy</a>
-                <a href="terms-of-service.html">Terms of Service (Apple EULA)</a>
-            </div>
+      <div class="footer-inner">
+        <div class="footer-left">
+          <p>© 2026 BrandFounder. All rights reserved.</p>
+          <p class="footer-sub">Brand packs, launch direction, and promotion workflows generated in app.</p>
         </div>
+
+        <div class="footer-right footer-links">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a
+            href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Terms of Use
+          </a>
+          <a
+            href="https://instagram.com/brandfounderapp"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link"
+            aria-label="BrandFounder on Instagram"
+          >
+            <img
+              src="../images/icons/instagram-icon.png"
+              alt="Instagram"
+              width="20"
+              height="20"
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+          <a
+            href="https://tiktok.com/@brandfounderapp"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link"
+            aria-label="BrandFounder on TikTok"
+          >
+            <img
+              src="../images/icons/tiktok-icon.png"
+              alt="TikTok"
+              width="20"
+              height="20"
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+        </div>
+      </div>
     </footer>
 
-    <!-- Simple scroll-reveal -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const reveals = document.querySelectorAll('.reveal');
-            if (!('IntersectionObserver' in window)) {
-                reveals.forEach(el => el.classList.add('visible'));
-                return;
+      document.addEventListener('DOMContentLoaded', () => {
+        const anchorLinks = document.querySelectorAll('a[href^="#"]');
+        anchorLinks.forEach(link => {
+          link.addEventListener('click', e => {
+            const href = link.getAttribute('href');
+            if (!href || href === '#' || href.length < 2) return;
+            const target = document.querySelector(href);
+            if (!target) return;
+
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.replaceState(null, '', href);
+
+            const menuBtn = document.getElementById('menu-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            if (menuBtn && navMenu && navMenu.classList.contains('show')) {
+              menuBtn.setAttribute('aria-expanded', 'false');
+              menuBtn.classList.remove('open');
+              navMenu.classList.remove('show');
             }
-
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.15 });
-
-            reveals.forEach(el => observer.observe(el));
+          });
         });
+
+        const reveals = document.querySelectorAll('.reveal');
+        if (!('IntersectionObserver' in window)) {
+          reveals.forEach(el => el.classList.add('visible'));
+        } else {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          }, {
+            threshold: 0.14,
+            rootMargin: '0px 0px -24px 0px'
+          });
+
+          reveals.forEach(el => observer.observe(el));
+        }
+
+        const hero = document.querySelector('.hero-section');
+        if (hero && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          const aura = document.createElement('div');
+          aura.className = 'hero-aura';
+          hero.prepend(aura);
+
+          let raf = null;
+          window.addEventListener('mousemove', (e) => {
+            if (raf) return;
+            raf = requestAnimationFrame(() => {
+              const x = (e.clientX / window.innerWidth) - 0.5;
+              const y = (e.clientY / window.innerHeight) - 0.5;
+              aura.style.transform = `translate3d(${x * 18}px, ${y * 14}px, 0)`;
+              raf = null;
+            });
+          }, { passive: true });
+        }
+
+        const menuBtn = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+
+        if (menuBtn && navMenu) {
+          const closeMenu = () => {
+            menuBtn.setAttribute('aria-expanded', 'false');
+            menuBtn.classList.remove('open');
+            navMenu.classList.remove('show');
+          };
+
+          menuBtn.addEventListener('click', () => {
+            const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+            menuBtn.setAttribute('aria-expanded', String(!expanded));
+            menuBtn.classList.toggle('open', !expanded);
+            navMenu.classList.toggle('show', !expanded);
+          });
+
+          document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+              closeMenu();
+            }
+          });
+
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+              closeMenu();
+            }
+          });
+        }
+      });
     </script>
+  </main>
 </body>
 </html>

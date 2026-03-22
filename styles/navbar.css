@@ -313,6 +313,7 @@
     object-fit: cover;
     opacity: 0.95;
     transition: opacity 0.25s ease;
+    border-radius: 6px;
 }
 
 .logo-icon:hover {

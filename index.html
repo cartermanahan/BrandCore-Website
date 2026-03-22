@@ -1,37 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Redirecting…</title>
+    <title>Redirecting to BrandFounder…</title>
 
-    <!-- Instant redirect -->
     <meta http-equiv="refresh" content="0; url=pages/home.html" />
-
-    <!-- SEO fallback -->
     <link rel="canonical" href="pages/home.html" />
 
-    <!-- JS fallback -->
     <script>
         window.location.replace("pages/home.html");
     </script>
 
     <style>
+        html, body {
+            margin: 0;
+            width: 100%;
+            min-height: 100%;
+            background: #050712;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+        }
+
         body {
-            background: #000;
-            color: #fff;
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            margin: 0;
-            font-size: 0.9rem;
-            opacity: 0.8;
+            min-height: 100vh;
+            font-size: 0.95rem;
+            opacity: 0.84;
+            letter-spacing: 0.01em;
+        }
+
+        @media (prefers-color-scheme: light) {
+            html, body {
+                background: #f5f5f7;
+                color: #0b0b10;
+            }
         }
     </style>
 </head>
 <body>
-    Redirecting to BrandCore…
+    Redirecting to BrandFounder…
 </body>
 </html>
