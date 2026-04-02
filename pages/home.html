@@ -890,6 +890,32 @@
           });
         }
 
+        // ===== NAVBAR SCROLL STATE =====
+        const navbar = document.querySelector('.navbar');
+        const onNavScroll = () => navbar.classList.toggle('is-scrolled', window.scrollY > 32);
+        window.addEventListener('scroll', onNavScroll, { passive: true });
+        onNavScroll();
+
+        // ===== NAVBAR ACTIVE SECTION =====
+        const navAnchors = document.querySelectorAll('.navbar .nav-links li a[href^="#"]');
+        const navSections = Array.from(navAnchors)
+          .map(a => document.querySelector(a.getAttribute('href')))
+          .filter(Boolean);
+
+        if ('IntersectionObserver' in window && navSections.length) {
+          const navObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const id = entry.target.id;
+                navAnchors.forEach(a => {
+                  a.classList.toggle('is-active', a.getAttribute('href') === '#' + id);
+                });
+              }
+            });
+          }, { threshold: 0.25, rootMargin: '-60px 0px -55% 0px' });
+          navSections.forEach(s => navObserver.observe(s));
+        }
+
         // ===== PACKAGE TABS =====
         const packTabs = document.querySelectorAll('.pack-tab');
         const packPanels = document.querySelectorAll('.pack-panel');
