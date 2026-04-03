@@ -1920,6 +1920,174 @@
   }
 }
 
+/* ================================
+   Logo showcase
+================================ */
+
+.logos-section {
+  padding: 56px 20px 72px;
+  overflow: hidden;
+}
+
+.logos-header {
+  text-align: center;
+  margin-bottom: 52px;
+}
+
+.logos-eyebrow {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.72;
+  margin: 0 0 12px;
+}
+
+.logos-headline {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--text-1);
+  margin: 0;
+}
+
+.logos-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 12px;
+  align-items: end;
+}
+
+/* always dark even in light mode */
+.logo-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 28px 14px 22px;
+  border-radius: 22px;
+  background: rgba(6, 8, 22, 0.95);
+  border: 1px solid rgba(99, 102, 241, 0.14);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.42);
+  transition:
+    border-color 280ms ease,
+    box-shadow 280ms ease,
+    opacity 720ms var(--ease-out),
+    transform 720ms var(--ease-out);
+}
+
+/* scattered vertical offset for odd/even */
+.logos-grid .logo-card:nth-child(even) {
+  margin-top: 20px;
+}
+
+.logo-card:hover {
+  border-color: rgba(99, 102, 241, 0.38);
+  box-shadow: 0 22px 52px rgba(0, 0, 0, 0.6), 0 0 30px rgba(99, 102, 241, 0.14);
+}
+
+/* float animation lives on the image wrap — no conflict with .reveal */
+.logo-card-img-wrap {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  animation: logoImgFloat var(--float-dur, 4s) ease-in-out var(--float-delay, 0s) infinite alternate;
+}
+
+@keyframes logoImgFloat {
+  from { transform: translateY(0px); }
+  to   { transform: translateY(-7px); }
+}
+
+.logo-card-img-wrap img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.logo-card-copy {
+  text-align: center;
+  width: 100%;
+}
+
+.logo-card-name {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.82);
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.logo-card-line {
+  display: block;
+  font-size: 0.67rem;
+  color: rgba(255, 255, 255, 0.3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* staggered scroll reveal */
+.logos-grid .logo-card:nth-child(1) { transition-delay: 0ms; }
+.logos-grid .logo-card:nth-child(2) { transition-delay: 70ms; }
+.logos-grid .logo-card:nth-child(3) { transition-delay: 140ms; }
+.logos-grid .logo-card:nth-child(4) { transition-delay: 210ms; }
+.logos-grid .logo-card:nth-child(5) { transition-delay: 280ms; }
+.logos-grid .logo-card:nth-child(6) { transition-delay: 350ms; }
+.logos-grid .logo-card:nth-child(7) { transition-delay: 420ms; }
+
+/* reset delay after reveal so hover is snappy */
+.logos-grid .logo-card.visible {
+  transition-delay: 0ms;
+}
+
+@media (max-width: 900px) {
+  .logos-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: start;
+  }
+  .logos-grid .logo-card:nth-child(even) {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .logos-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .logo-card {
+    padding: 20px 10px 16px;
+    border-radius: 18px;
+  }
+  .logo-card-img-wrap {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-card-img-wrap {
+    animation: none !important;
+  }
+}
+
+/* Staggered step-card reveals */
+.steps-grid .step-card:nth-child(1) { transition-delay: 0ms; }
+.steps-grid .step-card:nth-child(2) { transition-delay: 100ms; }
+.steps-grid .step-card:nth-child(3) { transition-delay: 200ms; }
+.steps-grid .step-card.visible { transition-delay: 0ms; }
+
 /* Three.js hero canvas */
 #hero-canvas {
   position: absolute;
