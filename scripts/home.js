@@ -96,10 +96,115 @@
     })();
   }
 
+  // ── Logo stage: floating cards + ambient canvas glow ──────────────────
+  function initLogoStage() {
+    const stage = document.querySelector('.logos-stage');
+    if (!stage) return;
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const cards = Array.from(stage.querySelectorAll('[data-lc]'));
+    const W = () => stage.offsetWidth;
+    const H = () => stage.offsetHeight;
+    const CARD_W = 136, CARD_H = 152; // approx card size incl name
+
+    // Spread cards evenly across stage with safe margins
+    // Each card gets an independent Lissajous-style orbit
+    const agents = cards.map((card, i) => {
+      const cols = 3, rows = 2;
+      const col = i % cols, row = Math.floor(i / cols);
+      // base position as fraction of stage
+      const bx = (col + 0.5) / cols;
+      const by = (row + 0.5) / rows;
+      // unique orbit params — different freq ratio = Lissajous figure
+      const ax = 28 + Math.random() * 22;   // x amplitude px
+      const ay = 18 + Math.random() * 16;   // y amplitude px
+      const fx = 0.00028 + i * 0.000031;    // x freq
+      const fy = 0.00021 + i * 0.000027;    // y freq
+      const px = Math.random() * Math.PI * 2; // phase x
+      const py = Math.random() * Math.PI * 2; // phase y
+      return { card, bx, by, ax, ay, fx, fy, px, py };
+    });
+
+    // Canvas ambient orbs
+    const canvas = stage.querySelector('.logos-stage-canvas');
+    const ctx = canvas ? canvas.getContext('2d') : null;
+
+    function resizeCanvas() {
+      if (!canvas) return;
+      canvas.width  = stage.offsetWidth;
+      canvas.height = stage.offsetHeight;
+    }
+    resizeCanvas();
+
+    // Orb data — big slow moving glows
+    const orbs = [
+      { x: 0.25, y: 0.4, r: 0.38, hue: 240 },
+      { x: 0.72, y: 0.55, r: 0.32, hue: 270 },
+      { x: 0.5,  y: 0.2,  r: 0.26, hue: 220 },
+    ];
+
+    function drawOrbs(t) {
+      if (!ctx) return;
+      const cw = canvas.width, ch = canvas.height;
+      ctx.clearRect(0, 0, cw, ch);
+      orbs.forEach((o, i) => {
+        const drift = Math.sin(t * 0.00018 + i * 1.3) * 0.07;
+        const cx = (o.x + drift) * cw;
+        const cy = (o.y + Math.cos(t * 0.00014 + i) * 0.05) * ch;
+        const r  = o.r * Math.min(cw, ch);
+        const g  = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+        g.addColorStop(0,   `hsla(${o.hue},80%,62%,0.13)`);
+        g.addColorStop(0.5, `hsla(${o.hue},70%,52%,0.06)`);
+        g.addColorStop(1,   `hsla(${o.hue},60%,40%,0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    }
+
+    function tick(t) {
+      requestAnimationFrame(tick);
+      const stageW = W(), stageH = H();
+      const margin = 12;
+
+      agents.forEach(({ card, bx, by, ax, ay, fx, fy, px, py }) => {
+        const ox = Math.sin(t * fx + px) * ax;
+        const oy = Math.sin(t * fy + py) * ay;
+
+        let x = bx * stageW + ox - CARD_W / 2;
+        let y = by * stageH + oy - CARD_H / 2;
+
+        // clamp to stage bounds
+        x = Math.max(margin, Math.min(stageW - CARD_W - margin, x));
+        y = Math.max(margin, Math.min(stageH - CARD_H - margin, y));
+
+        card.style.transform = `translate(${x}px,${y}px)`;
+      });
+
+      drawOrbs(t);
+    }
+
+    if (reduced) {
+      // Just place statically
+      agents.forEach(({ card, bx, by }) => {
+        const x = bx * W() - CARD_W / 2;
+        const y = by * H() - CARD_H / 2;
+        card.style.transform = `translate(${x}px,${y}px)`;
+      });
+    } else {
+      requestAnimationFrame(tick);
+    }
+
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initParticles);
+    document.addEventListener('DOMContentLoaded', () => { initParticles(); initLogoStage(); });
   } else {
     initParticles();
+    initLogoStage();
   }
 
 })();
