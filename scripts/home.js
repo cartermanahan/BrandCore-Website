@@ -110,15 +110,28 @@
 
     // Spread cards evenly across stage with safe margins
     // Each card gets an independent Lissajous-style orbit
+    // Scatter base positions with minimum distance enforcement
+    const margin = 12;
+    const minDist = CARD_W * 1.1;
+    const placed = [];
     const agents = cards.map((card, i) => {
-      const cols = 3, rows = 2;
-      const col = i % cols, row = Math.floor(i / cols);
-      // base position as fraction of stage
-      const bx = (col + 0.5) / cols;
-      const by = (row + 0.5) / rows;
+      let bx, by;
+      let attempts = 0;
+      do {
+        bx = margin / W() + Math.random() * (1 - (margin * 2 + CARD_W) / W());
+        by = margin / H() + Math.random() * (1 - (margin * 2 + CARD_H) / H());
+        attempts++;
+      } while (
+        attempts < 200 &&
+        placed.some(p => {
+          const dx = (bx - p.bx) * W(), dy = (by - p.by) * H();
+          return Math.sqrt(dx * dx + dy * dy) < minDist;
+        })
+      );
+      placed.push({ bx, by });
       // unique orbit params — different freq ratio = Lissajous figure
-      const ax = 28 + Math.random() * 22;   // x amplitude px
-      const ay = 18 + Math.random() * 16;   // y amplitude px
+      const ax = 18 + Math.random() * 14;   // x amplitude px
+      const ay = 12 + Math.random() * 10;   // y amplitude px
       const fx = 0.00028 + i * 0.000031;    // x freq
       const fy = 0.00021 + i * 0.000027;    // y freq
       const px = Math.random() * Math.PI * 2; // phase x
@@ -167,7 +180,6 @@
     function tick(t) {
       requestAnimationFrame(tick);
       const stageW = W(), stageH = H();
-      const margin = 12;
 
       agents.forEach(({ card, bx, by, ax, ay, fx, fy, px, py }) => {
         const ox = Math.sin(t * fx + px) * ax;
