@@ -3,6 +3,261 @@
 (function () {
   'use strict';
 
+  function initHeroScrollScrub() {
+    const section = document.querySelector('[data-scroll-scrub-section]');
+    const canvas = section?.querySelector('[data-scroll-scrub-canvas]');
+    const progressFill = section?.querySelector('[data-scroll-scrub-progress]');
+
+    if (!section || !canvas) return;
+
+    const context = canvas.getContext('2d', { alpha: false, desynchronized: true });
+    if (!context) return;
+
+    const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reduceMotionQuery.matches) {
+      section.classList.remove('has-scroll-scrub');
+      section.style.setProperty('--hero-scrub-progress', '1');
+      return;
+    }
+
+    const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+    const frameCount = Number(canvas.dataset.frameCount || '1');
+    const framePrefix = canvas.dataset.framePrefix || '';
+    const frameExtension = canvas.dataset.frameExtension || '.jpg';
+    let rafId = 0;
+    let renderedProgress = 0;
+    let targetProgress = 0;
+    let currentFrameIndex = 0;
+    let desiredFrameIndex = 0;
+    let touchY = null;
+    const frameUrls = Array.from({ length: frameCount }, (_, index) => {
+      return `${framePrefix}${String(index + 1).padStart(3, '0')}${frameExtension}`;
+    });
+    const preloadedFrames = new Map();
+    const loadedFrames = new Set();
+
+    function setProgress(progress) {
+      const safeProgress = clamp(progress, 0, 1);
+      renderedProgress = safeProgress;
+      section.style.setProperty('--hero-scrub-progress', safeProgress.toFixed(4));
+      if (progressFill) {
+        progressFill.style.transform = `scaleX(${Math.max(safeProgress, 0.02)})`;
+      }
+      return safeProgress;
+    }
+
+    function scrubTravel() {
+      const viewportHeight = Math.max(window.innerHeight || 0, 1);
+      return Math.max(viewportHeight * (window.innerWidth < 700 ? 3.2 : 3.9), 2100);
+    }
+
+    function resizeCanvas() {
+      const rect = canvas.getBoundingClientRect();
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      const nextWidth = Math.max(1, Math.round(rect.width * ratio));
+      const nextHeight = Math.max(1, Math.round(rect.height * ratio));
+
+      if (canvas.width !== nextWidth || canvas.height !== nextHeight) {
+        canvas.width = nextWidth;
+        canvas.height = nextHeight;
+      }
+    }
+
+    function drawCover(image) {
+      resizeCanvas();
+      const targetWidth = canvas.width;
+      const targetHeight = canvas.height;
+      const imageWidth = image.naturalWidth || image.width;
+      const imageHeight = image.naturalHeight || image.height;
+
+      if (!imageWidth || !imageHeight) return;
+
+      const scale = Math.max(targetWidth / imageWidth, targetHeight / imageHeight);
+      const drawWidth = imageWidth * scale;
+      const drawHeight = imageHeight * scale;
+      const offsetX = (targetWidth - drawWidth) / 2;
+      const offsetY = (targetHeight - drawHeight) / 2;
+
+      context.clearRect(0, 0, targetWidth, targetHeight);
+      context.drawImage(image, offsetX, offsetY, drawWidth, drawHeight);
+    }
+
+    function preloadFrames() {
+      frameUrls.forEach((url, index) => {
+        const img = new Image();
+        img.decoding = 'async';
+        img.loading = 'eager';
+        img.addEventListener('load', () => {
+          loadedFrames.add(url);
+          if (index === 0 && currentFrameIndex === 0) {
+            drawCover(img);
+          }
+          if (desiredFrameIndex === index && currentFrameIndex !== desiredFrameIndex) {
+            renderFrame(renderedProgress);
+          }
+        });
+        img.src = url;
+        if (img.complete) {
+          loadedFrames.add(url);
+        }
+        preloadedFrames.set(url, img);
+      });
+    }
+
+    function renderFrame(progress) {
+      const frameIndex = Math.min(frameCount - 1, Math.round(progress * (frameCount - 1)));
+      desiredFrameIndex = frameIndex;
+      if (frameIndex === currentFrameIndex) return;
+
+      const nextUrl = frameUrls[frameIndex];
+      const nextImage = preloadedFrames.get(nextUrl);
+      if (!loadedFrames.has(nextUrl) && !nextImage?.complete) return;
+
+      currentFrameIndex = frameIndex;
+      if (nextImage) {
+        drawCover(nextImage);
+      }
+    }
+
+    function animateTowardsTarget() {
+      rafId = 0;
+
+      const distance = targetProgress - renderedProgress;
+      if (Math.abs(distance) < 0.0008) {
+        const settled = setProgress(targetProgress);
+        renderFrame(settled);
+        return;
+      }
+
+      const nextProgress = renderedProgress + (distance * 0.12);
+      const safeProgress = setProgress(nextProgress);
+      renderFrame(safeProgress);
+      rafId = window.requestAnimationFrame(animateTowardsTarget);
+    }
+
+    function requestRender() {
+      if (rafId) return;
+      rafId = window.requestAnimationFrame(animateTowardsTarget);
+    }
+
+    function queueProgress(nextProgress) {
+      targetProgress = clamp(nextProgress, 0, 1);
+      requestRender();
+    }
+
+    function pageIsAtHeroTop() {
+      return window.scrollY <= 6;
+    }
+
+    function shouldCapture(direction) {
+      if (!pageIsAtHeroTop()) return false;
+      if (direction > 0) return targetProgress < 0.999;
+      if (direction < 0) return targetProgress > 0.001;
+      return false;
+    }
+
+    function primeFrames() {
+      resizeCanvas();
+      currentFrameIndex = 0;
+      desiredFrameIndex = 0;
+      loadedFrames.add(frameUrls[0]);
+      preloadFrames();
+      queueProgress(targetProgress);
+    }
+
+    section.classList.add('has-scroll-scrub');
+    setProgress(0);
+    primeFrames();
+
+    window.addEventListener('wheel', (event) => {
+      const direction = event.deltaY > 0 ? 1 : -1;
+      if (!shouldCapture(direction)) return;
+
+      event.preventDefault();
+      queueProgress(targetProgress + (event.deltaY / scrubTravel()));
+    }, { passive: false });
+
+    window.addEventListener('touchstart', (event) => {
+      touchY = event.touches[0]?.clientY ?? null;
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (event) => {
+      const currentY = event.touches[0]?.clientY;
+      if (touchY == null || currentY == null) return;
+
+      const deltaY = touchY - currentY;
+      const direction = deltaY > 0 ? 1 : -1;
+      if (!shouldCapture(direction)) {
+        touchY = currentY;
+        return;
+      }
+
+      event.preventDefault();
+      queueProgress(targetProgress + (deltaY / scrubTravel()));
+      touchY = currentY;
+    }, { passive: false });
+
+    window.addEventListener('touchend', () => {
+      touchY = null;
+    }, { passive: true });
+
+    window.addEventListener('keydown', (event) => {
+      const target = event.target;
+      if (target instanceof HTMLElement) {
+        const tag = target.tagName;
+        if (target.isContentEditable || tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || tag === 'BUTTON' || tag === 'A') {
+          return;
+        }
+      }
+
+      let deltaY = 0;
+      if (event.key === 'ArrowDown' || event.key === 'PageDown' || event.key === ' ' || event.key === 'Spacebar') {
+        deltaY = 120;
+      } else if (event.key === 'ArrowUp' || event.key === 'PageUp') {
+        deltaY = -120;
+      }
+
+      if (!deltaY) return;
+
+      const direction = deltaY > 0 ? 1 : -1;
+      if (!shouldCapture(direction)) return;
+
+      event.preventDefault();
+      queueProgress(targetProgress + (deltaY / scrubTravel()));
+    });
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      const currentImage = preloadedFrames.get(frameUrls[currentFrameIndex]);
+      if (currentImage?.complete) {
+        drawCover(currentImage);
+      }
+      requestRender();
+    }, { passive: true });
+
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) {
+        requestRender();
+      }
+    });
+
+    const handleReduceMotionChange = (event) => {
+      if (event.matches) {
+        section.classList.remove('has-scroll-scrub');
+        section.style.setProperty('--hero-scrub-progress', '1');
+      } else {
+        section.classList.add('has-scroll-scrub');
+        requestRender();
+      }
+    };
+
+    if (typeof reduceMotionQuery.addEventListener === 'function') {
+      reduceMotionQuery.addEventListener('change', handleReduceMotionChange);
+    } else if (typeof reduceMotionQuery.addListener === 'function') {
+      reduceMotionQuery.addListener(handleReduceMotionChange);
+    }
+  }
+
   function initParticles() {
     if (typeof THREE === 'undefined') return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -96,127 +351,14 @@
     })();
   }
 
-  // ── Logo stage: floating cards + ambient canvas glow ──────────────────
-  function initLogoStage() {
-    const stage = document.querySelector('.logos-stage');
-    if (!stage) return;
-
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    const cards = Array.from(stage.querySelectorAll('[data-lc]'));
-    const W = () => stage.offsetWidth;
-    const H = () => stage.offsetHeight;
-    const CARD_W = 136, CARD_H = 152; // approx card size incl name
-
-    // Spread cards evenly across stage with safe margins
-    // Each card gets an independent Lissajous-style orbit
-    // Scatter base positions with minimum distance enforcement
-    const margin = 12;
-    const minDist = CARD_W * 1.1;
-    const placed = [];
-    const agents = cards.map((card, i) => {
-      let bx, by;
-      let attempts = 0;
-      do {
-        bx = margin / W() + Math.random() * (1 - (margin * 2 + CARD_W) / W());
-        by = margin / H() + Math.random() * (1 - (margin * 2 + CARD_H) / H());
-        attempts++;
-      } while (
-        attempts < 200 &&
-        placed.some(p => {
-          const dx = (bx - p.bx) * W(), dy = (by - p.by) * H();
-          return Math.sqrt(dx * dx + dy * dy) < minDist;
-        })
-      );
-      placed.push({ bx, by });
-      // unique orbit params — different freq ratio = Lissajous figure
-      const ax = 18 + Math.random() * 14;   // x amplitude px
-      const ay = 12 + Math.random() * 10;   // y amplitude px
-      const fx = 0.00028 + i * 0.000031;    // x freq
-      const fy = 0.00021 + i * 0.000027;    // y freq
-      const px = Math.random() * Math.PI * 2; // phase x
-      const py = Math.random() * Math.PI * 2; // phase y
-      return { card, bx, by, ax, ay, fx, fy, px, py };
-    });
-
-    // Canvas ambient orbs
-    const canvas = stage.querySelector('.logos-stage-canvas');
-    const ctx = canvas ? canvas.getContext('2d') : null;
-
-    function resizeCanvas() {
-      if (!canvas) return;
-      canvas.width  = stage.offsetWidth;
-      canvas.height = stage.offsetHeight;
-    }
-    resizeCanvas();
-
-    // Orb data — big slow moving glows
-    const orbs = [
-      { x: 0.25, y: 0.4, r: 0.38, hue: 240 },
-      { x: 0.72, y: 0.55, r: 0.32, hue: 270 },
-      { x: 0.5,  y: 0.2,  r: 0.26, hue: 220 },
-    ];
-
-    function drawOrbs(t) {
-      if (!ctx) return;
-      const cw = canvas.width, ch = canvas.height;
-      ctx.clearRect(0, 0, cw, ch);
-      orbs.forEach((o, i) => {
-        const drift = Math.sin(t * 0.00018 + i * 1.3) * 0.07;
-        const cx = (o.x + drift) * cw;
-        const cy = (o.y + Math.cos(t * 0.00014 + i) * 0.05) * ch;
-        const r  = o.r * Math.min(cw, ch);
-        const g  = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
-        g.addColorStop(0,   `hsla(${o.hue},80%,62%,0.13)`);
-        g.addColorStop(0.5, `hsla(${o.hue},70%,52%,0.06)`);
-        g.addColorStop(1,   `hsla(${o.hue},60%,40%,0)`);
-        ctx.fillStyle = g;
-        ctx.beginPath();
-        ctx.arc(cx, cy, r, 0, Math.PI * 2);
-        ctx.fill();
-      });
-    }
-
-    function tick(t) {
-      requestAnimationFrame(tick);
-      const stageW = W(), stageH = H();
-
-      agents.forEach(({ card, bx, by, ax, ay, fx, fy, px, py }) => {
-        const ox = Math.sin(t * fx + px) * ax;
-        const oy = Math.sin(t * fy + py) * ay;
-
-        let x = bx * stageW + ox - CARD_W / 2;
-        let y = by * stageH + oy - CARD_H / 2;
-
-        // clamp to stage bounds
-        x = Math.max(margin, Math.min(stageW - CARD_W - margin, x));
-        y = Math.max(margin, Math.min(stageH - CARD_H - margin, y));
-
-        card.style.transform = `translate(${x}px,${y}px)`;
-      });
-
-      drawOrbs(t);
-    }
-
-    if (reduced) {
-      // Just place statically
-      agents.forEach(({ card, bx, by }) => {
-        const x = bx * W() - CARD_W / 2;
-        const y = by * H() - CARD_H / 2;
-        card.style.transform = `translate(${x}px,${y}px)`;
-      });
-    } else {
-      requestAnimationFrame(tick);
-    }
-
-    window.addEventListener('resize', resizeCanvas, { passive: true });
-  }
-
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => { initParticles(); initLogoStage(); });
+    document.addEventListener('DOMContentLoaded', () => {
+      initHeroScrollScrub();
+      initParticles();
+    });
   } else {
+    initHeroScrollScrub();
     initParticles();
-    initLogoStage();
   }
 
 })();
