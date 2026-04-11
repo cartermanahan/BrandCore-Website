@@ -12,18 +12,14 @@
 
     const context = canvas.getContext('2d', { alpha: false, desynchronized: true });
     if (!context) return;
-
-    const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (reduceMotionQuery.matches) {
-      section.classList.remove('has-scroll-scrub');
-      section.style.setProperty('--hero-scrub-progress', '1');
-      return;
-    }
+    context.imageSmoothingEnabled = true;
+    context.imageSmoothingQuality = 'high';
 
     const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
     const frameCount = Number(canvas.dataset.frameCount || '1');
     const framePrefix = canvas.dataset.framePrefix || '';
     const frameExtension = canvas.dataset.frameExtension || '.jpg';
+    const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     let rafId = 0;
     let renderedProgress = 0;
     let targetProgress = 0;
@@ -80,6 +76,29 @@
 
       context.clearRect(0, 0, targetWidth, targetHeight);
       context.drawImage(image, offsetX, offsetY, drawWidth, drawHeight);
+    }
+
+    function drawStaticFrame(frameIndex) {
+      const safeIndex = clamp(frameIndex, 0, frameCount - 1);
+      const url = frameUrls[safeIndex];
+      const existing = preloadedFrames.get(url);
+
+      if (existing?.complete) {
+        drawCover(existing);
+        currentFrameIndex = safeIndex;
+        desiredFrameIndex = safeIndex;
+        return;
+      }
+
+      const img = existing || new Image();
+      img.decoding = 'async';
+      img.addEventListener('load', () => {
+        drawCover(img);
+        currentFrameIndex = safeIndex;
+        desiredFrameIndex = safeIndex;
+      }, { once: true });
+      img.src = url;
+      preloadedFrames.set(url, img);
     }
 
     function preloadFrames() {
@@ -163,6 +182,13 @@
       loadedFrames.add(frameUrls[0]);
       preloadFrames();
       queueProgress(targetProgress);
+    }
+
+    if (reduceMotionQuery.matches) {
+      section.classList.remove('has-scroll-scrub');
+      setProgress(0);
+      drawStaticFrame(0);
+      return;
     }
 
     section.classList.add('has-scroll-scrub');
@@ -354,11 +380,9 @@
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       initHeroScrollScrub();
-      initParticles();
     });
   } else {
     initHeroScrollScrub();
-    initParticles();
   }
 
 })();

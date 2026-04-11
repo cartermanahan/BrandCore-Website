@@ -11,6 +11,19 @@
     />
     <meta name="robots" content="noindex,follow" />
 
+    <script>
+        (() => {
+            try {
+                const storedTheme = window.localStorage.getItem('brandfounder-theme');
+                if (storedTheme === 'light' || storedTheme === 'dark') {
+                    document.documentElement.dataset.theme = storedTheme;
+                }
+            } catch (error) {
+                console.warn('Theme preference unavailable.', error);
+            }
+        })();
+    </script>
+
     <link rel="stylesheet" href="../styles/main.css" />
     <link rel="stylesheet" href="../styles/privacy.css" />
     <link rel="stylesheet" href="../styles/navbar.css" />
@@ -56,6 +69,16 @@
                 <li><a href="home.html#faq">FAQ</a></li>
                 <li><a href="privacy-policy.html" class="nav-cta">Privacy</a></li>
             </ul>
+
+            <button
+                class="theme-toggle"
+                id="theme-toggle"
+                type="button"
+                aria-label="Switch to dark mode"
+                title="Switch to dark mode"
+            >
+                <span class="theme-toggle-icon" aria-hidden="true"></span>
+            </button>
         </nav>
     </div>
 </header>

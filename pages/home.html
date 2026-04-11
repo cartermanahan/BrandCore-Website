@@ -21,12 +21,24 @@
 
   <link rel="icon" type="image/png" href="../images/icons/brandfounder-icon.png" />
 
+  <script>
+    (() => {
+      try {
+        const storedTheme = window.localStorage.getItem('brandfounder-theme');
+        if (storedTheme === 'light' || storedTheme === 'dark') {
+          document.documentElement.dataset.theme = storedTheme;
+        }
+      } catch (error) {
+        console.warn('Theme preference unavailable.', error);
+      }
+    })();
+  </script>
+
   <link rel="stylesheet" href="../styles/main.css" />
   <link rel="stylesheet" href="../styles/navbar.css" />
   <link rel="stylesheet" href="../styles/home.css" />
 
   <script src="../scripts/navbar.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js" defer></script>
   <script src="../scripts/home.js" defer></script>
 
   <script type="application/ld+json">
@@ -93,138 +105,202 @@
           </li>
           <li><a href="privacy-policy.html" class="nav-legal">Privacy</a></li>
         </ul>
+
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Switch to dark mode"
+          title="Switch to dark mode"
+        >
+          <span class="theme-toggle-icon" aria-hidden="true"></span>
+        </button>
       </nav>
     </div>
   </header>
 
   <main id="main">
     <section class="page-section hero-section" id="top" data-scroll-scrub-section>
+      <div class="hero-media-shell" aria-hidden="true">
+        <canvas
+          class="hero-scrub-canvas"
+          data-scroll-scrub-canvas
+          data-frame-count="193"
+          data-frame-prefix="../images/visuals/hero-cover-frames/frame-"
+          data-frame-extension=".webp"
+          role="img"
+          aria-label="BrandFounder cover preview"
+          width="2880"
+          height="1608"
+        ></canvas>
+        <div class="hero-media-scrim"></div>
+        <div class="hero-media-glow"></div>
+      </div>
+
       <div class="container hero-scroll-stage">
         <div class="hero-grid">
-          <div class="hero-copy reveal">
-            <div class="hero-brand">
-              <!-- <img
-                src="../images/logos/brandfounder-logo.png"
-                alt="BrandFounder mark"
-                class="hero-logo"
-                width="84"
-                height="84"
-                decoding="async"
-              /> -->
-              <div class="hero-brand-text">
-                <div class="tag-pill">
-                  <span class="live-dot" aria-hidden="true"></span>
-                  <span>iOS out now · macOS coming soon</span>
-                </div>
-              </div>
-            </div>
-
+          <div class="hero-copy hero-copy--overlay reveal">
             <h1 class="hero-title">
               Turn your idea into a brand you can actually launch.
             </h1>
-
-            <p class="hero-subtitle">
-              BrandFounder helps you build a complete brand pack inside the app, with strategy, visuals, launch structure,
-              and promotion tools designed to turn an early idea into something clearer, sharper, and ready to use.
+            <p class="hero-subheadline">
+              Stop feeling behind. Get your own brand out into the world.
             </p>
-
-            <div class="hero-trust" aria-label="Key benefits">
-              <span class="hero-trust-item">Launch-ready outputs</span>
-              <span class="hero-trust-item">Promotion included</span>
-            </div>
-
-            <div class="hero-value-pills" aria-label="Highlights">
-              <span class="value-pill">£12.99</span>
-              <span class="value-pill">One complete package</span>
-              <span class="value-pill">Built for founders</span>
-            </div>
-
-            <div class="hero-cta-row">
-              <a
-                href="https://apps.apple.com/us/app/brandfounder/id6759218062"
-                class="btn btn-primary"
-                aria-label="Search BrandFounder on the App Store"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Get BrandFounder on the App Store
-              </a>
-
-              <a href="#examples" class="btn btn-secondary">See examples</a>
-            </div>
-
-            <div class="hero-platforms">
-              <span class="platform-label">Available platforms</span>
-              <div class="platform-badges" role="list">
-                <div class="platform-badge" role="listitem">
-                  <img src="../images/icons/ios-icon.png" alt="" width="20" height="20" loading="lazy" decoding="async" />
-                  <span>iOS</span>
-                  <span class="live-now">Out now</span>
-                </div>
-                <div class="platform-badge" role="listitem">
-                  <img src="../images/icons/macos-icon.png" alt="" width="20" height="20" loading="lazy" decoding="async" />
-                  <span>macOS</span>
-                  <span class="coming-soon">Coming soon</span>
-                </div>
-              </div>
-            </div>
-
-            <p class="hero-fine">
-              Build a brand pack, tighten the offer, shape the visuals, and get your first launch direction in one place.
-            </p>
-          </div>
-
-          <div class="hero-visual reveal">
-            <div class="hero-showcase hero-scroll-showcase">
-              <div class="hero-showcase-main hero-video-card">
-                <div class="hero-video-frame">
-                  <canvas
-                    class="hero-scrub-canvas"
-                    data-scroll-scrub-canvas
-                    data-frame-count="121"
-                    data-frame-prefix="../images/visuals/hero-scrub-frames/frame-"
-                    data-frame-extension=".jpg"
-                    role="img"
-                    aria-label="BrandFounder launch preview"
-                    width="960"
-                    height="960"
-                  ></canvas>
-
-                  <div class="hero-video-overlay">
-                    <p class="hero-video-caption">See your brand package.</p>
-                    <div class="hero-video-progress" aria-hidden="true">
-                      <span class="hero-video-progress-fill" data-scroll-scrub-progress></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="hero-showcase-badges" aria-label="Core app areas">
-                <div class="hero-showcase-pill">
-                  <span class="pill-icon" aria-hidden="true">􀎑</span>
-                  <strong>Logo &amp; Visuals</strong>
-                  <span>Original logo, palette, banners</span>
-                </div>
-                <div class="hero-showcase-pill">
-                  <span class="pill-icon" aria-hidden="true">􀈻</span>
-                  <strong>Strategy Pack</strong>
-                  <span>Position, audience, pricing, hooks</span>
-                </div>
-                <div class="hero-showcase-pill">
-                  <span class="pill-icon" aria-hidden="true">􀐫</span>
-                  <strong>Promotional Plan</strong>
-                  <span>5 reels + 5 posts, scripted and ready</span>
-                </div>
-                <div class="hero-showcase-pill">
-                  <span class="pill-icon" aria-hidden="true">􀒪</span>
-                  <strong>Launch Checklist</strong>
-                  <span>Accounts, profiles, day-one playbook</span>
-                </div>
-              </div>
-            </div>
+            <a
+              href="https://apps.apple.com/us/app/brandfounder/id6759218062"
+              class="btn btn-primary hero-cta-btn"
+              aria-label="Get BrandFounder on the App Store"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>I'm ready to launch my own brand</span>
+            </a>
           </div>
         </div>
       </div>
     </section>
+
+    <div class="platform-bar">
+      <div class="container platform-bar-inner">
+        <div class="tag-pill platform-bar-pill">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span>Live on the App Store</span>
+        </div>
+        <div class="platform-bar-sep" aria-hidden="true"></div>
+        <div class="platform-badges platform-bar-badges" role="list">
+          <div class="platform-badge" role="listitem">
+            <img src="../images/icons/ios-icon.png" alt="" width="16" height="16" loading="lazy" decoding="async" />
+            <span>iOS</span>
+            <span class="live-now">Out now</span>
+          </div>
+          <div class="platform-badge" role="listitem">
+            <img src="../images/icons/macos-icon.png" alt="" width="16" height="16" loading="lazy" decoding="async" />
+            <span>macOS</span>
+            <span class="coming-soon">Coming soon</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container hero-rating-shell">
+      <div class="hero-rating hero-rating--banner reveal" aria-label="BrandFounder is rated 5.0 on the App Store">
+        <span class="hero-rating-laurel hero-rating-laurel--left" aria-hidden="true">
+          <svg viewBox="0 0 64 120" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M55 110c-20-8-34-27-40-56C10 31 16 12 29 4"></path>
+            <path d="M31 12c-8 3-13 10-15 20"></path>
+            <path d="M38 20c-9 4-15 12-17 23"></path>
+            <path d="M44 31c-10 4-16 13-18 25"></path>
+            <path d="M48 45c-9 4-15 12-16 23"></path>
+            <path d="M51 60c-8 4-13 11-13 21"></path>
+            <path d="M54 76c-6 4-10 10-10 18"></path>
+          </svg>
+        </span>
+
+        <div class="hero-rating-copy">
+          <div class="hero-rating-stars" aria-hidden="true">
+            <span>★</span>
+            <span>★</span>
+            <span>★</span>
+            <span>★</span>
+            <span>★</span>
+          </div>
+          <p class="hero-rating-title">5.0 on App Store</p>
+          <p class="hero-rating-note">Based on current App Store ratings</p>
+        </div>
+
+        <span class="hero-rating-laurel hero-rating-laurel--right" aria-hidden="true">
+          <svg viewBox="0 0 64 120" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 110c20-8 34-27 40-56C54 31 48 12 35 4"></path>
+            <path d="M33 12c8 3 13 10 15 20"></path>
+            <path d="M26 20c9 4 15 12 17 23"></path>
+            <path d="M20 31c10 4 16 13 18 25"></path>
+            <path d="M16 45c9 4 15 12 16 23"></path>
+            <path d="M13 60c8 4 13 11 13 21"></path>
+            <path d="M10 76c6 4 10 10 10 18"></path>
+          </svg>
+        </span>
+      </div>
+    </div>
+
+    <div class="container hero-banner-shell">
+      <div class="hero-banner reveal">
+        <div class="hero-banner-top">
+          <div class="hero-banner-intro">
+            <p class="hero-subtitle hero-subtitle--banner">
+              BrandFounder helps you build a complete brand pack inside the app, with strategy, visuals, launch structure, and promotion tools designed to turn an early idea into something clearer, sharper, and ready to use.
+            </p>
+          </div>
+
+          <div class="hero-banner-cards" aria-label="What the package includes">
+            <article class="hero-banner-card">
+              <span class="hero-banner-card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m4 20 4.1-1 9.8-9.8a1.9 1.9 0 0 0 0-2.7l-.4-.4a1.9 1.9 0 0 0-2.7 0L5 15.9 4 20Z"></path>
+                  <path d="m13.5 7.5 3 3"></path>
+                </svg>
+              </span>
+              <strong>Logo &amp; Visuals</strong>
+              <span>Original logo, palette, banners</span>
+            </article>
+
+            <article class="hero-banner-card">
+              <span class="hero-banner-card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 3H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9Z"></path>
+                  <path d="M14 3v6h6"></path>
+                  <path d="M12 17V10"></path>
+                  <path d="m9.5 12.5 2.5-2.5 2.5 2.5"></path>
+                </svg>
+              </span>
+              <strong>Strategy Pack</strong>
+              <span>Position, audience, pricing, hooks</span>
+            </article>
+
+            <article class="hero-banner-card">
+              <span class="hero-banner-card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 7v5l-3 2"></path>
+                  <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5"></path>
+                  <path d="M17 3.5h3.5V7"></path>
+                </svg>
+              </span>
+              <strong>Promotional Plan</strong>
+              <span>5 reels + 5 posts, scripted and ready</span>
+            </article>
+
+            <article class="hero-banner-card">
+              <span class="hero-banner-card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 19h14"></path>
+                  <path d="m7 16 4.4-4.4"></path>
+                  <path d="M11.4 11.6 15 8a6.1 6.1 0 0 1 4-1.7l-1.1 4.3a6 6 0 0 1-1.6 2.8L13 16.8"></path>
+                  <path d="m14.3 8.7 1 1"></path>
+                </svg>
+              </span>
+              <strong>Launch Checklist</strong>
+              <span>Accounts, profiles, day-one playbook</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="hero-banner-bottom">
+          <div class="hero-trust" aria-label="Key benefits">
+            <span class="hero-trust-item">Launch-ready outputs</span>
+            <span class="hero-trust-item">Promotion included</span>
+          </div>
+
+          <div class="hero-value-pills" aria-label="Highlights">
+            <span class="value-pill">£12.99</span>
+            <span class="value-pill">One complete package</span>
+            <span class="value-pill">Built for founders</span>
+          </div>
+        </div>
+
+        <p class="hero-fine">
+          Build a brand pack, tighten the offer, shape the visuals, and get your first launch direction in one place.
+        </p>
+      </div>
+    </div>
 
     <section class="page-section screenshot-section" id="screenshots" aria-labelledby="screenshots-title">
       <div class="container">
@@ -423,11 +499,6 @@
 
     <section id="how-it-works" class="page-section how-section">
       <div class="container">
-        <div class="how-header">
-          <h2 class="section-title reveal">How it works</h2>
-          <p class="section-intro reveal">Put in an idea. A brand comes out.</p>
-        </div>
-
         <div class="how-visual reveal">
           <div class="how-visual-frame">
             <img
@@ -486,9 +557,15 @@
 
             <div class="example-visual">
               <picture>
-                <source srcset="../images/mockups/iphone-self-package-dark.png" media="(prefers-color-scheme: dark)" />
+                <source
+                  srcset="../images/mockups/iphone-self-package-dark.png"
+                  media="(prefers-color-scheme: dark)"
+                  data-theme-dark-source
+                />
                 <img
                   src="../images/mockups/iphone-self-package.png"
+                  data-theme-light-src="../images/mockups/iphone-self-package.png"
+                  data-theme-dark-src="../images/mockups/iphone-self-package-dark.png"
                   alt="Self Package shown inside the BrandFounder app on iPhone"
                   class="example-phone-image"
                   width="900"
@@ -518,9 +595,15 @@
 
             <div class="example-visual">
               <picture>
-                <source srcset="../images/mockups/iphone-endometer-dark.png" media="(prefers-color-scheme: dark)" />
+                <source
+                  srcset="../images/mockups/iphone-endometer-dark.png"
+                  media="(prefers-color-scheme: dark)"
+                  data-theme-dark-source
+                />
                 <img
                   src="../images/mockups/iphone-endometer.png"
+                  data-theme-light-src="../images/mockups/iphone-endometer.png"
+                  data-theme-dark-src="../images/mockups/iphone-endometer-dark.png"
                   alt="Endometer shown inside the BrandFounder app on iPhone"
                   class="example-phone-image"
                   width="900"
@@ -550,9 +633,15 @@
 
             <div class="example-visual">
               <picture>
-                <source srcset="../images/mockups/iphone-ringkey-dark.png" media="(prefers-color-scheme: dark)" />
+                <source
+                  srcset="../images/mockups/iphone-ringkey-dark.png"
+                  media="(prefers-color-scheme: dark)"
+                  data-theme-dark-source
+                />
                 <img
                   src="../images/mockups/iphone-ringkey.png"
+                  data-theme-light-src="../images/mockups/iphone-ringkey.png"
+                  data-theme-dark-src="../images/mockups/iphone-ringkey-dark.png"
                   alt="Ringkey shown inside the BrandFounder app on iPhone"
                   class="example-phone-image"
                   width="900"
@@ -1024,14 +1113,12 @@
 
       <div class="footer-inner">
         <div class="footer-cta-block">
-          <span class="footer-eyebrow">BrandFounder · iOS out now</span>
-          <h2 class="footer-cta-heading">Turn your idea into a brand you can actually launch.</h2>
           <a
             href="https://apps.apple.com/us/app/brandfounder/id6759218062"
             class="btn btn-primary footer-cta-btn"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Search BrandFounder on the App Store"
+            aria-label="Get BrandFounder on the App Store"
           >
             Get it on the App Store
           </a>
