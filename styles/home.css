@@ -328,6 +328,10 @@
   text-wrap: balance;
 }
 
+.hero-title-line {
+  display: inline;
+}
+
 @keyframes titleGlow {
   0% {
     text-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
@@ -1070,6 +1074,12 @@
     grid-auto-columns: minmax(78vw, 78vw);
     gap: 14px;
     padding: 8px 16px 18px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .screenshots-rail::-webkit-scrollbar {
+    display: none;
   }
 
   .screenshot-card {
@@ -1317,6 +1327,17 @@
 .examples-carousel::-webkit-scrollbar-thumb {
   background: rgba(99, 102, 241, 0.2);
   border-radius: 999px;
+}
+
+@media (max-width: 700px) {
+  .examples-carousel {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .examples-carousel::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @media (prefers-color-scheme: light) {
@@ -3487,6 +3508,42 @@
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.045) 0%, rgba(255, 255, 255, 0.02) 100%);
 }
 
+.logo-specimen:nth-child(1) .logo-specimen-frame {
+  background: linear-gradient(to bottom left, #143a74 0%, #3d7be8 100%);
+}
+
+.logo-specimen:nth-child(2) .logo-specimen-frame {
+  background: linear-gradient(to bottom left, #6f4a31 0%, #b9865f 100%);
+}
+
+.logo-specimen:nth-child(3) .logo-specimen-frame {
+  background: linear-gradient(to bottom left, #2460d8 0%, #56dbff 100%);
+}
+
+.logo-specimen:nth-child(4) .logo-specimen-frame {
+  background: linear-gradient(to bottom left, #b98d1f 0%, #efc754 100%);
+}
+
+.logo-specimen:nth-child(5) .logo-specimen-frame {
+  background: linear-gradient(to bottom left, #eadac6 0%, #d2bda0 100%);
+}
+
+.logo-specimen:nth-child(6) .logo-specimen-frame {
+  background: linear-gradient(to bottom left, #7a5f42 0%, #6f8a56 100%);
+}
+
+.logo-specimen:nth-child(7) .logo-specimen-frame {
+  background: linear-gradient(to bottom left, #415675 0%, #758da9 100%);
+}
+
+.logo-specimen:nth-child(8) .logo-specimen-frame {
+  background: linear-gradient(to bottom left, #6d233f 0%, #9b5d92 100%);
+}
+
+.logo-specimen:nth-child(9) .logo-specimen-frame {
+  background: linear-gradient(to bottom left, #8de1cb 0%, #159f97 100%);
+}
+
 .logo-specimen-frame img {
   display: block;
   width: 100%;
@@ -3560,7 +3617,6 @@
 
   .logo-specimen-frame {
     border-color: rgba(99, 102, 241, 0.18);
-    background: #0f0f1e;
   }
 
   .logo-specimen-index {
@@ -3735,6 +3791,10 @@
 }
 
 .hero-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
   min-height: 56px;
   padding: 0 36px;
   font-size: 1.18rem;
@@ -3747,6 +3807,14 @@
 
 .hero-cta-btn span {
   color: var(--accent);
+}
+
+.hero-cta-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  object-fit: cover;
+  flex: 0 0 auto;
 }
 
 .hero-cta-btn:hover {
@@ -3991,17 +4059,19 @@
   }
 
   .hero-subheadline {
-    max-width: min(92vw, 24ch);
-    font-size: clamp(1.14rem, 4.2vw, 1.34rem);
-    line-height: 1.24;
+    max-width: min(94vw, 26ch);
+    font-size: clamp(1.02rem, 3.9vw, 1.14rem);
+    line-height: 1.2;
+    margin-top: -2px;
+    margin-bottom: 6px;
     white-space: normal;
     text-wrap: balance;
   }
 
   .hero-section,
   .hero-section.has-scroll-scrub {
-    padding-top: 92px;
-    padding-bottom: 28px;
+    padding-top: 84px;
+    padding-bottom: 14px;
     min-height: auto;
   }
 
@@ -4009,15 +4079,20 @@
   .hero-scroll-stage,
   .hero-section.has-scroll-scrub .hero-grid,
   .hero-section.has-scroll-scrub .hero-scroll-stage {
-    min-height: calc(100svh - 120px);
+    min-height: clamp(390px, 70svh, 520px);
     align-items: flex-end;
   }
 
   .hero-title {
-    max-width: 8.4ch;
-    margin-bottom: 14px;
-    font-size: clamp(2.5rem, 11vw, 3.65rem);
-    white-space: normal;
+    max-width: none;
+    margin-bottom: 10px;
+    font-size: clamp(1.88rem, 8vw, 2.5rem);
+    line-height: 0.94;
+    white-space: nowrap;
+  }
+
+  .hero-title-line {
+    display: block;
   }
 
   .hero-subtitle {
@@ -4026,17 +4101,17 @@
   }
 
   .hero-copy--overlay {
-    padding: 0 16px 18px;
-    gap: 18px;
+    padding: 0 10px 18px;
+    gap: 10px;
     justify-content: flex-end;
   }
 
   .hero-cta-btn {
     width: min(100%, 344px);
-    max-width: calc(100vw - 32px);
+    max-width: calc(100vw - 20px);
     min-height: 56px;
-    padding: 16px 20px;
-    font-size: 1.04rem;
+    padding: 15px 18px;
+    font-size: 1rem;
     line-height: 1.18;
     text-align: center;
     white-space: normal;
@@ -4044,6 +4119,11 @@
 
   .hero-cta-btn span {
     display: block;
+  }
+
+  .hero-cta-icon {
+    width: 22px;
+    height: 22px;
   }
 
   .hero-cta-row {

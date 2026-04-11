@@ -20,12 +20,18 @@
     const framePrefix = canvas.dataset.framePrefix || '';
     const frameExtension = canvas.dataset.frameExtension || '.jpg';
     const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const mobileLoopQuery = window.matchMedia('(max-width: 700px)');
     let rafId = 0;
+    let loopRafId = 0;
     let renderedProgress = 0;
     let targetProgress = 0;
     let currentFrameIndex = 0;
     let desiredFrameIndex = 0;
     let touchY = null;
+    let isScrollScrubMode = false;
+    let loopDirection = 1;
+    let lastLoopTime = 0;
+    const loopDurationMs = 4800;
     const frameUrls = Array.from({ length: frameCount }, (_, index) => {
       return `${framePrefix}${String(index + 1).padStart(3, '0')}${frameExtension}`;
     });
@@ -155,6 +161,7 @@
     }
 
     function requestRender() {
+      if (!isScrollScrubMode) return;
       if (rafId) return;
       rafId = window.requestAnimationFrame(animateTowardsTarget);
     }
@@ -175,6 +182,89 @@
       return false;
     }
 
+    function stopLoop() {
+      if (!loopRafId) return;
+      window.cancelAnimationFrame(loopRafId);
+      loopRafId = 0;
+      lastLoopTime = 0;
+    }
+
+    function animateLoop(timestamp) {
+      loopRafId = 0;
+      if (isScrollScrubMode || document.hidden) return;
+
+      if (!lastLoopTime) {
+        lastLoopTime = timestamp;
+      }
+
+      const delta = timestamp - lastLoopTime;
+      lastLoopTime = timestamp;
+      const step = delta / loopDurationMs;
+
+      let nextProgress = renderedProgress + (loopDirection * step);
+      if (nextProgress >= 1) {
+        nextProgress = 1;
+        loopDirection = -1;
+      } else if (nextProgress <= 0) {
+        nextProgress = 0;
+        loopDirection = 1;
+      }
+
+      const safeProgress = setProgress(nextProgress);
+      targetProgress = safeProgress;
+      renderFrame(safeProgress);
+      loopRafId = window.requestAnimationFrame(animateLoop);
+    }
+
+    function startLoop() {
+      if (loopRafId || document.hidden) return;
+      if (renderedProgress <= 0.001) {
+        loopDirection = 1;
+      } else if (renderedProgress >= 0.999) {
+        loopDirection = -1;
+      }
+      lastLoopTime = 0;
+      loopRafId = window.requestAnimationFrame(animateLoop);
+    }
+
+    function syncInteractionMode() {
+      stopLoop();
+
+      if (rafId) {
+        window.cancelAnimationFrame(rafId);
+        rafId = 0;
+      }
+
+      if (reduceMotionQuery.matches) {
+        isScrollScrubMode = false;
+        section.classList.remove('has-scroll-scrub');
+        targetProgress = 0;
+        setProgress(0);
+        drawStaticFrame(0);
+        return;
+      }
+
+      if (mobileLoopQuery.matches) {
+        isScrollScrubMode = false;
+        section.classList.remove('has-scroll-scrub');
+
+        if (renderedProgress <= 0.001 || renderedProgress >= 0.999) {
+          targetProgress = 0;
+          setProgress(0);
+          renderFrame(0);
+          loopDirection = 1;
+        }
+
+        startLoop();
+        return;
+      }
+
+      isScrollScrubMode = true;
+      section.classList.add('has-scroll-scrub');
+      targetProgress = renderedProgress;
+      requestRender();
+    }
+
     function primeFrames() {
       resizeCanvas();
       currentFrameIndex = 0;
@@ -185,17 +275,18 @@
     }
 
     if (reduceMotionQuery.matches) {
-      section.classList.remove('has-scroll-scrub');
       setProgress(0);
       drawStaticFrame(0);
+      syncInteractionMode();
       return;
     }
 
-    section.classList.add('has-scroll-scrub');
     setProgress(0);
     primeFrames();
+    syncInteractionMode();
 
     window.addEventListener('wheel', (event) => {
+      if (!isScrollScrubMode) return;
       const direction = event.deltaY > 0 ? 1 : -1;
       if (!shouldCapture(direction)) return;
 
@@ -208,6 +299,7 @@
     }, { passive: true });
 
     window.addEventListener('touchmove', (event) => {
+      if (!isScrollScrubMode) return;
       const currentY = event.touches[0]?.clientY;
       if (touchY == null || currentY == null) return;
 
@@ -228,6 +320,7 @@
     }, { passive: true });
 
     window.addEventListener('keydown', (event) => {
+      if (!isScrollScrubMode) return;
       const target = event.target;
       if (target instanceof HTMLElement) {
         const tag = target.tagName;
@@ -258,29 +351,43 @@
       if (currentImage?.complete) {
         drawCover(currentImage);
       }
-      requestRender();
+      syncInteractionMode();
+      if (isScrollScrubMode) {
+        requestRender();
+      } else {
+        startLoop();
+      }
     }, { passive: true });
 
     document.addEventListener('visibilitychange', () => {
       if (!document.hidden) {
-        requestRender();
+        if (isScrollScrubMode) {
+          requestRender();
+        } else {
+          startLoop();
+        }
+      } else {
+        stopLoop();
       }
     });
 
     const handleReduceMotionChange = (event) => {
       if (event.matches) {
-        section.classList.remove('has-scroll-scrub');
-        section.style.setProperty('--hero-scrub-progress', '1');
-      } else {
-        section.classList.add('has-scroll-scrub');
-        requestRender();
+        stopLoop();
       }
+      syncInteractionMode();
     };
 
     if (typeof reduceMotionQuery.addEventListener === 'function') {
       reduceMotionQuery.addEventListener('change', handleReduceMotionChange);
     } else if (typeof reduceMotionQuery.addListener === 'function') {
       reduceMotionQuery.addListener(handleReduceMotionChange);
+    }
+
+    if (typeof mobileLoopQuery.addEventListener === 'function') {
+      mobileLoopQuery.addEventListener('change', syncInteractionMode);
+    } else if (typeof mobileLoopQuery.addListener === 'function') {
+      mobileLoopQuery.addListener(syncInteractionMode);
     }
   }
 
