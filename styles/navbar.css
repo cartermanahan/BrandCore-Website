@@ -311,8 +311,14 @@
         gap: 8px;
     }
 
+    .theme-toggle {
+        display: none;
+    }
+
     .menu-toggle {
         display: flex;
+        position: relative;
+        z-index: 31;
     }
 
     .navbar .nav-links ul {
@@ -332,6 +338,7 @@
         -webkit-backdrop-filter: blur(28px);
         border: 1px solid rgba(99, 102, 241, 0.2);
         border-radius: 18px;
+        z-index: 30;
         box-shadow:
             0 24px 60px rgba(0, 0, 0, 0.6),
             0 0 0 1px rgba(99, 102, 241, 0.08),
