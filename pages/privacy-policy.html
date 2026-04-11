@@ -36,39 +36,47 @@
 <body class="legal-page">
 
 <header class="navbar">
-    <div class="container">
-        <div class="logo-container">
+    <div class="navbar-shell">
+        <button
+            class="navbar-brand"
+            id="navbar-brand-toggle"
+            type="button"
+            aria-label="Open navigation"
+            aria-controls="nav-menu"
+            aria-expanded="true"
+        >
             <img
                 class="logo-icon"
                 src="../images/logos/brandFounders-logo-glass-light.png"
-                alt="BrandFounder icon"
+                alt=""
                 width="22"
                 height="22"
             />
-            <a href="home.html" class="logo">BrandFounder</a>
-        </div>
+        </button>
 
-        <nav class="nav-links" aria-label="Primary">
-            <button
-                class="menu-toggle"
-                id="menu-toggle"
-                type="button"
-                aria-label="Toggle menu"
-                aria-controls="nav-menu"
-                aria-expanded="false"
-            >
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+        <div class="navbar-pill">
+            <nav class="nav-links" aria-label="Primary">
+                <button
+                    class="menu-toggle"
+                    id="menu-toggle"
+                    type="button"
+                    aria-label="Toggle menu"
+                    aria-controls="nav-menu"
+                    aria-expanded="false"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
 
-            <ul id="nav-menu">
-                <li><a href="home.html#how-it-works">How it works</a></li>
-                <li><a href="home.html#examples">Examples</a></li>
-                <li><a href="home.html#features">Features</a></li>
-                <li><a href="home.html#faq">FAQ</a></li>
-                <li><a href="privacy-policy.html" class="nav-cta">Privacy</a></li>
-            </ul>
+                <ul id="nav-menu">
+                    <li><a href="home.html#how-it-works">How it works</a></li>
+                    <li><a href="home.html#examples">Examples</a></li>
+                    <li><a href="home.html#inside">Inside the pack</a></li>
+                    <li><a href="home.html#faq">FAQ</a></li>
+                    <li><a href="privacy-policy.html">Privacy</a></li>
+                </ul>
+            </nav>
 
             <button
                 class="theme-toggle"
@@ -79,7 +87,17 @@
             >
                 <span class="theme-toggle-icon" aria-hidden="true"></span>
             </button>
-        </nav>
+        </div>
+
+        <a
+            href="https://apps.apple.com/us/app/brandfounder/id6759218062"
+            class="navbar-cta"
+            aria-label="Launch your brand with BrandFounder"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Launch your brand
+        </a>
     </div>
 </header>
 

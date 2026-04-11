@@ -62,50 +62,47 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="navbar">
-    <div class="container">
-      <div class="logo-container">
+    <div class="navbar-shell">
+      <button
+        class="navbar-brand"
+        id="navbar-brand-toggle"
+        type="button"
+        aria-label="Open navigation"
+        aria-controls="nav-menu"
+        aria-expanded="true"
+      >
         <img
-         src="../images/logos/brandFounders-logo-glass-light.png"
-          alt="BrandFounder logo"
+          src="../images/logos/brandFounders-logo-glass-light.png"
+          alt=""
           class="logo-icon"
           width="28"
           height="28"
           decoding="async"
         />
-        <a href="home.html" class="logo" aria-label="BrandFounder home">BrandFounder</a>
-      </div>
+      </button>
 
-      <nav class="nav-links" aria-label="Primary">
-        <button
-          class="menu-toggle"
-          id="menu-toggle"
-          type="button"
-          aria-label="Toggle menu"
-          aria-controls="nav-menu"
-          aria-expanded="false"
-        >
-          <span></span><span></span><span></span>
-        </button>
+      <div class="navbar-pill">
+        <nav class="nav-links" aria-label="Primary">
+          <button
+            class="menu-toggle"
+            id="menu-toggle"
+            type="button"
+            aria-label="Toggle menu"
+            aria-controls="nav-menu"
+            aria-expanded="false"
+          >
+            <span></span><span></span><span></span>
+          </button>
 
-        <ul id="nav-menu">
-          <li><a href="#how-it-works">How it works</a></li>
-          <li><a href="#examples">Examples</a></li>
-          <li><a href="#inside">Inside the pack</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#support">Support</a></li>
-          <li>
-            <a
-              href="https://apps.apple.com/us/app/brandfounder/id6759218062"
-              class="nav-cta"
-              aria-label="Get BrandFounder on the App Store"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              App Store
-            </a>
-          </li>
-          <li><a href="privacy-policy.html" class="nav-legal">Privacy</a></li>
-        </ul>
+          <ul id="nav-menu">
+            <li><a href="#how-it-works">How it works</a></li>
+            <li><a href="#examples">Examples</a></li>
+            <li><a href="#inside">Inside the pack</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#support">Support</a></li>
+            <li><a href="privacy-policy.html">Privacy</a></li>
+          </ul>
+        </nav>
 
         <button
           class="theme-toggle"
@@ -116,7 +113,17 @@
         >
           <span class="theme-toggle-icon" aria-hidden="true"></span>
         </button>
-      </nav>
+      </div>
+
+      <a
+        href="https://apps.apple.com/us/app/brandfounder/id6759218062"
+        class="navbar-cta"
+        aria-label="Launch your brand with BrandFounder"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Launch your brand
+      </a>
     </div>
   </header>
 
@@ -244,7 +251,7 @@
         <div class="hero-banner-top">
           <div class="hero-banner-intro">
             <p class="hero-subtitle hero-subtitle--banner">
-              BrandFounder helps you build a complete brand pack inside the app, with strategy, visuals, launch structure, and promotion tools designed to turn an early idea into something clearer, sharper, and ready to use.
+              Turn an early idea into a complete brand pack inside the app, with strategy, visuals, launch structure, and promotion tools that make it feel real fast.
             </p>
           </div>
 
@@ -406,43 +413,58 @@
 
     <section id="how-it-works" class="page-section how-section">
       <div class="container">
-        <div class="how-visual reveal">
-          <div class="how-visual-frame">
-            <img
-              src="../images/visuals/brandfounder-space-post.png"
-              alt="BrandFounder space post visual"
-              width="1200"
-              height="900"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-          <div class="how-visual-copy">
-            <span class="how-visual-eyebrow">How it works</span>
-            <p>One idea in. A full brand package out, ready to shape, launch, and promote.</p>
-          </div>
+        <div class="how-section-head reveal">
+          <h2 class="section-title">How it works</h2>
+          <p class="section-intro">From a vague idea to a full brand package in four steps.</p>
         </div>
 
-        <div class="steps-grid">
-          <div class="card step-card reveal">
-            <div class="step-bg-num" aria-hidden="true">01</div>
-            <div class="step-badge">01</div>
-            <h3>The idea</h3>
-            <p>Name it. Set the product, the audience, the tone. That's it.</p>
-          </div>
+        <div class="how-flow-layout">
+          <ol class="how-flow" aria-label="How it works">
+            <li class="how-flow-item reveal">
+              <div class="how-flow-index" aria-hidden="true">01</div>
+              <div class="how-flow-copy">
+                <h3>Describe your brand idea</h3>
+                <p>Enter the name, who it is for, and what you want it to be. That is enough to start.</p>
+              </div>
+            </li>
 
-          <div class="card step-card reveal">
-            <div class="step-bg-num" aria-hidden="true">02</div>
-            <div class="step-badge">02</div>
-            <h3>The brand</h3>
-            <p>Logo, palette, tagline. Competitor breakdown. Generated inside the app.</p>
-          </div>
+            <li class="how-flow-item reveal">
+              <div class="how-flow-index" aria-hidden="true">02</div>
+              <div class="how-flow-copy">
+                <h3>Our AI creates your brand</h3>
+                <p>Your idea turns into something real, with the strategy, assets, copy, and launch plan already mapped out.</p>
+              </div>
+            </li>
 
-          <div class="card step-card reveal">
-            <div class="step-bg-num" aria-hidden="true">03</div>
-            <div class="step-badge">03</div>
-            <h3>The launch</h3>
-            <p>30-day plan. Ad scripts. Captions for Instagram, TikTok, X. Use them.</p>
+            <li class="how-flow-item reveal">
+              <div class="how-flow-index" aria-hidden="true">03</div>
+              <div class="how-flow-copy">
+                <h3>Edit &amp; customise</h3>
+                <p>Redo the logo, tweak the palette, tighten the wording, and shape everything until it feels right.</p>
+              </div>
+            </li>
+
+            <li class="how-flow-item reveal">
+              <div class="how-flow-index" aria-hidden="true">04</div>
+              <div class="how-flow-copy">
+                <h3>Export &amp; launch</h3>
+                <p>Download the full package, use the first-post assets, and follow your 30-day plan straight away.</p>
+              </div>
+            </li>
+          </ol>
+
+          <div class="how-flow-preview reveal">
+            <div class="how-flow-preview-frame">
+              <img
+                class="how-flow-preview-image"
+                src="../images/visuals/brandfounder-space-post.png"
+                alt="BrandFounder brand package preview"
+                width="1200"
+                height="900"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -574,114 +596,112 @@
     </section>
 
     <section class="page-section logos-section" aria-labelledby="logos-title">
-      <div class="container logos-layout">
-        <div class="logos-intro reveal">
-          <p class="logos-eyebrow">Original logos</p>
-          <h2 class="logos-headline" id="logos-title">Your own logo, generated in the app.</h2>
-          <p class="logos-copy">
-            Different ideas, different styles, all made inside the app. These are original logo directions for real concepts, not recycled templates.
+      <div class="container">
+        <div class="logos-head reveal">
+          <h2 class="section-title logos-title" id="logos-title">Your own original logo</h2>
+          <p class="section-intro logos-subtext">
+            Trained on patterns found across thousands of sleek, effective logos, so what you get feels cleaner, sharper, and easier to recognise fast.
           </p>
-          <p class="logos-copy logos-copy--note">
-            Good logos are simple, clear, and easy to recognize fast. Think Nike, Adidas, or McDonald's. The more complicated a logo gets, the harder it is to remember, use, and trust.
-          </p>
-          <div class="logos-facts" aria-label="Logo section highlights">
-            <span class="logos-fact">10 logo examples</span>
-            <span class="logos-fact">Original outputs</span>
-            <span class="logos-fact">Ready to export</span>
-          </div>
         </div>
 
-        <div class="logos-archive" aria-label="Logo examples generated in the app">
-          <article class="logo-specimen reveal">
-            <div class="logo-specimen-frame">
-              <img src="../images/logo_examples/northline_streetwear_logo.png" alt="Northline Streetwear logo" loading="lazy" decoding="async" />
+        <div class="logos-marquee reveal" aria-label="Original logo examples generated in the app">
+          <div class="logos-row logos-row--forward">
+            <div class="logos-track">
+              <article class="logos-card">
+                <img src="../images/logo_examples/northline_streetwear_logo.png" alt="Northline Streetwear logo" loading="lazy" decoding="async" />
+                <span>Northline</span>
+              </article>
+              <article class="logos-card">
+                <img src="../images/logo_examples/endometer_logo.png" alt="Endometer logo" loading="lazy" decoding="async" />
+                <span>Endometer</span>
+              </article>
+              <article class="logos-card">
+                <img src="../images/logo_examples/zeroaltnight_example.PNG" alt="Zero Alt Night logo" loading="lazy" decoding="async" />
+                <span>Zero Alt Night</span>
+              </article>
+              <article class="logos-card">
+                <img src="../images/logo_examples/treehouseteahouse_example.png" alt="Treehouse Tea logo" loading="lazy" decoding="async" />
+                <span>Treehouse Tea</span>
+              </article>
+              <article class="logos-card">
+                <img src="../images/logo_examples/self-package_example.png" alt="Self Package logo" loading="lazy" decoding="async" />
+                <span>Self Package</span>
+              </article>
+              <article class="logos-card">
+                <img src="../images/logo_examples/goalsreach_example.png" alt="GoalsReach logo" loading="lazy" decoding="async" />
+                <span>GoalsReach</span>
+              </article>
+              <article class="logos-card" aria-hidden="true">
+                <img src="../images/logo_examples/northline_streetwear_logo.png" alt="" loading="lazy" decoding="async" />
+                <span>Northline</span>
+              </article>
+              <article class="logos-card" aria-hidden="true">
+                <img src="../images/logo_examples/endometer_logo.png" alt="" loading="lazy" decoding="async" />
+                <span>Endometer</span>
+              </article>
+              <article class="logos-card" aria-hidden="true">
+                <img src="../images/logo_examples/zeroaltnight_example.PNG" alt="" loading="lazy" decoding="async" />
+                <span>Zero Alt Night</span>
+              </article>
+              <article class="logos-card" aria-hidden="true">
+                <img src="../images/logo_examples/treehouseteahouse_example.png" alt="" loading="lazy" decoding="async" />
+                <span>Treehouse Tea</span>
+              </article>
+              <article class="logos-card" aria-hidden="true">
+                <img src="../images/logo_examples/self-package_example.png" alt="" loading="lazy" decoding="async" />
+                <span>Self Package</span>
+              </article>
+              <article class="logos-card" aria-hidden="true">
+                <img src="../images/logo_examples/goalsreach_example.png" alt="" loading="lazy" decoding="async" />
+                <span>GoalsReach</span>
+              </article>
             </div>
-            <div class="logo-specimen-meta">
-              <span class="logo-specimen-index">01</span>
-              <span class="logo-specimen-name">Northline Streetwear</span>
+          </div>
+
+          <div class="logos-row logos-row--reverse">
+            <div class="logos-track">
+              <article class="logos-card">
+                <img src="../images/logo_examples/coffequick_example.png" alt="CoffeeQuick logo" loading="lazy" decoding="async" />
+                <span>CoffeeQuick</span>
+              </article>
+              <article class="logos-card">
+                <img src="../images/logo_examples/ablelearn_example.PNG" alt="Learnova logo" loading="lazy" decoding="async" />
+                <span>Learnova</span>
+              </article>
+              <article class="logos-card">
+                <img src="../images/logo_examples/keyring_example.png" alt="Keyring logo" loading="lazy" decoding="async" />
+                <span>Keyring</span>
+              </article>
+              <article class="logos-card">
+                <img src="../images/logo_examples/rentmydog_example.png" alt="Rent My Dog logo" loading="lazy" decoding="async" />
+                <span>Rent My Dog</span>
+              </article>
+              <article class="logos-card">
+                <img src="../images/logo_examples/windowsillpond_example.PNG" alt="Window Sill Pond logo" loading="lazy" decoding="async" />
+                <span>Window Sill Pond</span>
+              </article>
+              <article class="logos-card" aria-hidden="true">
+                <img src="../images/logo_examples/coffequick_example.png" alt="" loading="lazy" decoding="async" />
+                <span>CoffeeQuick</span>
+              </article>
+              <article class="logos-card" aria-hidden="true">
+                <img src="../images/logo_examples/ablelearn_example.PNG" alt="" loading="lazy" decoding="async" />
+                <span>Learnova</span>
+              </article>
+              <article class="logos-card" aria-hidden="true">
+                <img src="../images/logo_examples/keyring_example.png" alt="" loading="lazy" decoding="async" />
+                <span>Keyring</span>
+              </article>
+              <article class="logos-card" aria-hidden="true">
+                <img src="../images/logo_examples/rentmydog_example.png" alt="" loading="lazy" decoding="async" />
+                <span>Rent My Dog</span>
+              </article>
+              <article class="logos-card" aria-hidden="true">
+                <img src="../images/logo_examples/windowsillpond_example.PNG" alt="" loading="lazy" decoding="async" />
+                <span>Window Sill Pond</span>
+              </article>
             </div>
-          </article>
-          <article class="logo-specimen reveal">
-            <div class="logo-specimen-frame">
-              <img src="../images/logo_examples/endometer_logo.png" alt="Endometer logo" loading="lazy" decoding="async" />
-            </div>
-            <div class="logo-specimen-meta">
-              <span class="logo-specimen-index">02</span>
-              <span class="logo-specimen-name">Endometer</span>
-            </div>
-          </article>
-          <article class="logo-specimen reveal">
-            <div class="logo-specimen-frame">
-              <img src="../images/logo_examples/zeroaltnight_example.PNG" alt="Zero Alt Night logo" loading="lazy" decoding="async" />
-            </div>
-            <div class="logo-specimen-meta">
-              <span class="logo-specimen-index">03</span>
-              <span class="logo-specimen-name">Zero Alt Night</span>
-            </div>
-          </article>
-          <article class="logo-specimen reveal">
-            <div class="logo-specimen-frame">
-              <img src="../images/logo_examples/treehouseteahouse_example.png" alt="Treehouse Tea logo" loading="lazy" decoding="async" />
-            </div>
-            <div class="logo-specimen-meta">
-              <span class="logo-specimen-index">04</span>
-              <span class="logo-specimen-name">Treehouse Tea</span>
-            </div>
-          </article>
-          <article class="logo-specimen reveal">
-            <div class="logo-specimen-frame">
-              <img src="../images/logo_examples/goalsreach_example.png" alt="GoalsReach logo" loading="lazy" decoding="async" />
-            </div>
-            <div class="logo-specimen-meta">
-              <span class="logo-specimen-index">05</span>
-              <span class="logo-specimen-name">GoalsReach</span>
-            </div>
-          </article>
-          <article class="logo-specimen reveal">
-            <div class="logo-specimen-frame">
-              <img src="../images/logo_examples/coffequick_example.png" alt="CoffeeQuick logo" loading="lazy" decoding="async" />
-            </div>
-            <div class="logo-specimen-meta">
-              <span class="logo-specimen-index">06</span>
-              <span class="logo-specimen-name">CoffeeQuick</span>
-            </div>
-          </article>
-          <article class="logo-specimen reveal">
-            <div class="logo-specimen-frame">
-              <img src="../images/logo_examples/ablelearn_example.png" alt="Learnova logo" loading="lazy" decoding="async" />
-            </div>
-            <div class="logo-specimen-meta">
-              <span class="logo-specimen-index">07</span>
-              <span class="logo-specimen-name">Learnova</span>
-            </div>
-          </article>
-          <article class="logo-specimen reveal">
-            <div class="logo-specimen-frame">
-              <img src="../images/logo_examples/keyring_example.png" alt="Keyring logo" loading="lazy" decoding="async" />
-            </div>
-            <div class="logo-specimen-meta">
-              <span class="logo-specimen-index">08</span>
-              <span class="logo-specimen-name">Keyring</span>
-            </div>
-          </article>
-          <article class="logo-specimen reveal">
-            <div class="logo-specimen-frame">
-              <img src="../images/logo_examples/rentmydog_example.png" alt="Rent My Dog logo" loading="lazy" decoding="async" />
-            </div>
-            <div class="logo-specimen-meta">
-              <span class="logo-specimen-index">09</span>
-              <span class="logo-specimen-name">Rent My Dog</span>
-            </div>
-          </article>
-          <article class="logo-specimen reveal">
-            <div class="logo-specimen-frame">
-              <img src="../images/logo_examples/windowsillpond_example.PNG" alt="Window Sill Pond logo" loading="lazy" decoding="async" />
-            </div>
-            <div class="logo-specimen-meta">
-              <span class="logo-specimen-index">10</span>
-              <span class="logo-specimen-name">Window Sill Pond</span>
-            </div>
-          </article>
+          </div>
         </div>
       </div>
     </section>
@@ -983,14 +1003,14 @@
           <details class="card faq-card reveal">
             <summary>Is this actually generated inside the app?</summary>
             <div class="faq-answer">
-              <p>Yes. Everything shown here comes from real in-app generation. Brand direction, logo outputs, scripts, launch planning — all built inside BrandFounder. Not mock-ups.</p>
+              <p>Yes. Everything shown here comes from real in-app generation. Brand direction, logo outputs, scripts, and launch planning. Not mock-ups.</p>
             </div>
           </details>
 
           <details class="card faq-card reveal">
             <summary>What do I get for £12.99?</summary>
             <div class="faq-answer">
-              <p>Right now, the full BrandFounder package at the launch price. That includes positioning, visual assets, content scripts, launch structure, promotion workflows, and exportable outputs in one purchase.</p>
+              <p>Right now, the full package at the launch price. That includes positioning, visual assets, content scripts, launch structure, promotion workflows, and exportable outputs in one purchase.</p>
             </div>
           </details>
 
@@ -1209,12 +1229,6 @@
             });
           }, { passive: true });
         }
-
-        // ===== NAVBAR SCROLL STATE =====
-        const navbar = document.querySelector('.navbar');
-        const onNavScroll = () => navbar.classList.toggle('is-scrolled', window.scrollY > 32);
-        window.addEventListener('scroll', onNavScroll, { passive: true });
-        onNavScroll();
 
         // ===== NAVBAR ACTIVE SECTION =====
         const navAnchors = document.querySelectorAll('.navbar .nav-links li a[href^="#"]');
