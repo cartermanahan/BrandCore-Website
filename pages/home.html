@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>BrandFounder — Turn your idea into a real brand</title>
+  <title>BrandFounder | Turn your idea into a real brand</title>
   <meta
   name="description"
-  content="BrandFounder turns your idea into a complete brand pack inside the app — strategy, visuals, pricing, launch planning, promotion workflows, and ready-to-use outputs."
+  content="BrandFounder turns your idea into a complete brand pack inside the app: strategy, visuals, pricing, launch planning, promotion workflows, and ready-to-use outputs."
   />
   <meta name="apple-itunes-app" content="app-id=6759218062">
 
-  <meta property="og:title" content="BrandFounder — Turn your idea into a real brand" />
+  <meta property="og:title" content="BrandFounder | Turn your idea into a real brand" />
   <meta
     property="og:description"
     content="Create a full brand pack in the app with positioning, visuals, pricing guidance, launch structure, promotion workflows, and usable outputs."
@@ -71,14 +71,23 @@
         aria-controls="nav-menu"
         aria-expanded="true"
       >
-        <img
-          src="../images/logos/brandFounders-logo-glass-light.png"
-          alt=""
-          class="logo-icon"
-          width="28"
-          height="28"
-          decoding="async"
-        />
+        <picture>
+          <source
+            srcset="../images/logos/logo_white.png"
+            media="(prefers-color-scheme: dark)"
+            data-theme-dark-source
+          />
+          <img
+            src="../images/logos/logo_gradient.png"
+            data-theme-light-src="../images/logos/logo_gradient.png"
+            data-theme-dark-src="../images/logos/logo_white.png"
+            alt=""
+            class="logo-icon"
+            width="28"
+            height="28"
+            decoding="async"
+          />
+        </picture>
       </button>
 
       <div class="navbar-pill">
@@ -96,10 +105,10 @@
 
           <ul id="nav-menu">
             <li><a href="#how-it-works">How it works</a></li>
-            <li><a href="#examples">Examples</a></li>
-            <li><a href="#inside">Inside the pack</a></li>
+            <li><a href="#examples">Real brands</a></li>
+            <li><a href="#business-types">Who it's for</a></li>
+            <li><a href="#inside">What's inside</a></li>
             <li><a href="#faq">FAQ</a></li>
-            <li><a href="#support">Support</a></li>
             <li><a href="privacy-policy.html">Privacy</a></li>
           </ul>
         </nav>
@@ -200,7 +209,65 @@
       </div>
     </div>
 
-    <div class="container hero-banner-shell">
+    <div class="container hero-proof-shell">
+      <section class="hero-proof reveal" aria-label="What this does for you">
+        <div class="hero-proof-card-column hero-proof-card-column--left" aria-hidden="true">
+          <article class="hero-proof-card hero-proof-card--branding">
+            <span class="hero-proof-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 16.5 16.5 5a2.1 2.1 0 0 1 3 3L8 19.5 4 20Z"></path>
+                <path d="m13 8 3 3"></path>
+              </svg>
+            </span>
+            <h3>Branding &amp; assets</h3>
+            <p>Logo, palette, banners, and the visuals to start strong.</p>
+          </article>
+
+          <article class="hero-proof-card hero-proof-card--promotion">
+            <span class="hero-proof-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 13.5V8.2a1.7 1.7 0 0 1 2.5-1.5l9.6 5.3a1.7 1.7 0 0 1 0 3l-9.6 5.3A1.7 1.7 0 0 1 4 18.8Z"></path>
+              </svg>
+            </span>
+            <h3>Promotional plan</h3>
+            <p>First 5 posts, first 5 reels, captions, and direction for getting seen.</p>
+          </article>
+        </div>
+
+        <div class="hero-proof-copy">
+          <p class="hero-proof-line">You already have the beginning of something real.</p>
+          <p class="hero-proof-line">We turn it into a brand people can understand, remember, and buy from.</p>
+          <p class="hero-proof-line">So instead of sitting on the idea, you can finally move on it.</p>
+        </div>
+
+        <div class="hero-proof-card-column hero-proof-card-column--right" aria-label="What you get">
+          <article class="hero-proof-card hero-proof-card--strategy">
+            <span class="hero-proof-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 18h16"></path>
+                <path d="M7 14V8"></path>
+                <path d="M12 18V5"></path>
+                <path d="M17 11v7"></path>
+              </svg>
+            </span>
+            <h3>Strategy</h3>
+            <p>Position, audience, pricing, and what makes you worth choosing.</p>
+          </article>
+
+          <article class="hero-proof-card hero-proof-card--launch">
+            <span class="hero-proof-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 16.5 17.8 5.7"></path>
+                <path d="M10.5 5.7h7.3V13"></path>
+                <path d="M6 8.5v9.8h9.8"></path>
+              </svg>
+            </span>
+            <h3>Launch plan</h3>
+            <p>Your first moves, setup checklist, and what to do next.</p>
+          </article>
+        </div>
+      </section>
+
       <div class="hero-rating hero-rating--banner reveal" aria-label="BrandFounder is rated 5.0 on the App Store">
         <picture class="hero-rating-laurel hero-rating-laurel--left" aria-hidden="true">
           <source
@@ -246,170 +313,7 @@
           />
         </picture>
       </div>
-
-      <div class="hero-banner reveal">
-        <div class="hero-banner-top">
-          <div class="hero-banner-intro">
-            <p class="hero-subtitle hero-subtitle--banner">
-              Turn an early idea into a complete brand pack inside the app, with strategy, visuals, launch structure, and promotion tools that make it feel real fast.
-            </p>
-          </div>
-
-          <div class="hero-banner-cards" aria-label="What the package includes">
-            <article class="hero-banner-card">
-              <span class="hero-banner-card-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 20h9"></path>
-                  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
-                </svg>
-              </span>
-              <strong>Logo &amp; Visuals</strong>
-              <span>Original logo, palette, banners</span>
-            </article>
-
-            <article class="hero-banner-card">
-              <span class="hero-banner-card-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="12" y1="1" x2="12" y2="23"></line>
-                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                </svg>
-              </span>
-              <strong>Strategy Pack</strong>
-              <span>Position, audience, pricing, hooks</span>
-            </article>
-
-            <article class="hero-banner-card">
-              <span class="hero-banner-card-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-              </span>
-              <strong>Promotional Plan</strong>
-              <span>5 reels + 5 posts, scripted and ready</span>
-            </article>
-
-            <article class="hero-banner-card">
-              <span class="hero-banner-card-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
-                  <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
-                </svg>
-              </span>
-              <strong>Launch Checklist</strong>
-              <span>Accounts, profiles, day-one playbook</span>
-            </article>
-          </div>
-        </div>
-
-        <div class="hero-banner-bottom">
-          <div class="hero-trust" aria-label="Key benefits">
-            <span class="hero-trust-item">Launch-ready outputs</span>
-            <span class="hero-trust-item">Promotion included</span>
-          </div>
-
-          <div class="hero-value-pills" aria-label="Highlights">
-            <span class="value-pill">£12.99</span>
-            <span class="value-pill">One complete package</span>
-            <span class="value-pill">Built for founders</span>
-          </div>
-        </div>
-
-        <p class="hero-fine">
-          Build a brand pack, tighten the offer, shape the visuals, and get your first launch direction in one place.
-        </p>
-      </div>
     </div>
-
-    <section class="page-section screenshot-section" id="screenshots" aria-labelledby="screenshots-title">
-      <div class="container">
-        <div class="section-head screenshot-head reveal">
-          <span class="section-kicker">Inside the app</span>
-          <h2 class="screenshots-title" id="screenshots-title">See the flow</h2>
-        </div>
-      </div>
-
-      <div class="screenshots-rail-shell reveal">
-        <ol class="screenshots-rail" aria-label="App Store screenshots shown in order">
-          <li class="screenshot-card">
-            <span class="screenshot-step">01</span>
-            <img
-              src="../images/app_store_screenshots/V2.jpg"
-              alt="App Store screenshot 1"
-              width="1290"
-              height="2796"
-              loading="lazy"
-              decoding="async"
-            />
-          </li>
-          <li class="screenshot-card">
-            <span class="screenshot-step">02</span>
-            <img
-              src="../images/app_store_screenshots/V3.jpg"
-              alt="App Store screenshot 2"
-              width="1290"
-              height="2796"
-              loading="lazy"
-              decoding="async"
-            />
-          </li>
-          <li class="screenshot-card">
-            <span class="screenshot-step">03</span>
-            <img
-              src="../images/app_store_screenshots/V4.jpg"
-              alt="App Store screenshot 3"
-              width="1290"
-              height="2796"
-              loading="lazy"
-              decoding="async"
-            />
-          </li>
-          <li class="screenshot-card">
-            <span class="screenshot-step">04</span>
-            <img
-              src="../images/app_store_screenshots/V5.jpg"
-              alt="App Store screenshot 4"
-              width="1290"
-              height="2796"
-              loading="lazy"
-              decoding="async"
-            />
-          </li>
-          <li class="screenshot-card">
-            <span class="screenshot-step">05</span>
-            <img
-              src="../images/app_store_screenshots/V6.jpg"
-              alt="App Store screenshot 5"
-              width="1290"
-              height="2796"
-              loading="lazy"
-              decoding="async"
-            />
-          </li>
-          <li class="screenshot-card">
-            <span class="screenshot-step">06</span>
-            <img
-              src="../images/app_store_screenshots/V7.jpg"
-              alt="App Store screenshot 6"
-              width="1290"
-              height="2796"
-              loading="lazy"
-              decoding="async"
-            />
-          </li>
-          <li class="screenshot-card">
-            <span class="screenshot-step">07</span>
-            <img
-              src="../images/app_store_screenshots/V8.jpg"
-              alt="App Store screenshot 7"
-              width="1290"
-              height="2796"
-              loading="lazy"
-              decoding="async"
-            />
-          </li>
-        </ol>
-      </div>
-    </section>
 
     <section id="how-it-works" class="page-section how-section">
       <div class="container">
@@ -426,6 +330,9 @@
                 <h3>Describe your brand idea</h3>
                 <p>Enter the name, who it is for, and what you want it to be. That is enough to start.</p>
               </div>
+              <div class="how-flow-visual" aria-hidden="true">
+                <!-- Suggested image file: brand-idea-input-screen.png -->
+              </div>
             </li>
 
             <li class="how-flow-item reveal">
@@ -433,6 +340,9 @@
               <div class="how-flow-copy">
                 <h3>Our AI creates your brand</h3>
                 <p>Your idea turns into something real, with the strategy, assets, copy, and launch plan already mapped out.</p>
+              </div>
+              <div class="how-flow-visual" aria-hidden="true">
+                <!-- Suggested image file: ai-brand-package-generation.png -->
               </div>
             </li>
 
@@ -442,6 +352,9 @@
                 <h3>Edit &amp; customise</h3>
                 <p>Redo the logo, tweak the palette, tighten the wording, and shape everything until it feels right.</p>
               </div>
+              <div class="how-flow-visual" aria-hidden="true">
+                <!-- Suggested image file: customise-brand-assets-screen.png -->
+              </div>
             </li>
 
             <li class="how-flow-item reveal">
@@ -450,22 +363,11 @@
                 <h3>Export &amp; launch</h3>
                 <p>Download the full package, use the first-post assets, and follow your 30-day plan straight away.</p>
               </div>
+              <div class="how-flow-visual" aria-hidden="true">
+                <!-- Suggested image file: export-launch-checklist-screen.png -->
+              </div>
             </li>
           </ol>
-
-          <div class="how-flow-preview reveal">
-            <div class="how-flow-preview-frame">
-              <img
-                class="how-flow-preview-image"
-                src="../images/visuals/brandfounder-space-post.png"
-                alt="BrandFounder brand package preview"
-                width="1200"
-                height="900"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -487,14 +389,14 @@
             <div class="example-visual">
               <picture>
                 <source
-                  srcset="../images/mockups/iphone-self-package-dark.png"
+                  srcset="../images/mockups/iphone-self-package-dark-v2.png"
                   media="(prefers-color-scheme: dark)"
                   data-theme-dark-source
                 />
                 <img
-                  src="../images/mockups/iphone-self-package.png"
-                  data-theme-light-src="../images/mockups/iphone-self-package.png"
-                  data-theme-dark-src="../images/mockups/iphone-self-package-dark.png"
+                  src="../images/mockups/iphone-self-package-v2.png"
+                  data-theme-light-src="../images/mockups/iphone-self-package-v2.png"
+                  data-theme-dark-src="../images/mockups/iphone-self-package-dark-v2.png"
                   alt="Self Package shown inside the BrandFounder app on iPhone"
                   class="example-phone-image"
                   width="900"
@@ -595,7 +497,23 @@
       </div>
     </section>
 
-    <section class="page-section logos-section" aria-labelledby="logos-title">
+    <section id="business-types" class="page-section business-types-section" aria-labelledby="business-types-title">
+      <div class="container">
+        <div class="business-types-shell reveal">
+          <span class="business-pill business-pill--one">Digital products</span>
+          <span class="business-pill business-pill--two">Services</span>
+          <span class="business-pill business-pill--three">SaaS</span>
+          <span class="business-pill business-pill--four">Physical products</span>
+          <span class="business-pill business-pill--five">Creator brands</span>
+          <span class="business-pill business-pill--six">Apps</span>
+
+          <h2 class="business-types-title" id="business-types-title">Works for any brand idea.</h2>
+          <p class="business-types-subline">We save you the first 6 months of hassle setting up your brand.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="logos" class="page-section logos-section" aria-labelledby="logos-title">
       <div class="container">
         <div class="logos-head reveal">
           <h2 class="section-title logos-title" id="logos-title">Your own original logo</h2>
@@ -608,47 +526,47 @@
           <div class="logos-row logos-row--forward">
             <div class="logos-track">
               <article class="logos-card">
-                <img src="../images/logo_examples/northline_streetwear_logo.png" alt="Northline Streetwear logo" loading="lazy" decoding="async" />
+                <img class="logo-scale-115" src="../images/logo_examples/northline_streetwear_logo.png" alt="Northline Streetwear logo" loading="eager" decoding="async" />
                 <span>Northline</span>
               </article>
               <article class="logos-card">
-                <img src="../images/logo_examples/endometer_logo.png" alt="Endometer logo" loading="lazy" decoding="async" />
+                <img src="../images/logo_examples/endometer_logo_v2.png" alt="Endometer logo" loading="eager" decoding="async" />
                 <span>Endometer</span>
               </article>
               <article class="logos-card">
-                <img src="../images/logo_examples/zeroaltnight_example.PNG" alt="Zero Alt Night logo" loading="lazy" decoding="async" />
+                <img class="logo-scale-110" src="../images/logo_examples/zeroaltnight_example.PNG" alt="Zero Alt Night logo" loading="eager" decoding="async" />
                 <span>Zero Alt Night</span>
               </article>
               <article class="logos-card">
-                <img src="../images/logo_examples/treehouseteahouse_example.png" alt="Treehouse Tea logo" loading="lazy" decoding="async" />
+                <img class="logo-scale-110" src="../images/logo_examples/treehouseteahouse_example.png" alt="Treehouse Tea logo" loading="eager" decoding="async" />
                 <span>Treehouse Tea</span>
               </article>
               <article class="logos-card">
-                <img src="../images/logo_examples/self-package_example.png" alt="Self Package logo" loading="lazy" decoding="async" />
+                <img src="../images/logo_examples/self-package_example_v2.png" alt="Self Package logo" loading="eager" decoding="async" />
                 <span>Self Package</span>
               </article>
               <article class="logos-card">
-                <img src="../images/logo_examples/goalsreach_example.png" alt="GoalsReach logo" loading="lazy" decoding="async" />
+                <img src="../images/logo_examples/goalsreach_example.png" alt="GoalsReach logo" loading="eager" decoding="async" />
                 <span>GoalsReach</span>
               </article>
               <article class="logos-card" aria-hidden="true">
-                <img src="../images/logo_examples/northline_streetwear_logo.png" alt="" loading="lazy" decoding="async" />
+                <img class="logo-scale-115" src="../images/logo_examples/northline_streetwear_logo.png" alt="" loading="lazy" decoding="async" />
                 <span>Northline</span>
               </article>
               <article class="logos-card" aria-hidden="true">
-                <img src="../images/logo_examples/endometer_logo.png" alt="" loading="lazy" decoding="async" />
+                <img src="../images/logo_examples/endometer_logo_v2.png" alt="" loading="lazy" decoding="async" />
                 <span>Endometer</span>
               </article>
               <article class="logos-card" aria-hidden="true">
-                <img src="../images/logo_examples/zeroaltnight_example.PNG" alt="" loading="lazy" decoding="async" />
+                <img class="logo-scale-110" src="../images/logo_examples/zeroaltnight_example.PNG" alt="" loading="lazy" decoding="async" />
                 <span>Zero Alt Night</span>
               </article>
               <article class="logos-card" aria-hidden="true">
-                <img src="../images/logo_examples/treehouseteahouse_example.png" alt="" loading="lazy" decoding="async" />
+                <img class="logo-scale-110" src="../images/logo_examples/treehouseteahouse_example.png" alt="" loading="lazy" decoding="async" />
                 <span>Treehouse Tea</span>
               </article>
               <article class="logos-card" aria-hidden="true">
-                <img src="../images/logo_examples/self-package_example.png" alt="" loading="lazy" decoding="async" />
+                <img src="../images/logo_examples/self-package_example_v2.png" alt="" loading="lazy" decoding="async" />
                 <span>Self Package</span>
               </article>
               <article class="logos-card" aria-hidden="true">
@@ -661,23 +579,23 @@
           <div class="logos-row logos-row--reverse">
             <div class="logos-track">
               <article class="logos-card">
-                <img src="../images/logo_examples/coffequick_example.png" alt="CoffeeQuick logo" loading="lazy" decoding="async" />
+                <img src="../images/logo_examples/coffequick_example.png" alt="CoffeeQuick logo" loading="eager" decoding="async" />
                 <span>CoffeeQuick</span>
               </article>
               <article class="logos-card">
-                <img src="../images/logo_examples/ablelearn_example.PNG" alt="Learnova logo" loading="lazy" decoding="async" />
+                <img src="../images/logo_examples/ablelearn_example.PNG" alt="Learnova logo" loading="eager" decoding="async" />
                 <span>Learnova</span>
               </article>
               <article class="logos-card">
-                <img src="../images/logo_examples/keyring_example.png" alt="Keyring logo" loading="lazy" decoding="async" />
+                <img class="logo-scale-110" src="../images/logo_examples/keyring_example.png" alt="Keyring logo" loading="eager" decoding="async" />
                 <span>Keyring</span>
               </article>
               <article class="logos-card">
-                <img src="../images/logo_examples/rentmydog_example.png" alt="Rent My Dog logo" loading="lazy" decoding="async" />
+                <img class="logo-scale-120" src="../images/logo_examples/rentmydog_example.png" alt="Rent My Dog logo" loading="eager" decoding="async" />
                 <span>Rent My Dog</span>
               </article>
               <article class="logos-card">
-                <img src="../images/logo_examples/windowsillpond_example.PNG" alt="Window Sill Pond logo" loading="lazy" decoding="async" />
+                <img src="../images/logo_examples/windowsillpond_example.PNG" alt="Window Sill Pond logo" loading="eager" decoding="async" />
                 <span>Window Sill Pond</span>
               </article>
               <article class="logos-card" aria-hidden="true">
@@ -689,11 +607,11 @@
                 <span>Learnova</span>
               </article>
               <article class="logos-card" aria-hidden="true">
-                <img src="../images/logo_examples/keyring_example.png" alt="" loading="lazy" decoding="async" />
+                <img class="logo-scale-110" src="../images/logo_examples/keyring_example.png" alt="" loading="lazy" decoding="async" />
                 <span>Keyring</span>
               </article>
               <article class="logos-card" aria-hidden="true">
-                <img src="../images/logo_examples/rentmydog_example.png" alt="" loading="lazy" decoding="async" />
+                <img class="logo-scale-120" src="../images/logo_examples/rentmydog_example.png" alt="" loading="lazy" decoding="async" />
                 <span>Rent My Dog</span>
               </article>
               <article class="logos-card" aria-hidden="true">
@@ -703,6 +621,99 @@
             </div>
           </div>
         </div>
+
+        <p class="logos-note reveal"><em>All generated in our engine.</em></p>
+      </div>
+    </section>
+
+    <section class="page-section screenshot-section" id="screenshots" aria-labelledby="screenshots-title">
+      <div class="container">
+        <div class="section-head screenshot-head reveal">
+          <span class="section-kicker">Inside the app</span>
+          <h2 class="screenshots-title" id="screenshots-title">See the flow</h2>
+        </div>
+      </div>
+
+      <div class="screenshots-rail-shell reveal">
+        <ol class="screenshots-rail" aria-label="App Store screenshots shown in order">
+          <li class="screenshot-card">
+            <span class="screenshot-step">01</span>
+            <img
+              src="../images/app_store_screenshots/V2.jpg"
+              alt="App Store screenshot 1"
+              width="1290"
+              height="2796"
+              loading="eager"
+              decoding="async"
+            />
+          </li>
+          <li class="screenshot-card">
+            <span class="screenshot-step">02</span>
+            <img
+              src="../images/app_store_screenshots/V3.jpg"
+              alt="App Store screenshot 2"
+              width="1290"
+              height="2796"
+              loading="eager"
+              decoding="async"
+            />
+          </li>
+          <li class="screenshot-card">
+            <span class="screenshot-step">03</span>
+            <img
+              src="../images/app_store_screenshots/V4.jpg"
+              alt="App Store screenshot 3"
+              width="1290"
+              height="2796"
+              loading="eager"
+              decoding="async"
+            />
+          </li>
+          <li class="screenshot-card">
+            <span class="screenshot-step">04</span>
+            <img
+              src="../images/app_store_screenshots/V5.jpg"
+              alt="App Store screenshot 4"
+              width="1290"
+              height="2796"
+              loading="eager"
+              decoding="async"
+            />
+          </li>
+          <li class="screenshot-card">
+            <span class="screenshot-step">05</span>
+            <img
+              src="../images/app_store_screenshots/V6.jpg"
+              alt="App Store screenshot 5"
+              width="1290"
+              height="2796"
+              loading="eager"
+              decoding="async"
+            />
+          </li>
+          <li class="screenshot-card">
+            <span class="screenshot-step">06</span>
+            <img
+              src="../images/app_store_screenshots/V7.jpg"
+              alt="App Store screenshot 6"
+              width="1290"
+              height="2796"
+              loading="eager"
+              decoding="async"
+            />
+          </li>
+          <li class="screenshot-card">
+            <span class="screenshot-step">07</span>
+            <img
+              src="../images/app_store_screenshots/V8.jpg"
+              alt="App Store screenshot 7"
+              width="1290"
+              height="2796"
+              loading="eager"
+              decoding="async"
+            />
+          </li>
+        </ol>
       </div>
     </section>
 
@@ -716,33 +727,33 @@
       <div class="container">
 
         <div class="pack-header reveal">
-          <span class="section-kicker">Inside the package</span>
-          <h2 class="pack-title">What you actually get.</h2>
-          <p class="pack-intro">Five sections. One complete brand. Ready to go live.</p>
+          <h2 class="pack-title">What you actually get</h2>
+          <p class="pack-intro">Open any tab and see the actual outputs, not vague promises.</p>
         </div>
 
-        <!-- Tab bar -->
-        <div class="pack-tabs reveal" role="tablist" aria-label="Package contents">
-          <button class="pack-tab is-active" data-tab="overview" role="tab" aria-selected="true" aria-controls="panel-overview">Overview</button>
-          <button class="pack-tab" data-tab="strategy" role="tab" aria-selected="false" aria-controls="panel-strategy">Strategy</button>
-          <button class="pack-tab" data-tab="promotion" role="tab" aria-selected="false" aria-controls="panel-promotion">Promotion</button>
-          <button class="pack-tab" data-tab="assets" role="tab" aria-selected="false" aria-controls="panel-assets">Assets</button>
-          <button class="pack-tab" data-tab="launch" role="tab" aria-selected="false" aria-controls="panel-launch">Launch</button>
-        </div>
+        <div class="pack-shell reveal">
+          <!-- Tab bar -->
+          <div class="pack-tabs" role="tablist" aria-label="Package contents">
+            <button class="pack-tab is-active" data-tab="overview" role="tab" aria-selected="true" aria-controls="panel-overview">Overview</button>
+            <button class="pack-tab" data-tab="strategy" role="tab" aria-selected="false" aria-controls="panel-strategy">Strategy</button>
+            <button class="pack-tab" data-tab="promotion" role="tab" aria-selected="false" aria-controls="panel-promotion">Promotion</button>
+            <button class="pack-tab" data-tab="assets" role="tab" aria-selected="false" aria-controls="panel-assets">Assets</button>
+            <button class="pack-tab" data-tab="launch" role="tab" aria-selected="false" aria-controls="panel-launch">Launch</button>
+          </div>
 
-        <!-- Panels -->
-        <div class="pack-panel-wrap reveal">
+          <!-- Panels -->
+          <div class="pack-panel-wrap">
 
           <!-- OVERVIEW -->
           <div class="pack-panel is-active" id="panel-overview" role="tabpanel">
-            <p class="pack-panel-desc">Everything in one place. Tap any section to go deeper.</p>
+            <p class="pack-panel-desc">Start here if you want the whole shape of it. Then open any tab for the exact outputs.</p>
             <div class="pack-overview-grid">
 
               <button class="pack-overview-card" data-switch="strategy" aria-label="Go to Strategy tab">
                 <span class="pack-overview-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></span>
                 <div class="pack-overview-card-body">
                   <h4>Strategy</h4>
-                  <p>Brand position, audience, hooks, pricing and market edge. The thinking done for you.</p>
+                  <p>Who it is for, where it sits, how it should sound, and why it should exist.</p>
                 </div>
                 <span class="pack-overview-arr" aria-hidden="true">&#x203A;</span>
               </button>
@@ -751,7 +762,7 @@
                 <span class="pack-overview-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
                 <div class="pack-overview-card-body">
                   <h4>Promotion</h4>
-                  <p>Your first reels and posts planned out in full, with exact AI tools, scripts, hooks and captions.</p>
+                  <p>Your first 5 posts, first 5 reels, exact prompts, and what to make first.</p>
                 </div>
                 <span class="pack-overview-arr" aria-hidden="true">&#x203A;</span>
               </button>
@@ -760,7 +771,7 @@
                 <span class="pack-overview-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
                 <div class="pack-overview-card-body">
                   <h4>Assets</h4>
-                  <p>Original vector logo, full colour palette, channel banners and a launch post. All export ready.</p>
+                  <p>Original logo, colour palette, banners, bios, and first-post visuals. All export ready.</p>
                 </div>
                 <span class="pack-overview-arr" aria-hidden="true">&#x203A;</span>
               </button>
@@ -769,29 +780,27 @@
                 <span class="pack-overview-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></span>
                 <div class="pack-overview-card-body">
                   <h4>Launch</h4>
-                  <p>A step by step checklist to get your brand live, plus your full 30 day launch plan PDF.</p>
+                  <p>The setup checklist, rollout order, and 30 day plan so it actually gets out into the world.</p>
                 </div>
                 <span class="pack-overview-arr" aria-hidden="true">&#x203A;</span>
               </button>
 
             </div>
 
-            <div class="pack-overview-visual" aria-hidden="true">
-              <div class="pack-dash">
-                <div class="pack-dash-row">
-                  <div class="pack-dash-chip pack-dash-chip--purple">Brand Position</div>
-                  <div class="pack-dash-chip pack-dash-chip--blue">Audience Profile</div>
-                  <div class="pack-dash-chip pack-dash-chip--indigo">Market Edge</div>
+            <div class="pack-extras">
+              <div class="pack-extra pack-extra--export">
+                <div class="pack-extra-badge">ZIP</div>
+                <div class="pack-extra-body">
+                  <h3>Full ZIP export</h3>
+                  <p>Download the logo, visuals, copy, and brand direction in one clean package.</p>
                 </div>
-                <div class="pack-dash-row">
-                  <div class="pack-dash-chip pack-dash-chip--pink">5 Reel Plans</div>
-                  <div class="pack-dash-chip pack-dash-chip--violet">5 Post Plans</div>
-                  <div class="pack-dash-chip pack-dash-chip--blue">AI Tools</div>
-                </div>
-                <div class="pack-dash-row">
-                  <div class="pack-dash-chip pack-dash-chip--indigo">Vector Logo</div>
-                  <div class="pack-dash-chip pack-dash-chip--purple">Colour Palette</div>
-                  <div class="pack-dash-chip pack-dash-chip--pink">Banners</div>
+              </div>
+
+              <div class="pack-extra pack-extra--launch">
+                <div class="pack-extra-badge">30D</div>
+                <div class="pack-extra-body">
+                  <h3>30 day launch plan</h3>
+                  <p>A day by day plan so you know what to post, what to set up, and what to do next.</p>
                 </div>
               </div>
             </div>
@@ -799,7 +808,7 @@
 
           <!-- STRATEGY -->
           <div class="pack-panel" id="panel-strategy" role="tabpanel" hidden>
-            <p class="pack-panel-desc">The thinking behind your brand, done by AI and ready to act on.</p>
+            <p class="pack-panel-desc">The thinking that stops it looking random once it goes live.</p>
             <div class="pack-feature-grid">
               <div class="pack-feature-card">
                 <span class="pack-feat-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></span>
@@ -836,7 +845,7 @@
 
           <!-- PROMOTION -->
           <div class="pack-panel" id="panel-promotion" role="tabpanel" hidden>
-            <p class="pack-panel-desc">Your first content, fully planned. Exact tools, prompts and scripts so you can start producing today.</p>
+            <p class="pack-panel-desc">Your first 5 posts, first 5 reels, exact prompts, and what to use to make them.</p>
             <div class="pack-feature-grid">
               <div class="pack-feature-card">
                 <span class="pack-feat-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span>
@@ -868,7 +877,7 @@
 
           <!-- ASSETS -->
           <div class="pack-panel" id="panel-assets" role="tabpanel" hidden>
-            <p class="pack-panel-desc">Original brand visuals generated entirely in the app. All yours to export and use anywhere.</p>
+            <p class="pack-panel-desc">The visual side of the brand, export-ready and editable.</p>
             <div class="pack-feature-grid">
               <div class="pack-feature-card pack-feature-card--hero">
                 <span class="pack-feat-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
@@ -900,7 +909,7 @@
 
           <!-- LAUNCH -->
           <div class="pack-panel" id="panel-launch" role="tabpanel" hidden>
-            <p class="pack-panel-desc">A clear sequence to get your brand live. No wondering what to do next.</p>
+            <p class="pack-panel-desc">The order to do things in so the brand actually gets out of draft mode.</p>
             <div class="pack-feature-grid">
               <div class="pack-feature-card">
                 <span class="pack-feat-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>
@@ -934,62 +943,28 @@
               </div>
             </div>
           </div>
-
-        </div><!-- /pack-panel-wrap -->
-
-        <!-- Export callout -->
-        <div class="pack-extras reveal">
-          <div class="pack-extra pack-extra--export">
-            <div class="pack-extra-badge" aria-hidden="true">ZIP</div>
-            <div class="pack-extra-body">
-              <h3>Export Everything</h3>
-              <p>Strategy, assets, 30 day plan and all your content, exported as a ZIP in PDF format. Yours to keep and use anywhere.</p>
-            </div>
-          </div>
-          <div class="pack-extra">
-            <div class="pack-extra-badge" aria-hidden="true">30</div>
-            <div class="pack-extra-body">
-              <h3>30 Day Launch Plan PDF</h3>
-              <p>A full day by day posting schedule for your first month. Exactly what to put out, when, and where.</p>
-            </div>
-          </div>
-        </div>
+          </div><!-- /pack-panel-wrap -->
+        </div><!-- /pack-shell -->
 
       </div>
     </section>
 
-    <section class="page-section pricing-section" id="pricing">
+    <section id="support" class="page-section support-section">
       <div class="container">
-        <div class="pricing-shell reveal">
-          <div class="pricing-glow" aria-hidden="true"></div>
-          <div class="pricing-copy-column">
-            <div class="pricing-topline">
-              <span class="pricing-eyebrow">Limited-time launch price</span>
-            </div>
-            <h2 class="pricing-headline">Get everything you need to launch before the price moves up.</h2>
-            <p class="pricing-copy">
-              For £12.99, you get the full brand, launch plan, and promotion pack in one purchase. Make the idea real and get it launched.
-            </p>
+        <div class="support-shell reveal">
+          <div class="support-status" aria-label="Support available">
+            <span class="support-dot" aria-hidden="true"></span>
+            <span>Support available</span>
           </div>
-
-          <div class="pricing-offer-card" aria-label="Current offer">
-            <div class="pricing-offer-badge">Current App Store price</div>
-            <div class="pricing-price-block">
-              <span class="pricing-currency">£</span>
-              <span class="pricing-amount">12.99</span>
-            </div>
-            <p class="pricing-offer-copy">One purchase. Everything you need to shape it, launch it, and promote it.</p>
-            <a
-              href="https://apps.apple.com/us/app/brandfounder/id6759218062"
-              class="btn btn-primary pricing-button"
-              aria-label="Get BrandFounder on the App Store"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Lock in the launch price
-            </a>
-            <p class="pricing-note">Available now on the App Store.</p>
-          </div>
+          <h2 class="support-title">Need help?</h2>
+          <p class="support-copy">
+            Purchase did not go through. Generation failed. Something feels off.
+            Email us and we will sort it.
+          </p>
+          <a href="mailto:support@brandfounder.ai" class="btn btn-primary support-btn">
+            support@brandfounder.ai
+          </a>
+          <p class="support-note">Usually back within a day.</p>
         </div>
       </div>
     </section>
@@ -1038,7 +1013,7 @@
           <details class="card faq-card reveal">
             <summary>What happens if generation fails after purchase?</summary>
             <div class="faq-answer">
-              <p>Your purchase stays linked to your account. Retry any time — no second charge.</p>
+              <p>Your purchase stays linked to your account. Retry any time - no second charge.</p>
             </div>
           </details>
 
@@ -1059,7 +1034,7 @@
           <details class="card faq-card reveal">
             <summary>Do you store my brand data?</summary>
             <div class="faq-answer">
-              <p>Yes — so your projects stay accessible across sessions and devices when you are signed in.</p>
+              <p>Yes - so your projects stay accessible across sessions and devices when you are signed in.</p>
             </div>
           </details>
 
@@ -1094,39 +1069,22 @@
       </div>
     </section>
 
-    <section id="support" class="page-section support-section">
-      <div class="container">
-        <div class="support-shell reveal">
-          <div class="support-status">
-            <span class="support-dot" aria-hidden="true"></span>
-            <span>Available</span>
-          </div>
-          <h2 class="support-title">Something up?</h2>
-          <p class="support-copy">
-            Purchase didn't go through. Generation failed. Something feels off.<br>
-            Email us and we'll sort it.
-          </p>
-          <a href="mailto:support@brandfounder.ai" class="btn btn-primary support-btn">
-            support@brandfounder.ai
-          </a>
-          <p class="support-note">Usually back within a day.</p>
-        </div>
-      </div>
-    </section>
-
     <footer class="site-footer">
       <div class="footer-glow" aria-hidden="true"></div>
 
       <div class="footer-inner">
         <div class="footer-cta-block">
+          <h2 class="footer-cta-heading">Ready to launch your brand?</h2>
+          <p class="footer-cta-subline">Without hiring a designer, strategist, and content team.</p>
           <a
             href="https://apps.apple.com/us/app/brandfounder/id6759218062"
             class="btn btn-primary footer-cta-btn"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Get BrandFounder on the App Store"
+            aria-label="Launch my brand on the App Store"
           >
-            Get it on the App Store
+            <span>Launch my brand</span>
+            <span class="footer-cta-arrow" aria-hidden="true">→</span>
           </a>
         </div>
 

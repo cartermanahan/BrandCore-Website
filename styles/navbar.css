@@ -3,14 +3,19 @@
 ================================ */
 
 .navbar {
-    --nav-border: rgba(255, 255, 255, 0.12);
-    --nav-border-strong: rgba(255, 255, 255, 0.16);
-    --nav-surface: rgba(10, 14, 28, 0.68);
-    --nav-surface-strong: rgba(9, 13, 26, 0.82);
+    --nav-border: rgba(255, 255, 255, 0.15);
+    --nav-border-strong: rgba(255, 255, 255, 0.24);
+    --nav-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.21), rgba(255, 255, 255, 0.1));
+    --nav-surface-strong: linear-gradient(180deg, rgba(255, 255, 255, 0.27), rgba(255, 255, 255, 0.14));
     --nav-text: rgba(255, 255, 255, 0.72);
     --nav-text-strong: rgba(255, 255, 255, 0.96);
-    --nav-shadow: 0 18px 40px rgba(0, 0, 0, 0.26);
-    --nav-dropdown-shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
+    --nav-shadow:
+        0 18px 42px rgba(0, 0, 0, 0.22),
+        0 1px 0 rgba(255, 255, 255, 0.1) inset,
+        0 -1px 0 rgba(255, 255, 255, 0.03) inset;
+    --nav-dropdown-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.26),
+        0 1px 0 rgba(255, 255, 255, 0.1) inset;
     --cta-fill: rgba(255, 255, 255, 0.98);
     --cta-text: #6d5efc;
     --brand-shift: 0px;
@@ -60,8 +65,8 @@
     border: 1px solid var(--nav-border);
     background: var(--nav-surface);
     box-shadow: var(--nav-shadow);
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
+    backdrop-filter: blur(28px) saturate(1.35);
+    -webkit-backdrop-filter: blur(28px) saturate(1.35);
     text-decoration: none;
     cursor: pointer;
     transform: translate3d(var(--brand-shift), 0, 0);
@@ -84,8 +89,8 @@
 }
 
 .logo-icon {
-    width: 28px;
-    height: 28px;
+    width: 46px;
+    height: 46px;
     object-fit: contain;
     transition: transform 260ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -105,8 +110,8 @@
     border: 1px solid var(--nav-border);
     background: var(--nav-surface);
     box-shadow: var(--nav-shadow);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(30px) saturate(1.4);
+    -webkit-backdrop-filter: blur(30px) saturate(1.4);
     overflow: hidden;
     opacity: 1;
     transform-origin: center;
@@ -182,7 +187,7 @@
     padding: 0;
     border-radius: 999px;
     border: 1px solid var(--nav-border);
-    background: rgba(255, 255, 255, 0.04);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
     color: var(--nav-text);
     cursor: pointer;
     transition:
@@ -196,7 +201,7 @@
 .menu-toggle:hover {
     transform: translateY(-1px);
     border-color: var(--nav-border-strong);
-    background: rgba(255, 255, 255, 0.08);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.07));
     color: var(--nav-text-strong);
 }
 
@@ -278,11 +283,16 @@
         box-shadow 220ms ease,
         background 320ms cubic-bezier(0.22, 1, 0.36, 1),
         color 320ms cubic-bezier(0.22, 1, 0.36, 1),
+        font-weight 180ms ease,
+        letter-spacing 180ms ease,
         min-height 320ms cubic-bezier(0.22, 1, 0.36, 1),
         padding 320ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .navbar-cta:hover {
+    transform: translate3d(var(--cta-shift), 0, 0) scale(1.04);
+    font-weight: 800;
+    letter-spacing: -0.045em;
     box-shadow: 0 22px 44px rgba(15, 23, 42, 0.12);
 }
 
@@ -321,8 +331,8 @@
     }
 
     .logo-icon {
-        width: 24px;
-        height: 24px;
+        width: 40px;
+        height: 40px;
     }
 
     .navbar-pill,
@@ -337,6 +347,7 @@
         background: var(--nav-surface);
         box-shadow: var(--nav-shadow);
         pointer-events: auto;
+        overflow: visible;
     }
 
     .menu-toggle {
@@ -360,6 +371,7 @@
         box-shadow: var(--nav-dropdown-shadow);
         backdrop-filter: blur(24px);
         -webkit-backdrop-filter: blur(24px);
+        z-index: 30;
     }
 
     .nav-links ul.show {
@@ -410,14 +422,19 @@
 
 @media (prefers-color-scheme: light) {
     .navbar {
-        --nav-border: rgba(15, 23, 42, 0.08);
-        --nav-border-strong: rgba(15, 23, 42, 0.14);
-        --nav-surface: rgba(255, 255, 255, 0.84);
-        --nav-surface-strong: rgba(255, 255, 255, 0.95);
+        --nav-border: rgba(255, 255, 255, 0.5);
+        --nav-border-strong: rgba(255, 255, 255, 0.74);
+        --nav-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.56));
+        --nav-surface-strong: linear-gradient(180deg, rgba(255, 255, 255, 0.93), rgba(255, 255, 255, 0.66));
         --nav-text: rgba(15, 23, 42, 0.64);
         --nav-text-strong: #0f172a;
-        --nav-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
-        --nav-dropdown-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+        --nav-shadow:
+            0 16px 36px rgba(15, 23, 42, 0.08),
+            0 1px 0 rgba(255, 255, 255, 0.72) inset,
+            0 -1px 0 rgba(255, 255, 255, 0.22) inset;
+        --nav-dropdown-shadow:
+            0 18px 40px rgba(15, 23, 42, 0.12),
+            0 1px 0 rgba(255, 255, 255, 0.7) inset;
     }
 
     .nav-links a:hover,
@@ -427,24 +444,29 @@
 
     .theme-toggle,
     .menu-toggle {
-        background: rgba(15, 23, 42, 0.02);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.36));
     }
 
     .theme-toggle:hover,
     .menu-toggle:hover {
-        background: rgba(15, 23, 42, 0.06);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.46));
     }
 }
 
 html[data-theme="light"] .navbar {
-    --nav-border: rgba(15, 23, 42, 0.08);
-    --nav-border-strong: rgba(15, 23, 42, 0.14);
-    --nav-surface: rgba(255, 255, 255, 0.84);
-    --nav-surface-strong: rgba(255, 255, 255, 0.95);
+    --nav-border: rgba(255, 255, 255, 0.5);
+    --nav-border-strong: rgba(255, 255, 255, 0.74);
+    --nav-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.56));
+    --nav-surface-strong: linear-gradient(180deg, rgba(255, 255, 255, 0.93), rgba(255, 255, 255, 0.66));
     --nav-text: rgba(15, 23, 42, 0.64);
     --nav-text-strong: #0f172a;
-    --nav-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
-    --nav-dropdown-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+    --nav-shadow:
+        0 16px 36px rgba(15, 23, 42, 0.08),
+        0 1px 0 rgba(255, 255, 255, 0.72) inset,
+        0 -1px 0 rgba(255, 255, 255, 0.22) inset;
+    --nav-dropdown-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.12),
+        0 1px 0 rgba(255, 255, 255, 0.7) inset;
 }
 
 html[data-theme="light"] .nav-links a:hover,
@@ -454,23 +476,28 @@ html[data-theme="light"] .nav-links a.is-active {
 
 html[data-theme="light"] .theme-toggle,
 html[data-theme="light"] .menu-toggle {
-    background: rgba(15, 23, 42, 0.02);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.36));
 }
 
 html[data-theme="light"] .theme-toggle:hover,
 html[data-theme="light"] .menu-toggle:hover {
-    background: rgba(15, 23, 42, 0.06);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.46));
 }
 
 html[data-theme="dark"] .navbar {
-    --nav-border: rgba(255, 255, 255, 0.12);
-    --nav-border-strong: rgba(255, 255, 255, 0.16);
-    --nav-surface: rgba(10, 14, 28, 0.68);
-    --nav-surface-strong: rgba(9, 13, 26, 0.82);
+    --nav-border: rgba(255, 255, 255, 0.15);
+    --nav-border-strong: rgba(255, 255, 255, 0.24);
+    --nav-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.21), rgba(255, 255, 255, 0.1));
+    --nav-surface-strong: linear-gradient(180deg, rgba(255, 255, 255, 0.27), rgba(255, 255, 255, 0.14));
     --nav-text: rgba(255, 255, 255, 0.72);
     --nav-text-strong: rgba(255, 255, 255, 0.96);
-    --nav-shadow: 0 18px 40px rgba(0, 0, 0, 0.26);
-    --nav-dropdown-shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
+    --nav-shadow:
+        0 18px 42px rgba(0, 0, 0, 0.22),
+        0 1px 0 rgba(255, 255, 255, 0.1) inset,
+        0 -1px 0 rgba(255, 255, 255, 0.03) inset;
+    --nav-dropdown-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.26),
+        0 1px 0 rgba(255, 255, 255, 0.1) inset;
 }
 
 @keyframes navDropdownFade {

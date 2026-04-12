@@ -45,13 +45,22 @@
             aria-controls="nav-menu"
             aria-expanded="true"
         >
-            <img
-                class="logo-icon"
-                src="../images/logos/brandFounders-logo-glass-light.png"
-                alt=""
-                width="22"
-                height="22"
-            />
+            <picture>
+                <source
+                    srcset="../images/logos/logo_white.png"
+                    media="(prefers-color-scheme: dark)"
+                    data-theme-dark-source
+                />
+                <img
+                    class="logo-icon"
+                    src="../images/logos/logo_gradient.png"
+                    data-theme-light-src="../images/logos/logo_gradient.png"
+                    data-theme-dark-src="../images/logos/logo_white.png"
+                    alt=""
+                    width="22"
+                    height="22"
+                />
+            </picture>
         </button>
 
         <div class="navbar-pill">

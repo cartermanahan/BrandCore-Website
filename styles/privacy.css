@@ -278,6 +278,15 @@ html[data-theme="light"] .legal-hero::before {
     opacity: 1;
 }
 
+html[data-theme="light"] .legal-hero,
+html[data-theme="light"] .legal-hero h1,
+html[data-theme="light"] .legal-hero-sub,
+html[data-theme="light"] .legal-meta,
+html[data-theme="light"] .legal-breadcrumb,
+html[data-theme="light"] .legal-breadcrumb a {
+    color: #ffffff;
+}
+
 html[data-theme="light"] .legal-section {
     background: rgba(255, 255, 255, 0.96);
     border: 1px solid rgba(0, 0, 0, 0.06);

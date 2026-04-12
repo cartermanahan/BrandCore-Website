@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggle.setAttribute('aria-label', `Switch to ${nextTheme} mode`);
         themeToggle.setAttribute('title', `Switch to ${nextTheme} mode`);
         themeToggle.setAttribute('aria-pressed', hasManualOverride ? 'true' : 'false');
-        themeToggleIcon.innerHTML = activeTheme === 'dark' ? moonIcon : sunIcon;
+        themeToggleIcon.innerHTML = nextTheme === 'dark' ? moonIcon : sunIcon;
     }
 
     function applyTheme() {
