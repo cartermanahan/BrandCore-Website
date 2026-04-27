@@ -85,12 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function applyTheme() {
         const storedTheme = getStoredTheme();
         const activeTheme = storedTheme || (darkModeMedia.matches ? 'dark' : 'light');
-
-        if (storedTheme) {
-            root.dataset.theme = storedTheme;
-        } else {
-            delete root.dataset.theme;
-        }
+        root.dataset.theme = activeTheme;
 
         syncThemeMedia(activeTheme, Boolean(storedTheme));
         syncThemeToggle(activeTheme, Boolean(storedTheme));
