@@ -764,10 +764,46 @@
     window.addEventListener('load', correctHashLanding, { once: true });
   }
 
+  function initHashLifecycle() {
+    if (!window.history?.replaceState) return;
+
+    let settleTimer = 0;
+
+    const clearStaleHash = () => {
+      const hash = window.location.hash;
+      if (!hash || hash === '#') return;
+
+      const target = document.querySelector(hash);
+      if (!(target instanceof HTMLElement)) return;
+
+      const bounds = target.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      const targetIsCurrent = bounds.top <= viewportHeight * 0.55
+        && bounds.bottom >= viewportHeight * 0.2;
+
+      if (!targetIsCurrent) {
+        window.history.replaceState(
+          null,
+          '',
+          `${window.location.pathname}${window.location.search}`,
+        );
+      }
+    };
+
+    const scheduleHashCheck = () => {
+      window.clearTimeout(settleTimer);
+      settleTimer = window.setTimeout(clearStaleHash, 180);
+    };
+
+    window.addEventListener('scroll', scheduleHashCheck, { passive: true });
+    window.addEventListener('resize', scheduleHashCheck, { passive: true });
+  }
+
   function init() {
     initHeroScrollScrub();
     initSmoothMotion();
     initInitialHashLanding();
+    initHashLifecycle();
   }
 
   if (document.readyState === 'loading') {

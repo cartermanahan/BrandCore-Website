@@ -74,7 +74,10 @@
       });
     }, { threshold: 0.6 });
 
-    squiggles.forEach((s) => observer.observe(s));
+    squiggles.forEach((s) => {
+      // Manifesto squiggles are synchronized with their word reveal below.
+      if (!s.closest('[data-bf-manifesto]')) observer.observe(s);
+    });
   }
 
   /* ============================================================
@@ -120,6 +123,7 @@
 
     const lines = Array.from(section.querySelectorAll('[data-bf-words]'));
     const cards = Array.from(section.querySelectorAll('[data-bf-mcard]'));
+    const squigglePath = section.querySelector('.bf-squiggle path');
 
     if (!gsapRef || !ST || reduceMotion.matches) return;
 
@@ -127,7 +131,11 @@
     if (!words.length) return;
 
     gsapRef.set(words, { opacity: 0.13 });
-    gsapRef.set(cards, { y: 44, opacity: 0 });
+    cards.forEach((card) => {
+      const direction = card.dataset.side === 'right' ? 1 : -1;
+      gsapRef.set(card, { x: direction * 110, y: 28, rotation: direction * 2.5, opacity: 0 });
+    });
+    if (squigglePath) gsapRef.set(squigglePath, { strokeDashoffset: 260 });
 
     const timeline = gsapRef.timeline({
       scrollTrigger: {
@@ -147,12 +155,24 @@
       ease: 'none',
     });
 
+    if (squigglePath) {
+      const squiggleWord = section.querySelector('.bf-squig-host .bf-w');
+      const wordIndex = Math.max(0, words.indexOf(squiggleWord));
+      timeline.to(squigglePath, {
+        strokeDashoffset: 0,
+        duration: 1.5,
+        ease: 'power2.out',
+      }, wordIndex * 0.6);
+    }
+
     timeline.to(cards, {
+      x: 0,
       y: 0,
+      rotation: 0,
       opacity: 1,
-      stagger: 0.9,
-      duration: 5,
-      ease: 'power2.out',
+      stagger: 0.65,
+      duration: 4.2,
+      ease: 'power3.out',
     }, '>-1');
   }
 
@@ -229,6 +249,90 @@
           once: true,
         },
       });
+    });
+  }
+
+  /* ============================================================
+     03b · Desires — alternating particle assembly
+     ============================================================ */
+  function initDesires(gsapRef, ST) {
+    const desires = Array.from(document.querySelectorAll('[data-bf-desire]'));
+    if (!desires.length || !gsapRef || !ST || reduceMotion.matches) return;
+
+    desires.forEach((item, itemIndex) => {
+      const direction = item.dataset.side === 'right' ? 1 : -1;
+      const word = item.querySelector('.bf-desire-word');
+      const copy = item.querySelector('.bf-desire-copy p');
+      const index = item.querySelector('.bf-desire-index');
+      const field = item.querySelector('.bf-desire-particles');
+      if (!word || !copy || !index || !field) return;
+
+      const particles = Array.from({ length: 22 }, (_, particleIndex) => {
+        const particle = document.createElement('i');
+        const size = 2 + ((particleIndex * 7 + itemIndex * 3) % 6);
+        particle.style.setProperty('--particle-size', `${size}px`);
+        field.appendChild(particle);
+        return particle;
+      });
+
+      gsapRef.set(item, { x: direction * 90, opacity: 0 });
+      gsapRef.set([copy, index], { opacity: 0, y: 22 });
+      gsapRef.set(word, {
+        opacity: 0,
+        filter: 'blur(12px)',
+        clipPath: direction > 0 ? 'inset(0 0 0 100%)' : 'inset(0 100% 0 0)',
+      });
+      particles.forEach((particle, particleIndex) => {
+        const spread = 170 + ((particleIndex * 29) % 230);
+        const vertical = ((particleIndex * 47) % 150) - 75;
+        gsapRef.set(particle, {
+          x: direction * spread,
+          y: vertical,
+          opacity: 0,
+          scale: 0.4 + ((particleIndex % 5) * 0.18),
+        });
+      });
+
+      const timeline = gsapRef.timeline({
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 78%',
+          once: true,
+        },
+      });
+
+      timeline.to(item, { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out' });
+      timeline.to(particles, {
+        x: () => gsapRef.utils.random(-30, 30),
+        y: () => gsapRef.utils.random(-25, 25),
+        opacity: () => gsapRef.utils.random(0.35, 0.9),
+        scale: 1,
+        duration: 1.05,
+        stagger: { each: 0.018, from: direction > 0 ? 'end' : 'start' },
+        ease: 'power3.out',
+      }, 0.05);
+      timeline.to(word, {
+        opacity: 1,
+        filter: 'blur(0px)',
+        clipPath: 'inset(0 0% 0 0%)',
+        duration: 0.9,
+        ease: 'power2.out',
+      }, 0.48);
+      timeline.to([index, copy], {
+        opacity: 1,
+        y: 0,
+        duration: 0.75,
+        stagger: 0.08,
+        ease: 'power2.out',
+      }, 0.62);
+      timeline.to(particles, {
+        x: direction * -45,
+        opacity: 0,
+        scale: 0.15,
+        duration: 0.65,
+        stagger: 0.012,
+        ease: 'power2.in',
+      }, 0.95);
     });
   }
 
@@ -546,6 +650,7 @@
     initSquiggles();
     initManifesto(gsapRef, ST);
     initCurtain(gsapRef, ST);
+    initDesires(gsapRef, ST);
     initRises(gsapRef, ST);
     initHow(gsapRef, ST);
     initShowcase(gsapRef, ST);
