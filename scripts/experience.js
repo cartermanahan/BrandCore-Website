@@ -169,7 +169,10 @@
 
     if (!panel || !gsapRef || !ST || reduceMotion.matches) return;
 
-    gsapRef.set(panel, { clipPath: 'inset(42% 34% 42% 34% round 60px)' });
+    // Animate only numeric custom properties. Interpolating the complete
+    // `inset(... round ...)` string makes Chromium briefly treat the radius as
+    // a discrete value, which causes a visible rounded-to-square snap.
+    gsapRef.set(panel, { '--bf-curtain-y': '32%', '--bf-curtain-x': '28%' });
     gsapRef.set(items, { opacity: 0, y: 34 });
     if (giant) gsapRef.set(giant, { scale: 0.86, opacity: 0.001 });
 
@@ -185,7 +188,8 @@
     });
 
     timeline.to(panel, {
-      clipPath: 'inset(0% 0% 0% 0% round 36px)',
+      '--bf-curtain-y': '0%',
+      '--bf-curtain-x': '0%',
       duration: 6,
       ease: 'power2.inOut',
     });

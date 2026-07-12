@@ -497,6 +497,8 @@ html[data-theme="light"] .bf-platform-item--soon em { background: rgba(99, 102, 
 }
 
 .bf-belief-panel {
+  --bf-curtain-y: 0%;
+  --bf-curtain-x: 0%;
   position: relative;
   width: 100%;
   max-width: 1240px;
@@ -505,7 +507,17 @@ html[data-theme="light"] .bf-platform-item--soon em { background: rgba(99, 102, 
   padding: clamp(64px, 9vw, 130px) clamp(24px, 6vw, 96px);
   text-align: center;
   isolation: isolate;
+  clip-path: inset(
+    var(--bf-curtain-y) var(--bf-curtain-x)
+    var(--bf-curtain-y) var(--bf-curtain-x)
+    round 36px
+  );
   will-change: clip-path;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bf-belief-panel { will-change: auto; }
+  .bf-belief-bg::after { animation: none; }
 }
 
 .bf-belief-bg {
