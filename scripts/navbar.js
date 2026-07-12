@@ -101,6 +101,8 @@ document.addEventListener('DOMContentLoaded', () => {
             navList.classList.remove('closing');
         }, 200);
 
+        navbar?.classList.remove('nav-open');
+        root.classList.remove('nav-locked');
         menuToggle?.classList.remove('open');
         menuToggle?.setAttribute('aria-expanded', 'false');
     }
@@ -109,6 +111,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!navList || navList.classList.contains('show')) return;
         navList.classList.remove('closing');
         navList.classList.add('show');
+        navbar?.classList.add('nav-open');
+        root.classList.add('nav-locked');
         menuToggle?.classList.add('open');
         menuToggle?.setAttribute('aria-expanded', 'true');
     }
@@ -179,8 +183,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 event.preventDefault();
                 const target = document.querySelector(href);
                 if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    history.replaceState(null, '', href);
+                    if (typeof window.BrandFounderScrollToTarget === 'function') {
+                        window.BrandFounderScrollToTarget(target, href, 'smooth');
+                    } else {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        history.replaceState(null, '', href);
+                    }
                 }
             }
 
@@ -230,6 +238,13 @@ document.addEventListener('DOMContentLoaded', () => {
             syncBrandToggle();
         });
     }
+
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+            closeMenu();
+            syncBrandToggle();
+        }
+    });
 
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {

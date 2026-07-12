@@ -1,7 +1,42 @@
-// scripts/home.js — BrandFounder Hero Particles
+// scripts/home.js — BrandFounder home motion
 
 (function () {
   'use strict';
+
+  const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const desktopStoryQuery = window.matchMedia('(min-width: 981px)');
+  const defaultScrollOffset = 96;
+
+  function getScrollOffsetForTarget(target) {
+    if (!(target instanceof HTMLElement)) return defaultScrollOffset;
+
+    const computedOffset = Number.parseFloat(window.getComputedStyle(target).scrollMarginTop || '');
+    if (Number.isFinite(computedOffset) && computedOffset > 0) {
+      return computedOffset;
+    }
+
+    return defaultScrollOffset;
+  }
+
+  function scrollTargetIntoView(target, behavior = 'smooth') {
+    if (!(target instanceof HTMLElement)) return;
+
+    const offset = getScrollOffsetForTarget(target);
+    const top = window.scrollY + target.getBoundingClientRect().top - offset;
+
+    window.scrollTo({
+      top: Math.max(0, top),
+      behavior,
+    });
+  }
+
+  window.BrandFounderScrollToTarget = (target, href, behavior = 'smooth') => {
+    scrollTargetIntoView(target, behavior);
+
+    if (href && window.history?.replaceState) {
+      window.history.replaceState(null, '', href);
+    }
+  };
 
   function initHeroScrollScrub() {
     const section = document.querySelector('[data-scroll-scrub-section]');
@@ -19,7 +54,6 @@
     const frameCount = Number(canvas.dataset.frameCount || '1');
     const framePrefix = canvas.dataset.framePrefix || '';
     const frameExtension = canvas.dataset.frameExtension || '.jpg';
-    const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     const mobileLoopQuery = window.matchMedia('(max-width: 700px)');
     let rafId = 0;
     let loopRafId = 0;
@@ -391,105 +425,354 @@
     }
   }
 
-  function initParticles() {
-    if (typeof THREE === 'undefined') return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  function initAnchorScrolling(lenis) {
+    const links = Array.from(document.querySelectorAll('a[href^="#"]')).filter((link) => {
+      return !link.closest('.navbar');
+    });
 
-    const hero = document.querySelector('.hero-section');
-    if (!hero) return;
+    links.forEach((link) => {
+      link.addEventListener('click', (event) => {
+        const href = link.getAttribute('href');
+        if (!href || href === '#') return;
 
-    const canvas = document.createElement('canvas');
-    canvas.id = 'hero-canvas';
-    hero.prepend(canvas);
+        const target = document.querySelector(href);
+        if (!target) return;
 
-    const getSize = () => ({ w: hero.offsetWidth, h: hero.offsetHeight });
-    let { w, h } = getSize();
+        event.preventDefault();
 
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-    renderer.setSize(w, h);
-    renderer.setClearColor(0x000000, 0);
+        if (lenis) {
+          lenis.scrollTo(target, {
+            offset: -24,
+            duration: 1.15,
+          });
+        } else {
+          scrollTargetIntoView(target, 'smooth');
+        }
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(65, w / h, 0.1, 100);
-    camera.position.z = 6;
+        if (window.history?.replaceState) {
+          window.history.replaceState(null, '', href);
+        }
+      });
+    });
+  }
 
-    const COUNT = window.innerWidth < 768 ? 320 : 720;
-    const pos = new Float32Array(COUNT * 3);
-    const col = new Float32Array(COUNT * 3);
+  function initRevealSystem(gsapRef, ScrollTriggerRef) {
+    const revealElements = Array.from(document.querySelectorAll('.reveal'));
+    if (!revealElements.length) return;
 
-    const palette = [
-      [0.388, 0.400, 0.945],
-      [0.647, 0.706, 0.988],
-      [0.753, 0.518, 0.988],
-      [0.980, 0.980, 1.000],
-      [0.388, 0.400, 0.945],
-      [0.388, 0.400, 0.945],
-    ];
-
-    for (let i = 0; i < COUNT; i++) {
-      pos[i * 3]     = (Math.random() - 0.5) * 18;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 13;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 10 - 2;
-
-      const c = palette[Math.floor(Math.random() * palette.length)];
-      col[i * 3]     = c[0];
-      col[i * 3 + 1] = c[1];
-      col[i * 3 + 2] = c[2];
+    if (reduceMotionQuery.matches) {
+      revealElements.forEach((element) => element.classList.add('visible'));
+      return;
     }
 
-    const geo = new THREE.BufferGeometry();
-    geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-    geo.setAttribute('color',    new THREE.BufferAttribute(col, 3));
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
 
-    const sprite = new THREE.TextureLoader().load(
-      'https://cdn.jsdelivr.net/gh/mrdoob/three.js/examples/textures/sprites/disc.png'
+      revealElements.forEach((element) => observer.observe(element));
+      return;
+    }
+
+    revealElements.forEach((element) => element.classList.add('visible'));
+  }
+
+  function initHowFlowStory(gsapRef, ScrollTriggerRef) {
+    const section = document.getElementById('how-it-works');
+    const items = Array.from(document.querySelectorAll('.how-flow-item'));
+    const cards = Array.from(document.querySelectorAll('.how-flow-preview-card'));
+    const progressDots = Array.from(document.querySelectorAll('.how-flow-preview-progress span'));
+    const previewShell = document.querySelector('.how-flow-preview-shell');
+
+    if (!section || !items.length) return;
+
+    const setActiveStep = (step) => {
+      items.forEach((item, index) => {
+        const itemStep = Number(item.dataset.howStep || String(index + 1));
+        item.classList.toggle('is-active', itemStep === step);
+      });
+
+      cards.forEach((card, index) => {
+        const cardStep = Number(card.dataset.previewStep || String(index + 1));
+        card.classList.toggle('is-active', cardStep === step);
+      });
+
+      progressDots.forEach((dot, index) => {
+        dot.classList.toggle('is-active', index + 1 === step);
+      });
+    };
+
+    window.BrandFounderSetHowStep = setActiveStep;
+
+    setActiveStep(1);
+
+    if (!ScrollTriggerRef) return;
+
+    items.forEach((item, index) => {
+      const step = Number(item.dataset.howStep || String(index + 1));
+      ScrollTriggerRef.create({
+        trigger: item,
+        start: 'top 58%',
+        end: 'bottom 46%',
+        onEnter: () => setActiveStep(step),
+        onEnterBack: () => setActiveStep(step),
+      });
+    });
+
+    if (reduceMotionQuery.matches || !gsapRef || !previewShell || !desktopStoryQuery.matches) {
+      return;
+    }
+
+    gsapRef.fromTo(previewShell,
+      { autoAlpha: 0, y: 40, rotateX: 10 },
+      {
+        autoAlpha: 1,
+        y: 0,
+        rotateX: 0,
+        duration: 1.05,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 78%',
+          once: true,
+        },
+      }
     );
 
-    const mat = new THREE.PointsMaterial({
-      size: 0.075,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.5,
-      sizeAttenuation: true,
-      map: sprite,
-      alphaTest: 0.2,
+    gsapRef.to(previewShell, {
+      y: -26,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1.15,
+      },
+    });
+  }
+
+  function initScreenshotSpotlight(gsapRef, ScrollTriggerRef) {
+    const shell = document.querySelector('.screenshots-rail-shell');
+    const rail = shell?.querySelector('.screenshots-rail');
+    const cards = rail ? Array.from(rail.querySelectorAll('.screenshot-card')) : [];
+    let railScrollTrigger = null;
+
+    if (!shell || !rail || !cards.length) return;
+
+    const setActiveCard = (activeIndex) => {
+      cards.forEach((card, index) => {
+        card.classList.toggle('is-active', index === activeIndex);
+      });
+    };
+
+    const updateActiveCard = () => {
+      const railRect = rail.getBoundingClientRect();
+      const railCenter = railRect.left + (railRect.width / 2);
+      let activeIndex = 0;
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      cards.forEach((card, index) => {
+        const rect = card.getBoundingClientRect();
+        const cardCenter = rect.left + (rect.width / 2);
+        const distance = Math.abs(cardCenter - railCenter);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          activeIndex = index;
+        }
+      });
+
+      setActiveCard(activeIndex);
+    };
+
+    let updateQueued = false;
+    const requestActiveUpdate = () => {
+      if (updateQueued) return;
+      updateQueued = true;
+      window.requestAnimationFrame(() => {
+        updateQueued = false;
+        updateActiveCard();
+      });
+    };
+
+    setActiveCard(0);
+    rail.addEventListener('scroll', requestActiveUpdate, { passive: true });
+    window.addEventListener('resize', requestActiveUpdate, { passive: true });
+
+    if (gsapRef && ScrollTriggerRef && !reduceMotionQuery.matches) {
+      const syncRailToScroll = () => {
+        if (railScrollTrigger) {
+          railScrollTrigger.kill();
+          railScrollTrigger = null;
+        }
+
+        if (!desktopStoryQuery.matches) {
+          rail.scrollLeft = 0;
+          requestActiveUpdate();
+          return;
+        }
+
+        railScrollTrigger = ScrollTriggerRef.create({
+          trigger: shell,
+          start: 'top 72%',
+          end: 'bottom top+=8%',
+          scrub: 1.1,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const maxScroll = Math.max(rail.scrollWidth - rail.clientWidth, 0);
+            rail.scrollLeft = maxScroll * self.progress;
+            requestActiveUpdate();
+          },
+        });
+      };
+
+      syncRailToScroll();
+
+      const handleDesktopStoryChange = () => {
+        syncRailToScroll();
+        requestActiveUpdate();
+      };
+
+      if (typeof desktopStoryQuery.addEventListener === 'function') {
+        desktopStoryQuery.addEventListener('change', handleDesktopStoryChange);
+      } else if (typeof desktopStoryQuery.addListener === 'function') {
+        desktopStoryQuery.addListener(handleDesktopStoryChange);
+      }
+    }
+
+    requestActiveUpdate();
+  }
+
+  function initPackShowcaseMotion(gsapRef, ScrollTriggerRef) {
+    const shell = document.querySelector('.pack-shell');
+    const showcaseBg = shell?.querySelector('.pack-showcase-bg');
+    const showcaseCopy = shell?.querySelector('.pack-showcase-copy');
+    const tabs = shell?.querySelector('.pack-tabs');
+    const panelWrap = shell?.querySelector('.pack-panel-wrap');
+
+    if (!shell || !ScrollTriggerRef) return;
+
+    ScrollTriggerRef.create({
+      trigger: shell,
+      start: 'top 68%',
+      end: 'bottom 32%',
+      onToggle: (self) => {
+        shell.classList.toggle('is-immersed', self.isActive);
+      },
     });
 
-    const points = new THREE.Points(geo, mat);
-    scene.add(points);
+    if (reduceMotionQuery.matches || !gsapRef) return;
 
-    let mx = 0, my = 0, tx = 0, ty = 0;
+    if (showcaseBg) {
+      gsapRef.to(showcaseBg, {
+        yPercent: -10,
+        scale: 1.08,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: shell,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.2,
+        },
+      });
+    }
 
-    window.addEventListener('mousemove', (e) => {
-      mx = (e.clientX / window.innerWidth  - 0.5) * 2;
-      my = (e.clientY / window.innerHeight - 0.5) * 2;
-    }, { passive: true });
+    if (showcaseCopy) {
+      gsapRef.from(Array.from(showcaseCopy.children), {
+        y: 28,
+        autoAlpha: 0,
+        duration: 0.95,
+        ease: 'power3.out',
+        stagger: 0.08,
+        scrollTrigger: {
+          trigger: shell,
+          start: 'top 80%',
+          once: true,
+        },
+      });
+    }
 
-    window.addEventListener('resize', () => {
-      const s = getSize();
-      camera.aspect = s.w / s.h;
-      camera.updateProjectionMatrix();
-      renderer.setSize(s.w, s.h);
+    if (tabs) {
+      gsapRef.from(tabs, {
+        y: 18,
+        autoAlpha: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: tabs,
+          start: 'top 88%',
+          once: true,
+        },
+      });
+    }
+
+    if (panelWrap) {
+      gsapRef.to(panelWrap, {
+        y: -14,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: shell,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1,
+        },
+      });
+    }
+  }
+
+  function initSmoothMotion() {
+    const gsapRef = window.gsap;
+    const ScrollTriggerRef = window.ScrollTrigger;
+
+    if (gsapRef && ScrollTriggerRef) {
+      gsapRef.registerPlugin(ScrollTriggerRef);
+    }
+
+    initAnchorScrolling(null);
+    initRevealSystem(gsapRef, ScrollTriggerRef);
+    initHowFlowStory(gsapRef, ScrollTriggerRef);
+    initScreenshotSpotlight(gsapRef, ScrollTriggerRef);
+    initPackShowcaseMotion(gsapRef, ScrollTriggerRef);
+
+    if (ScrollTriggerRef) {
+      window.setTimeout(() => ScrollTriggerRef.refresh(), 180);
+    }
+  }
+
+  function initInitialHashLanding() {
+    const hash = window.location.hash;
+    if (!hash || hash === '#') return;
+
+    const target = document.querySelector(hash);
+    if (!(target instanceof HTMLElement)) return;
+
+    const correctHashLanding = () => {
+      scrollTargetIntoView(target, 'auto');
+
+      if (hash === '#how-it-works' && typeof window.BrandFounderSetHowStep === 'function') {
+        window.BrandFounderSetHowStep(1);
+      }
+    };
+
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(correctHashLanding);
     });
 
-    (function tick() {
-      requestAnimationFrame(tick);
-      tx += (mx - tx) * 0.032;
-      ty += (my - ty) * 0.032;
-      points.rotation.y  =  tx * 0.2;
-      points.rotation.x  =  ty * 0.13;
-      points.rotation.z += 0.0004;
-      renderer.render(scene, camera);
-    })();
+    window.addEventListener('load', correctHashLanding, { once: true });
+  }
+
+  function init() {
+    initHeroScrollScrub();
+    initSmoothMotion();
+    initInitialHashLanding();
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      initHeroScrollScrub();
-    });
+    document.addEventListener('DOMContentLoaded', init);
   } else {
-    initHeroScrollScrub();
+    init();
   }
-
 })();
