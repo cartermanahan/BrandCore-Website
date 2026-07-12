@@ -133,7 +133,7 @@
     gsapRef.set(words, { opacity: 0.13 });
     cards.forEach((card) => {
       const direction = card.dataset.side === 'right' ? 1 : -1;
-      gsapRef.set(card, { x: direction * 110, y: 28, rotation: direction * 2.5, opacity: 0 });
+      gsapRef.set(card, { x: direction * 170, y: 42, rotation: direction * 2.5, opacity: 0 });
     });
     if (squigglePath) gsapRef.set(squigglePath, { strokeDashoffset: 260 });
 
@@ -353,6 +353,8 @@
     const steps = Array.from(section.querySelectorAll('[data-bf-step]'));
     const journey = section.querySelector('.bf-how-journey');
     const line = section.querySelector('[data-bf-how-line]');
+    const handoffPath = section.querySelector('[data-bf-handoff-path]');
+    const handoffCore = section.querySelector('[data-bf-handoff-core]');
 
     const setStep = (step) => {
       steps.forEach((item) => {
@@ -367,20 +369,25 @@
     if (gsapRef && ST && !reduceMotion.matches) {
       setStep(0);
 
-      if (journey && line) {
-        gsapRef.fromTo(line,
-          { scaleY: 0 },
-          {
-            scaleY: 1,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: journey,
-              start: 'top 62%',
-              end: 'bottom 42%',
-              scrub: 0.7,
-            },
-          }
-        );
+      if (journey && line && handoffPath && handoffCore) {
+        const handoffLength = handoffPath.getTotalLength();
+        gsapRef.set(line, { scaleY: 0 });
+        gsapRef.set(handoffPath, { strokeDasharray: handoffLength, strokeDashoffset: handoffLength });
+        gsapRef.set(handoffCore, { opacity: 0, scale: 0.35 });
+
+        const unifiedLine = gsapRef.timeline({
+          scrollTrigger: {
+            trigger: journey,
+            start: 'top 62%',
+            end: 'bottom 54%',
+            scrub: 0.7,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        unifiedLine.to(line, { scaleY: 1, duration: 0.8, ease: 'none' });
+        unifiedLine.to(handoffPath, { strokeDashoffset: 0, duration: 0.2, ease: 'none' });
+        unifiedLine.to(handoffCore, { opacity: 1, scale: 1, duration: 0.05, ease: 'power2.out' }, 0.95);
       }
 
       steps.forEach((item) => {
@@ -432,27 +439,18 @@
           scrollTrigger: {
             trigger: stage,
             start: 'top 82%',
-            end: 'center 46%',
-            scrub: 0.7,
+            end: 'bottom top',
+            scrub: 0.75,
+            invalidateOnRefresh: true,
           },
         });
 
         timeline
-          .to(centre, { y: 0, scale: 1, opacity: 1, ease: 'power2.out' }, 0)
-          .to(left, { x: '0%', y: 26, rotate: -6.5, opacity: 1, ease: 'power2.out' }, 0.06)
-          .to(right, { x: '0%', y: 26, rotate: 6.5, opacity: 1, ease: 'power2.out' }, 0.06);
-
-        // gentle parallax drift after the fan settles
-        gsapRef.to([left, right], {
-          y: -8,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: stage,
-            start: 'center 46%',
-            end: 'bottom top',
-            scrub: 1,
-          },
-        });
+          .to(centre, { y: 0, scale: 1, opacity: 1, duration: 0.42, ease: 'power2.out' }, 0)
+          .to(left, { x: '0%', y: 26, rotate: -6.5, opacity: 1, duration: 0.42, ease: 'power2.out' }, 0.04)
+          .to(right, { x: '0%', y: 26, rotate: 6.5, opacity: 1, duration: 0.42, ease: 'power2.out' }, 0.04)
+          .to([left, right], { y: -8, duration: 0.58, ease: 'none' }, 0.42)
+          .to(centre, { y: -14, duration: 0.58, ease: 'none' }, 0.42);
       },
       '(max-width: 720px)': () => {
         gsapRef.set([left, centre, right], { clearProps: 'all' });
@@ -606,7 +604,7 @@
             scrollTrigger: {
               trigger: section,
               start: 'top top',
-              end: '+=115%',
+              end: '+=150%',
               pin: true,
               scrub: 0.18,
               anticipatePin: 1,
