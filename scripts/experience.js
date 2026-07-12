@@ -145,6 +145,7 @@
         pin: true,
         scrub: 0.6,
         anticipatePin: 1,
+        invalidateOnRefresh: true,
       },
     });
 
@@ -204,6 +205,7 @@
         pin: true,
         scrub: 0.65,
         anticipatePin: 1,
+        invalidateOnRefresh: true,
       },
     });
 
@@ -236,19 +238,22 @@
 
     if (!gsapRef || !ST || reduceMotion.matches) return;
 
-    risers.forEach((el, index) => {
-      gsapRef.from(el, {
-        y: 54,
-        opacity: 0,
-        duration: 0.9,
-        delay: (index % 4) * 0.09,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 86%',
-          once: true,
-        },
-      });
+    risers.forEach((el) => {
+      gsapRef.fromTo(el,
+        { y: 54, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 90%',
+            end: 'top 70%',
+            scrub: 0.35,
+            invalidateOnRefresh: true,
+          },
+        }
+      );
     });
   }
 
@@ -297,7 +302,9 @@
         scrollTrigger: {
           trigger: item,
           start: 'top 78%',
-          once: true,
+          end: 'center 42%',
+          scrub: 0.5,
+          invalidateOnRefresh: true,
         },
       });
 
@@ -337,43 +344,60 @@
   }
 
   /* ============================================================
-     04 · How it works — step sync + shot crossfade
+     04 · How it works — illuminated journey
      ============================================================ */
   function initHow(gsapRef, ST) {
     const section = document.querySelector('[data-bf-how]');
     if (!section) return;
 
     const steps = Array.from(section.querySelectorAll('[data-bf-step]'));
-    const shots = Array.from(section.querySelectorAll('[data-bf-shot]'));
-    const dots = Array.from(section.querySelectorAll('.bf-how-progress span'));
+    const journey = section.querySelector('.bf-how-journey');
+    const line = section.querySelector('[data-bf-how-line]');
 
     const setStep = (step) => {
       steps.forEach((item) => {
-        item.classList.toggle('is-active', Number(item.dataset.bfStep) === step);
-      });
-      shots.forEach((shot) => {
-        shot.classList.toggle('is-active', Number(shot.dataset.bfShot) === step);
-      });
-      dots.forEach((dot, index) => {
-        dot.classList.toggle('is-active', index + 1 === step);
+        const itemStep = Number(item.dataset.bfStep);
+        item.classList.toggle('is-active', itemStep === step);
+        item.classList.toggle('is-complete', itemStep < step);
       });
     };
 
-    setStep(1);
+    window.BrandFounderSetHowStep = setStep;
 
-    if (ST && !reduceMotion.matches) {
+    if (gsapRef && ST && !reduceMotion.matches) {
+      setStep(0);
+
+      if (journey && line) {
+        gsapRef.fromTo(line,
+          { scaleY: 0 },
+          {
+            scaleY: 1,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: journey,
+              start: 'top 62%',
+              end: 'bottom 42%',
+              scrub: 0.7,
+            },
+          }
+        );
+      }
+
       steps.forEach((item) => {
         const step = Number(item.dataset.bfStep);
         ST.create({
           trigger: item,
-          start: 'top 62%',
-          end: 'bottom 40%',
+          start: 'center 60%',
+          end: 'center 38%',
           onEnter: () => setStep(step),
           onEnterBack: () => setStep(step),
+          onLeaveBack: () => setStep(Math.max(0, step - 1)),
         });
       });
       return;
     }
+
+    setStep(1);
 
     if ('IntersectionObserver' in window) {
       const observer = new IntersectionObserver((entries) => {
@@ -465,7 +489,9 @@
         scrollTrigger: {
           trigger: rail,
           start: 'top 78%',
-          once: true,
+          end: 'bottom 48%',
+          scrub: 0.45,
+          invalidateOnRefresh: true,
         },
       });
 
@@ -514,7 +540,9 @@
       scrollTrigger: {
         trigger: receipt,
         start: 'top 74%',
-        once: true,
+        end: 'bottom 48%',
+        scrub: 0.45,
+        invalidateOnRefresh: true,
       },
     });
 
@@ -537,6 +565,67 @@
           el.textContent = Math.round(proxy.value).toLocaleString('en-GB');
         },
       }, 0.18 + (index * 0.16));
+    });
+  }
+
+  /* ============================================================
+     08 · Fit — pinned horizontal possibility spectrum
+     ============================================================ */
+  function initFit(gsapRef, ST) {
+    const section = document.querySelector('[data-bf-fit]');
+    const stage = section?.querySelector('.bf-fit-stage');
+    const track = section?.querySelector('[data-bf-fit-track]');
+    const words = track ? Array.from(track.querySelectorAll('span')) : [];
+    if (!section || !stage || !track || !words.length) return;
+
+    let focusedIndex = -1;
+
+    const setFocusedWord = (index) => {
+      if (index === focusedIndex) return;
+      focusedIndex = index;
+      words.forEach((word, wordIndex) => {
+        word.classList.toggle('is-focused', wordIndex === index);
+      });
+    };
+
+    setFocusedWord(0);
+
+    if (!gsapRef || !ST || reduceMotion.matches) return;
+
+    ST.matchMedia({
+      '(min-width: 721px)': () => {
+        const centredX = (word) => (
+          (window.innerWidth / 2) - word.offsetLeft - (word.offsetWidth / 2)
+        );
+
+        const tween = gsapRef.fromTo(track,
+          { x: () => centredX(words[0]) },
+          {
+            x: () => centredX(words[words.length - 1]),
+            ease: 'none',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top top',
+              end: '+=115%',
+              pin: true,
+              scrub: 0.18,
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+              onUpdate: (self) => {
+                const index = Math.round(self.progress * (words.length - 1));
+                setFocusedWord(index);
+              },
+            },
+          }
+        );
+
+        return () => {
+          tween.scrollTrigger?.kill();
+          tween.kill();
+          gsapRef.set(track, { clearProps: 'transform' });
+          setFocusedWord(0);
+        };
+      },
     });
   }
 
@@ -586,15 +675,23 @@
   function initPackTabs() {
     const tabs = Array.from(document.querySelectorAll('.bf-pack-tab'));
     const panels = Array.from(document.querySelectorAll('.bf-pack-panel'));
+    const shell = document.querySelector('[data-bf-pack]');
     if (!tabs.length || !panels.length) return;
 
     const gsapRef = window.gsap;
 
     const switchTab = (target) => {
+      if (shell) shell.dataset.packActive = target;
+
       tabs.forEach((tab) => {
         const active = tab.dataset.bfTab === target;
         tab.classList.toggle('is-active', active);
         tab.setAttribute('aria-selected', active ? 'true' : 'false');
+        tab.tabIndex = active ? 0 : -1;
+
+        if (active && gsapRef && !reduceMotion.matches) {
+          gsapRef.fromTo(tab, { scale: 0.94 }, { scale: 1, duration: 0.35, ease: 'back.out(2)', overwrite: true });
+        }
       });
 
       panels.forEach((panel) => {
@@ -603,18 +700,75 @@
         panel.hidden = !active;
 
         if (active && gsapRef && !reduceMotion.matches) {
+          const visual = panel.querySelector('.bf-pack-visual');
+          if (visual) {
+            gsapRef.fromTo(
+              visual,
+              { opacity: 0, scale: 0.94 },
+              { opacity: 0.34, scale: 1, duration: 0.65, ease: 'power2.out', overwrite: true }
+            );
+          }
+
           gsapRef.fromTo(
-            panel.querySelectorAll('.bf-pack-card, .bf-pack-desc'),
-            { opacity: 0, y: 14 },
-            { opacity: 1, y: 0, duration: 0.45, stagger: 0.05, ease: 'power2.out', overwrite: true }
+            panel.querySelectorAll('.bf-pack-desc, .bf-pack-card'),
+            { opacity: 0, y: 18, scale: 0.985 },
+            { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.045, ease: 'power3.out', overwrite: true }
           );
         }
       });
     };
 
+    const initialTab = tabs.find((tab) => tab.classList.contains('is-active')) || tabs[0];
+    switchTab(initialTab.dataset.bfTab);
+
     tabs.forEach((tab) => {
       tab.addEventListener('click', () => switchTab(tab.dataset.bfTab));
+      tab.addEventListener('keydown', (event) => {
+        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+        event.preventDefault();
+        const currentIndex = tabs.indexOf(tab);
+        const direction = event.key === 'ArrowRight' ? 1 : -1;
+        const nextTab = tabs[(currentIndex + direction + tabs.length) % tabs.length];
+        switchTab(nextTab.dataset.bfTab);
+        nextTab.focus();
+      });
     });
+  }
+
+  /* ============================================================
+     Final CTA — centred screen wipe
+     ============================================================ */
+  function initFinalCta(gsapRef, ST) {
+    const block = document.querySelector('[data-bf-final-cta]');
+    if (!block || !gsapRef || !ST || reduceMotion.matches) return;
+
+    const kicker = block.querySelector('.footer-cta-kicker');
+    const heading = block.querySelector('.footer-cta-heading');
+    const button = block.querySelector('.footer-cta-btn');
+    const rings = block.querySelectorAll('.footer-cta-fx span');
+    const wipePanels = block.querySelectorAll('.footer-cta-wipe span');
+
+    gsapRef.set([kicker, heading, button], { opacity: 0, y: 28 });
+    gsapRef.set(rings, { scale: 0.72, opacity: 0 });
+    gsapRef.set(wipePanels, { clearProps: 'transform' });
+    gsapRef.set(wipePanels, { xPercent: 0 });
+
+    const timeline = gsapRef.timeline({
+      scrollTrigger: {
+        trigger: block,
+        start: 'top 88%',
+        end: 'center 58%',
+        scrub: 0.55,
+      },
+    });
+
+    timeline.to(wipePanels, {
+      xPercent: (index) => index === 0 ? -102 : 102,
+      duration: 1.35,
+      ease: 'power3.inOut',
+    });
+    timeline.to([kicker, heading, button], { opacity: 1, y: 0, duration: 0.9, stagger: 0.12, ease: 'power2.out' }, 0.48);
+    timeline.to(rings, { scale: 1, opacity: 1, duration: 1.2, stagger: 0.12, ease: 'power2.out' }, 0.3);
   }
 
   /* ============================================================
@@ -634,6 +788,28 @@
     });
   }
 
+  function initPositionDrivenScroll(ST) {
+    if (!ST) return;
+
+    let refreshFrame = 0;
+    const syncToCurrentScroll = () => {
+      window.cancelAnimationFrame(refreshFrame);
+      refreshFrame = window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          ST.sort();
+          ST.refresh();
+          ST.update();
+        });
+      });
+    };
+
+    // pageshow runs after native scroll restoration. Rebuilding here makes
+    // every scrubbed timeline derive its progress from the restored position.
+    window.addEventListener('pageshow', syncToCurrentScroll);
+    window.addEventListener('load', syncToCurrentScroll, { once: true });
+    document.fonts?.ready?.then(syncToCurrentScroll);
+  }
+
   /* ============================================================
      Boot
      ============================================================ */
@@ -644,6 +820,9 @@
     if (gsapRef && ST) {
       gsapRef.registerPlugin(ST);
     }
+
+    initPositionDrivenScroll(ST);
+
 
     initHeroAura();
     initNavSpy();
@@ -656,13 +835,13 @@
     initShowcase(gsapRef, ST);
     initTimeRails(gsapRef, ST);
     initReceipt(gsapRef, ST);
+    initFit(gsapRef, ST);
     initGallery(gsapRef, ST);
     initPackTabs();
+    initFinalCta(gsapRef, ST);
     initFaq();
 
-    if (ST) {
-      window.setTimeout(() => ST.refresh(), 240);
-    }
+    if (ST) window.setTimeout(() => ST.refresh(), 240);
   }
 
   if (document.readyState === 'loading') {

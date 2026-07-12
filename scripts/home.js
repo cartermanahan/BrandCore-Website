@@ -319,6 +319,29 @@
     primeFrames();
     syncInteractionMode();
 
+    const syncRestoredHeroProgress = () => {
+      if (!isScrollScrubMode) return;
+      const heroHeight = Math.max(section.getBoundingClientRect().height, window.innerHeight);
+      if (window.scrollY <= heroHeight * 0.5) return;
+
+      if (rafId) {
+        window.cancelAnimationFrame(rafId);
+        rafId = 0;
+      }
+
+      targetProgress = 1;
+      const completedProgress = setProgress(1);
+      renderFrame(completedProgress);
+    };
+
+    const scheduleRestoredHeroSync = () => {
+      window.requestAnimationFrame(() => window.requestAnimationFrame(syncRestoredHeroProgress));
+    };
+
+    window.addEventListener('pageshow', scheduleRestoredHeroSync);
+    window.addEventListener('load', scheduleRestoredHeroSync, { once: true });
+    window.setTimeout(syncRestoredHeroProgress, 320);
+
     window.addEventListener('wheel', (event) => {
       if (!isScrollScrubMode) return;
       const direction = event.deltaY > 0 ? 1 : -1;

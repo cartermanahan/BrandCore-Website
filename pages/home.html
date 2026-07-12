@@ -361,6 +361,10 @@
 
     <!-- ============ 04 · HOW IT WORKS ============ -->
     <section id="how-it-works" class="bf-section bf-how" data-bf-how>
+      <div class="bf-aurora" aria-hidden="true">
+        <span class="bf-aurora-blob bf-aurora-blob--a"></span>
+        <span class="bf-aurora-blob bf-aurora-blob--b"></span>
+      </div>
       <div class="bf-wrap">
         <div class="bf-head reveal">
           <p class="bf-kicker">How it works</p>
@@ -368,49 +372,53 @@
           <p class="bf-sub">From a vague idea to a full brand package in four steps.</p>
         </div>
 
-        <div class="bf-how-grid">
+        <div class="bf-how-journey">
+          <div class="bf-how-spine" aria-hidden="true">
+            <span class="bf-how-spine-track"></span>
+            <span class="bf-how-spine-glow" data-bf-how-line></span>
+          </div>
           <ol class="bf-steps" aria-label="How it works, step by step">
             <li class="bf-step" data-bf-step="1">
-              <span class="bf-step-index" aria-hidden="true">01</span>
+              <div class="bf-step-art bf-step-art--idea" aria-hidden="true">
+                <span class="bf-art-orbit"></span><span class="bf-art-core"></span><i></i><i></i><i></i>
+              </div>
+              <span class="bf-step-node" aria-hidden="true"><span>01</span></span>
               <div class="bf-step-copy">
                 <h3>Describe your brand idea</h3>
                 <p>Enter the name, who it&rsquo;s for, and what you want it to be. That&rsquo;s enough to start.</p>
               </div>
             </li>
             <li class="bf-step" data-bf-step="2">
-              <span class="bf-step-index" aria-hidden="true">02</span>
+              <div class="bf-step-art bf-step-art--create" aria-hidden="true">
+                <span class="bf-art-prism"></span><i></i><i></i><i></i><i></i>
+              </div>
+              <span class="bf-step-node" aria-hidden="true"><span>02</span></span>
               <div class="bf-step-copy">
                 <h3>Our AI creates your brand</h3>
                 <p>Strategy, assets, copy, and a launch plan &mdash; mapped out in one pass.</p>
               </div>
             </li>
             <li class="bf-step" data-bf-step="3">
-              <span class="bf-step-index" aria-hidden="true">03</span>
+              <div class="bf-step-art bf-step-art--edit" aria-hidden="true">
+                <span></span><span></span><span></span><i></i><i></i><i></i>
+              </div>
+              <span class="bf-step-node" aria-hidden="true"><span>03</span></span>
               <div class="bf-step-copy">
                 <h3>Edit &amp; customise</h3>
                 <p>Redo the logo, tweak the palette, tighten the wording until it feels like yours.</p>
               </div>
             </li>
             <li class="bf-step" data-bf-step="4">
-              <span class="bf-step-index" aria-hidden="true">04</span>
+              <div class="bf-step-art bf-step-art--launch" aria-hidden="true">
+                <span class="bf-art-launch-ring"></span><span class="bf-art-arrow"></span><i></i><i></i><i></i>
+              </div>
+              <span class="bf-step-node" aria-hidden="true"><span>04</span></span>
               <div class="bf-step-copy">
                 <h3>Export &amp; launch</h3>
                 <p>Download the full package, post the first content, follow your 30-day plan.</p>
               </div>
             </li>
           </ol>
-
-          <div class="bf-how-visual" aria-hidden="true">
-            <div class="bf-how-frame">
-              <img class="bf-how-shot is-active" data-bf-shot="1" src="../images/app_store_screenshots/V2.jpg" alt="" width="1290" height="2796" loading="lazy" decoding="async" />
-              <img class="bf-how-shot" data-bf-shot="2" src="../images/app_store_screenshots/V3.jpg" alt="" width="1290" height="2796" loading="lazy" decoding="async" />
-              <img class="bf-how-shot" data-bf-shot="3" src="../images/app_store_screenshots/V4.jpg" alt="" width="1290" height="2796" loading="lazy" decoding="async" />
-              <img class="bf-how-shot" data-bf-shot="4" src="../images/app_store_screenshots/V5.jpg" alt="" width="1290" height="2796" loading="lazy" decoding="async" />
-              <div class="bf-how-progress" aria-hidden="true">
-                <span class="is-active"></span><span></span><span></span><span></span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -557,18 +565,29 @@
     </section>
 
     <!-- ============ 08 · FIT / WHO IT'S FOR ============ -->
-    <section id="business-types" class="bf-section bf-fit" aria-labelledby="fit-title">
-      <div class="bf-wrap bf-fit-inner reveal">
-        <div class="bf-fit-pills" aria-hidden="true">
-          <span class="bf-fit-pill" data-bf-float>Digital products</span>
-          <span class="bf-fit-pill" data-bf-float>Services</span>
-          <span class="bf-fit-pill" data-bf-float>SaaS</span>
-          <span class="bf-fit-pill" data-bf-float>Physical products</span>
-          <span class="bf-fit-pill" data-bf-float>Creator brands</span>
-          <span class="bf-fit-pill" data-bf-float>Apps</span>
+    <section id="business-types" class="bf-fit" data-bf-fit aria-labelledby="fit-title">
+      <div class="bf-fit-stage">
+        <div class="bf-fit-atmosphere" aria-hidden="true"></div>
+        <div class="bf-fit-focus" aria-hidden="true"><span></span></div>
+
+        <div class="bf-wrap bf-fit-inner">
+          <p class="bf-kicker">One engine. No fixed category.</p>
+          <h2 class="bf-h2" id="fit-title">Works for <em class="bf-serif">any</em> brand idea.</h2>
+          <p class="bf-sub">If you can describe it in a sentence, the app can build it into a brand.</p>
         </div>
-        <h2 class="bf-h2" id="fit-title">Works for <em class="bf-serif">any</em> brand idea.</h2>
-        <p class="bf-sub">If you can describe it in a sentence, the app can build it into a brand.</p>
+
+        <div class="bf-fit-spectrum" aria-label="Suitable for digital products, services, SaaS, physical products, creator brands, and apps">
+          <div class="bf-fit-track" data-bf-fit-track>
+            <span>Digital products</span><i aria-hidden="true"></i>
+            <span>Services</span><i aria-hidden="true"></i>
+            <span>SaaS</span><i aria-hidden="true"></i>
+            <span>Physical products</span><i aria-hidden="true"></i>
+            <span>Creator brands</span><i aria-hidden="true"></i>
+            <span>Apps</span>
+          </div>
+        </div>
+
+        <p class="bf-fit-scrollcue" aria-hidden="true"><span></span> Scroll to explore the spectrum</p>
       </div>
     </section>
 
@@ -634,14 +653,13 @@
           <h2 class="bf-h2" id="gallery-title">See the <em class="bf-serif">whole flow.</em></h2>
         </div>
         <ul class="bf-gallery-track" aria-label="App Store screenshots in order">
-          <li class="bf-gallery-card"><img src="../images/app_store_screenshots/V1.jpg" alt="BrandFounder — found your brand in minutes" width="1290" height="2796" loading="lazy" decoding="async" /></li>
-          <li class="bf-gallery-card"><img src="../images/app_store_screenshots/V2.jpg" alt="Turn your idea into a real brand" width="1290" height="2796" loading="lazy" decoding="async" /></li>
-          <li class="bf-gallery-card"><img src="../images/app_store_screenshots/V3.jpg" alt="BrandFounder generation flow" width="1290" height="2796" loading="lazy" decoding="async" /></li>
-          <li class="bf-gallery-card"><img src="../images/app_store_screenshots/V4.jpg" alt="Customise your brand assets" width="1290" height="2796" loading="lazy" decoding="async" /></li>
-          <li class="bf-gallery-card"><img src="../images/app_store_screenshots/V5.jpg" alt="Everything you need to promote" width="1290" height="2796" loading="lazy" decoding="async" /></li>
-          <li class="bf-gallery-card"><img src="../images/app_store_screenshots/V6.jpg" alt="Launch checklist and rollout" width="1290" height="2796" loading="lazy" decoding="async" /></li>
-          <li class="bf-gallery-card"><img src="../images/app_store_screenshots/V7.jpg" alt="Export your full brand package" width="1290" height="2796" loading="lazy" decoding="async" /></li>
-          <li class="bf-gallery-card"><img src="../images/app_store_screenshots/V8.jpg" alt="Your 30 day launch plan" width="1290" height="2796" loading="lazy" decoding="async" /></li>
+          <li class="bf-gallery-card"><img src="../images/app_store_screenshots/V2.0/V1.jpg" alt="BrandFounder app introduction" width="1290" height="2796" loading="lazy" decoding="async" /></li>
+          <li class="bf-gallery-card"><img src="../images/app_store_screenshots/V2.0/V2.jpg" alt="Describe your brand idea" width="1290" height="2796" loading="lazy" decoding="async" /></li>
+          <li class="bf-gallery-card"><img src="../images/app_store_screenshots/V2.0/V3.jpg" alt="Generated brand overview" width="1290" height="2796" loading="lazy" decoding="async" /></li>
+          <li class="bf-gallery-card"><img src="../images/app_store_screenshots/V2.0/V4.jpg" alt="Brand identity and logo assets" width="1290" height="2796" loading="lazy" decoding="async" /></li>
+          <li class="bf-gallery-card"><img src="../images/app_store_screenshots/V2.0/V5.jpg" alt="Promotion planning tools" width="1290" height="2796" loading="lazy" decoding="async" /></li>
+          <li class="bf-gallery-card"><img src="../images/app_store_screenshots/V2.0/V6.jpg" alt="Launch plan and publishing workflow" width="1290" height="2796" loading="lazy" decoding="async" /></li>
+          <li class="bf-gallery-card"><img src="../images/app_store_screenshots/V2.0/V7.jpg" alt="Exported brand package" width="1290" height="2796" loading="lazy" decoding="async" /></li>
         </ul>
       </div>
     </section>
@@ -658,7 +676,7 @@
           <p class="bf-sub">Open any tab &mdash; actual outputs, not vague promises.</p>
         </div>
 
-        <div class="bf-pack-shell reveal">
+        <div class="bf-pack-shell" data-bf-pack data-pack-active="strategy">
           <div class="bf-pack-tabs" role="tablist" aria-label="Package contents">
             <button class="bf-pack-tab is-active" data-bf-tab="strategy" role="tab" aria-selected="true" aria-controls="bf-panel-strategy">Strategy</button>
             <button class="bf-pack-tab" data-bf-tab="promotion" role="tab" aria-selected="false" aria-controls="bf-panel-promotion">Promotion</button>
@@ -669,6 +687,7 @@
           <div class="bf-pack-panels">
             <div class="bf-pack-panel is-active" id="bf-panel-strategy" role="tabpanel">
               <p class="bf-pack-desc">The thinking that stops it looking random once it goes live.</p>
+              <div class="bf-pack-visual bf-pack-visual--strategy" aria-hidden="true"><span></span><i></i><i></i><i></i></div>
               <div class="bf-pack-grid">
                 <div class="bf-pack-card">
                   <h4>Brand position</h4>
@@ -699,6 +718,7 @@
 
             <div class="bf-pack-panel" id="bf-panel-promotion" role="tabpanel" hidden>
               <p class="bf-pack-desc">Your first 5 posts, first 5 reels, exact prompts, and what to make them with.</p>
+              <div class="bf-pack-visual bf-pack-visual--promotion" aria-hidden="true"><span></span><span></span><span></span><i></i></div>
               <div class="bf-pack-grid">
                 <div class="bf-pack-card">
                   <h4>5 reel plans</h4>
@@ -725,6 +745,7 @@
 
             <div class="bf-pack-panel" id="bf-panel-assets" role="tabpanel" hidden>
               <p class="bf-pack-desc">The visual side of the brand &mdash; export-ready and editable.</p>
+              <div class="bf-pack-visual bf-pack-visual--assets" aria-hidden="true"><span></span><i></i><i></i><i></i><i></i></div>
               <div class="bf-pack-grid">
                 <div class="bf-pack-card">
                   <h4>Vector logo export</h4>
@@ -751,6 +772,7 @@
 
             <div class="bf-pack-panel" id="bf-panel-launch" role="tabpanel" hidden>
               <p class="bf-pack-desc">The order to do things in, so the brand actually leaves draft mode.</p>
+              <div class="bf-pack-visual bf-pack-visual--launch" aria-hidden="true"><span></span><i></i><i></i><i></i></div>
               <div class="bf-pack-grid">
                 <div class="bf-pack-card">
                   <h4>Export everything</h4>
@@ -799,17 +821,12 @@
     <!-- ============ 12 · PROOF / RATING ============ -->
     <section class="bf-section bf-proof" aria-labelledby="proof-title">
       <div class="bf-wrap bf-proof-inner reveal">
-        <div class="bf-proof-mark" aria-hidden="true">
-          <svg class="bf-laurel bf-laurel--left" viewBox="0 0 40 96" fill="currentColor" aria-hidden="true">
-            <path d="M36 6c-9 3-15 9-18 17 7-1 14-6 18-17ZM30 26c-9 1-16 6-20 13 8 0 15-4 20-13ZM26 45c-9 0-16 3-21 10 8 1 16-2 21-10ZM24 63c-9-1-17 1-22 7 8 2 16 0 22-7ZM25 80c-9-3-17-2-23 3 7 4 16 3 23-3Z"/>
-          </svg>
-          <div class="bf-proof-stars">
-            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
-          </div>
-          <svg class="bf-laurel bf-laurel--right" viewBox="0 0 40 96" fill="currentColor" aria-hidden="true">
-            <path d="M4 6c9 3 15 9 18 17-7-1-14-6-18-17ZM10 26c9 1 16 6 20 13-8 0-15-4-20-13ZM14 45c9 0 16 3 21 10-8 1-16-2-21-10ZM16 63c9-1 17 1 22 7-8 2-16 0-22-7ZM15 80c9-3 17-2 23 3-7 4-16 3-23-3Z"/>
-          </svg>
+        <div class="bf-proof-seal" aria-hidden="true">
+          <span class="bf-proof-orbit"></span>
+          <span class="bf-proof-orbit-dot"></span>
+          <img src="../images/icons/app_store_icon_glass.webp" alt="" width="78" height="78" loading="lazy" decoding="async" />
         </div>
+        <div class="bf-proof-stars" aria-label="Five stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
         <p class="bf-proof-score" id="proof-title"><span class="bf-serif">5.0</span> on the App&nbsp;Store</p>
         <p class="bf-proof-note">Every rating so far: five stars.</p>
         <p class="bf-proof-support">
@@ -883,9 +900,11 @@
       <div class="footer-glow" aria-hidden="true"></div>
 
       <div class="footer-inner">
-        <div class="footer-cta-block">
-          <h2 class="footer-cta-heading">Ready to launch your brand?</h2>
-          <p class="footer-cta-subline">Without hiring a designer, strategist, and content team.</p>
+        <div class="footer-cta-block" data-bf-final-cta>
+          <div class="footer-cta-fx" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="footer-cta-wipe" aria-hidden="true"><span></span><span></span></div>
+          <p class="footer-cta-kicker">Your idea has waited long enough.</p>
+          <h2 class="footer-cta-heading">Ready to launch your <em>brand?</em></h2>
           <a
             href="https://apps.apple.com/us/app/brandfounder/id6759218062"
             class="btn btn-primary footer-cta-btn"
@@ -893,7 +912,7 @@
             rel="noopener noreferrer"
             aria-label="Launch my brand on the App Store"
           >
-            <span>Launch my brand</span>
+            <span>Build my brand</span>
             <span class="footer-cta-arrow" aria-hidden="true">→</span>
           </a>
         </div>
