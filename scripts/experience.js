@@ -628,7 +628,48 @@
   }
 
   /* ============================================================
-     10 · Gallery — pinned horizontal scrub on desktop
+     10 · Real brands — alternating campaign wall
+     ============================================================ */
+  function initBrandWall(gsapRef, ST) {
+    const section = document.querySelector('[data-bf-brand-wall]');
+    if (!section || !gsapRef || !ST || reduceMotion.matches) return;
+
+    const heading = section.querySelector('.bf-brand-wall-head');
+    const shots = Array.from(section.querySelectorAll('[data-bf-brand-shot]'));
+    if (!heading || !shots.length) return;
+
+    gsapRef.fromTo(heading,
+      { opacity: 0, y: 34 },
+      {
+        opacity: 1,
+        y: 0,
+        ease: 'none',
+        scrollTrigger: { trigger: section, start: 'top 88%', end: 'top 62%', scrub: .45 },
+      });
+
+    shots.forEach((shot, index) => {
+      gsapRef.fromTo(shot,
+        { opacity: .12, x: index % 2 ? 72 : -72, y: index % 2 ? 70 : 26, rotate: index % 2 ? 2.5 : -2.5, scale: .94 },
+        {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          rotate: 0,
+          scale: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: shot,
+            start: 'top 94%',
+            end: 'top 60%',
+            scrub: .55,
+            invalidateOnRefresh: true,
+          },
+        });
+    });
+  }
+
+  /* ============================================================
+     11 · Gallery — pinned horizontal scrub on desktop
      ============================================================ */
   function initGallery(gsapRef, ST) {
     const section = document.querySelector('[data-bf-gallery]');
@@ -834,6 +875,7 @@
     initTimeRails(gsapRef, ST);
     initReceipt(gsapRef, ST);
     initFit(gsapRef, ST);
+    initBrandWall(gsapRef, ST);
     initGallery(gsapRef, ST);
     initPackTabs();
     initFinalCta(gsapRef, ST);
