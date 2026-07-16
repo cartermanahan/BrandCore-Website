@@ -427,6 +427,7 @@
     const left = section.querySelector('.bf-phone--left');
     const centre = section.querySelector('.bf-phone--centre');
     const right = section.querySelector('.bf-phone--right');
+    const satellites = Array.from(section.querySelectorAll('[data-bf-showcase-satellite]'));
     if (!stage || !left || !centre || !right) return;
 
     ST.matchMedia({
@@ -434,6 +435,9 @@
         gsapRef.set(left, { x: '46%', y: 56, rotate: 0, opacity: 0.4 });
         gsapRef.set(right, { x: '-46%', y: 56, rotate: 0, opacity: 0.4 });
         gsapRef.set(centre, { y: 90, scale: 0.94, opacity: 0.55 });
+        if (satellites.length) {
+          gsapRef.set(satellites, { y: 54, scale: 0.78, opacity: 0 });
+        }
 
         const timeline = gsapRef.timeline({
           scrollTrigger: {
@@ -449,11 +453,13 @@
           .to(centre, { y: 0, scale: 1, opacity: 1, duration: 0.42, ease: 'power2.out' }, 0)
           .to(left, { x: '0%', y: 26, rotate: -6.5, opacity: 1, duration: 0.42, ease: 'power2.out' }, 0.04)
           .to(right, { x: '0%', y: 26, rotate: 6.5, opacity: 1, duration: 0.42, ease: 'power2.out' }, 0.04)
+          .to(satellites, { y: 0, scale: 1, opacity: 1, stagger: 0.06, duration: 0.38, ease: 'back.out(1.45)' }, 0.12)
           .to([left, right], { y: -8, duration: 0.58, ease: 'none' }, 0.42)
           .to(centre, { y: -14, duration: 0.58, ease: 'none' }, 0.42);
       },
       '(max-width: 720px)': () => {
         gsapRef.set([left, centre, right], { clearProps: 'all' });
+        if (satellites.length) gsapRef.set(satellites, { clearProps: 'all' });
       },
     });
   }
