@@ -12,6 +12,15 @@
     color: var(--text-primary-dark);
 }
 
+.legal-site-footer {
+    margin-top: 0;
+    padding-top: 20px;
+}
+
+.legal-site-footer .footer-divider {
+    margin-bottom: 40px;
+}
+
 /* Hero */
 
 .legal-hero {
@@ -233,6 +242,10 @@
 
     .legal-footer-links {
         margin-inline: 16px;
+    }
+
+    .legal-site-footer {
+        padding-top: 8px;
     }
 }
 
