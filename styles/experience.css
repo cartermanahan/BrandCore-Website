@@ -785,6 +785,7 @@ html[data-theme="light"] .bf-platform-item--soon em { background: rgba(99, 102, 
    ============================================================ */
 
 .bf-how {
+  z-index: 0;
   overflow: visible;
   background:
     radial-gradient(60% 32% at 50% 30%, rgba(99, 102, 241, 0.08), transparent 72%),
@@ -1086,7 +1087,7 @@ html[data-theme="light"] .bf-step-art--idea .bf-art-core { background: #7c3aed; 
    05 · Showcase — Northline
    ============================================================ */
 
-.bf-showcase { overflow: visible; padding-top: clamp(150px, 17vw, 220px); }
+.bf-showcase { z-index: 1; overflow: visible; padding-top: clamp(150px, 17vw, 220px); }
 
 .bf-showcase-composition {
   position: relative;
@@ -1110,7 +1111,7 @@ html[data-theme="light"] .bf-step-art--idea .bf-art-core { background: #7c3aed; 
 
 .bf-showcase-constellation {
   position: absolute;
-  z-index: 3;
+  z-index: auto;
   inset: -42px -6% -34px;
   pointer-events: none;
 }
@@ -1118,6 +1119,7 @@ html[data-theme="light"] .bf-step-art--idea .bf-art-core { background: #7c3aed; 
 .bf-showcase-constellation::before {
   content: '';
   position: absolute;
+  z-index: 1;
   inset: 9% 5% 8%;
   border: 1px dashed rgba(170, 160, 255, 0.2);
   border-radius: 50%;
@@ -1129,6 +1131,7 @@ html[data-theme="light"] .bf-step-art--idea .bf-art-core { background: #7c3aed; 
 
 .bf-showcase-satellite {
   position: absolute;
+  z-index: 3;
   will-change: transform, opacity;
 }
 
@@ -3154,6 +3157,316 @@ html[data-theme="light"] .bf-proof-support a { color: #6d5efc; }
   .bf-step:nth-child(odd) .bf-step-copy,
   .bf-step:nth-child(even) .bf-step-copy { padding-left: 20px; }
   .bf-step-art { width: min(200px, 72vw); }
+}
+
+/* ============================================================
+   Mobile-first compositions
+   These are purpose-built narrow-screen layouts. Desktop rules
+   above remain the source of truth from 721px upward.
+   ============================================================ */
+
+@media (max-width: 720px) {
+  /* Fresh out of the app: one compact visual story, not two tall stacks. */
+  .bf-showcase {
+    overflow-x: clip;
+    overflow-y: visible;
+    padding-top: 104px;
+    padding-bottom: 64px;
+  }
+
+  .bf-showcase .bf-head { margin-bottom: 26px; }
+  .bf-showcase .bf-h2 { font-size: clamp(2.2rem, 10.8vw, 3.15rem); }
+  .bf-showcase .bf-sub {
+    max-width: 34ch;
+    font-size: .96rem;
+    line-height: 1.55;
+  }
+
+  .bf-showcase-composition {
+    height: min(126vw, 500px);
+    margin-inline: 0;
+    overflow: visible;
+  }
+
+  .bf-showcase-composition::before {
+    inset: 2% -18px 2%;
+    height: auto;
+  }
+
+  .bf-showcase-constellation {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 54%;
+    margin: 0;
+    overflow: visible;
+  }
+
+  .bf-showcase-constellation::before { inset: 8% -13% 0; }
+
+  .bf-showcase-satellite--type {
+    top: 1px;
+    left: 1px;
+    width: min(22vw, 82px);
+  }
+
+  .bf-showcase-satellite--palette {
+    top: 78px;
+    left: 0;
+    width: min(28vw, 106px);
+  }
+
+  .bf-showcase-satellite--assets {
+    top: 0;
+    right: 1px;
+    width: min(47vw, 180px);
+  }
+
+  .bf-type-float { padding: 11px 12px 10px; border-radius: 22px 22px 22px 8px; }
+  .bf-type-glyph { font-size: 2.6rem; }
+  .bf-type-rule { margin-block: 8px 7px; }
+  .bf-type-copy strong { font-size: .56rem; }
+  .bf-type-copy small { font-size: .38rem; }
+
+  .bf-palette-float { padding: 9px 9px 8px; border-radius: 20px; }
+  .bf-satellite-label { margin-bottom: 6px; }
+  .bf-satellite-label span { width: 19px; height: 19px; }
+  .bf-satellite-label strong { font-size: .54rem; }
+  .bf-palette-wheel { width: min(21vw, 80px); }
+  .bf-palette-wheel-core { width: 39px; }
+  .bf-palette-wheel-core strong { font-size: 1.2rem; }
+  .bf-palette-wheel-core small { font-size: .38rem; }
+  .bf-palette-swatches { margin-top: 7px; }
+  .bf-palette-swatches i { width: 11px; height: 4px; }
+
+  .bf-assets-copy > span { font-size: .4rem; }
+  .bf-assets-copy > strong { font-size: .94rem; }
+  .bf-asset-stack { height: 214px; }
+  .bf-asset-card--one { top: 45px; left: 5px; width: 83px; border-radius: 12px; }
+  .bf-asset-card--two { top: 29px; right: 1px; width: 91px; border-radius: 13px; }
+  .bf-asset-card--post { top: 61px; left: 49px; width: 77px; }
+  .bf-asset-spark--a { top: 36px; left: 37px; width: 14px; height: 14px; }
+  .bf-asset-spark--b { top: 145px; right: 10px; }
+
+  .bf-showcase-stage {
+    position: absolute;
+    inset: auto -2vw 0;
+    height: 58%;
+    overflow: visible;
+    justify-content: center;
+    align-items: end;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    scroll-snap-type: none;
+  }
+
+  .bf-phone {
+    flex: 0 0 min(30vw, 132px);
+    scroll-snap-align: none;
+  }
+
+  .bf-phone--left {
+    z-index: 1;
+    margin-right: -5.5vw;
+    transform: translateY(18px) rotate(-5.5deg);
+  }
+
+  .bf-phone--centre {
+    z-index: 3;
+    flex-basis: min(34vw, 148px);
+    transform: translateY(-2px);
+  }
+
+  .bf-phone--right {
+    z-index: 2;
+    margin-left: -5.5vw;
+    transform: translateY(18px) rotate(5.5deg);
+  }
+
+  .bf-phone img { filter: drop-shadow(0 22px 38px rgba(4, 2, 24, .5)); }
+  .bf-showcase-note { margin-top: 42px; max-width: 32ch; font-size: .9rem; }
+
+  /* The shortcut: pause once, play the complete comparison, release. */
+  .bf-time {
+    display: grid;
+    align-items: center;
+    min-height: 100svh;
+    padding: max(72px, 10svh) 0 34px;
+  }
+
+  .bf-time .bf-head { margin-bottom: 22px; }
+  .bf-time .bf-kicker { margin-bottom: 10px; }
+  .bf-time .bf-h2 {
+    max-width: 13ch;
+    margin-inline: auto;
+    font-size: clamp(1.9rem, 8.8vw, 2.5rem);
+  }
+
+  .bf-time-rails { gap: 10px; }
+  .bf-rail { padding: 14px 15px 16px; border-radius: 18px; }
+  .bf-rail-label { margin-bottom: 10px; font-size: .61rem; }
+  .bf-rail-line { margin-bottom: 12px; }
+  .bf-rail-items { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px 10px; }
+  .bf-rail-items li { grid-template-columns: 1fr; gap: 2px; align-items: start; }
+  .bf-rail-items strong { font-size: .78rem; }
+  .bf-rail-items span { font-size: .69rem; line-height: 1.3; }
+
+  /* The maths stays a normal document section; its figures arrive complete. */
+  .bf-value { padding-inline: 8px; }
+  .bf-value-panel { border-radius: 26px; padding-block: 54px; }
+  .bf-value-grid { gap: 24px; }
+  .bf-value-founder { margin-top: 24px; padding: 20px; border-radius: 20px; }
+  .bf-receipt { padding: 22px 18px 20px; border-radius: 20px; }
+
+  /* Brand categories: vertical scroll pins here and drives the spectrum. */
+  .bf-fit-stage {
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    align-items: center;
+    min-height: 100svh;
+    padding-block: max(88px, 11svh) 28px;
+  }
+
+  .bf-fit-inner {
+    grid-row: 1;
+    align-self: end;
+    padding-bottom: 24px;
+  }
+
+  .bf-fit-inner .bf-kicker { margin-bottom: 12px; }
+  .bf-fit-inner .bf-h2 {
+    max-width: 10ch;
+    margin-inline: auto;
+    font-size: clamp(2.45rem, 11.5vw, 3.4rem);
+  }
+  .bf-fit-inner .bf-sub { max-width: 32ch; margin-top: 14px; font-size: .94rem; }
+
+  .bf-fit-spectrum {
+    grid-row: 2;
+    padding-block: 22px;
+    margin-block: 0;
+    -webkit-mask-image: linear-gradient(90deg, #000 0, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, #000 0, #000 92%, transparent);
+  }
+
+  .bf-fit:not(.bf-fit--mobile-pinned) .bf-fit-spectrum {
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x proximity;
+  }
+
+  .bf-fit--mobile-pinned .bf-fit-spectrum { overflow: hidden; }
+  .bf-fit-track { gap: 28px; padding: 18px 20px; }
+  .bf-fit-track span {
+    font-size: clamp(3.8rem, 17vw, 5.2rem);
+    scroll-snap-align: start;
+  }
+
+  /* Real brand campaigns: an alternating editorial wall sized for thumbs. */
+  .bf-brand-wall { padding-block: 68px; }
+  .bf-brand-wall-head { gap: 14px; margin-bottom: 34px; }
+  .bf-brand-wall-head .bf-h2 { max-width: 11ch; }
+  .bf-brand-wall-head .bf-sub { max-width: 31ch; }
+  .bf-brand-wall-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .bf-brand-shot,
+  .bf-brand-shot:nth-child(even),
+  .bf-brand-shot:nth-child(2),
+  .bf-brand-shot:nth-child(4) {
+    width: min(72vw, 288px);
+    margin-top: 0;
+    border-radius: 20px;
+  }
+
+  .bf-brand-shot:nth-child(odd) { justify-self: start; }
+  .bf-brand-shot:nth-child(even) { justify-self: end; width: min(66vw, 264px); }
+  .bf-brand-shot:nth-child(3) { width: min(69vw, 276px); }
+  .bf-brand-shot figcaption { left: 10px; bottom: 10px; padding: 7px 11px; font-size: .68rem; }
+
+  /* The package becomes a compact, swipeable output tray. */
+  .bf-pack .bf-head { margin-bottom: 28px; }
+  .bf-pack-shell {
+    margin-inline: -6px;
+    padding: 14px;
+    border-radius: 24px;
+  }
+
+  .bf-pack-tabs {
+    flex-wrap: nowrap;
+    gap: 4px;
+    width: 100%;
+    margin-bottom: 18px;
+    padding: 4px;
+    overflow: hidden;
+    border-radius: 18px;
+  }
+
+  .bf-pack-tab {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 44px;
+    padding: 9px 5px;
+    font-size: .76rem;
+  }
+
+  .bf-pack-desc {
+    margin-bottom: 12px;
+    text-align: left;
+    font-size: .88rem;
+    line-height: 1.45;
+  }
+
+  .bf-pack-visual { top: 44px; left: 0; right: 0; height: 116px; opacity: .2; }
+
+  .bf-pack-grid,
+  .bf-pack-grid:first-child {
+    display: flex;
+    grid-template-columns: none;
+    gap: 10px;
+    margin-inline: -1px;
+    padding: 3px 1px 11px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .bf-pack-grid::-webkit-scrollbar { display: none; }
+
+  .bf-pack-card {
+    flex: 0 0 min(72vw, 252px);
+    min-height: 132px;
+    padding: 15px;
+    border-radius: 16px;
+    scroll-snap-align: start;
+  }
+
+  .bf-pack-card h4 { font-size: .92rem; }
+  .bf-pack-card p {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: .79rem;
+    line-height: 1.45;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+  }
+
+  .bf-pack-extras { grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+  .bf-pack-extra {
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr);
+    gap: 9px;
+    align-items: center;
+    padding: 11px;
+    border-radius: 15px;
+  }
+  .bf-pack-extra-badge { width: 36px; height: 36px; border-radius: 10px; font-size: .65rem; }
+  .bf-pack-extra h4 { margin: 0; font-size: .76rem; line-height: 1.2; }
+  .bf-pack-extra p { display: none; }
 }
 
 /* ============================================================

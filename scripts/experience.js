@@ -474,46 +474,153 @@
     const rails = Array.from(section.querySelectorAll('[data-bf-rail]'));
     if (!rails.length) return;
 
-    if (!gsapRef || !ST || reduceMotion.matches) {
+    const finish = () => {
       rails.forEach((rail) => {
         const line = rail.querySelector('.bf-rail-line span');
+        const items = Array.from(rail.querySelectorAll('[data-bf-rail-item]'));
         if (line) line.style.transform = 'scaleX(1)';
+        items.forEach((item) => {
+          item.style.opacity = '1';
+          item.style.transform = 'none';
+        });
       });
+    };
+
+    if (!gsapRef || !ST || reduceMotion.matches) {
+      finish();
       return;
     }
 
-    rails.forEach((rail) => {
-      const line = rail.querySelector('.bf-rail-line span');
-      const items = Array.from(rail.querySelectorAll('[data-bf-rail-item]'));
-      const isSlow = rail.classList.contains('bf-rail--slow');
+    ST.matchMedia({
+      '(min-width: 721px)': () => {
+        const timelines = rails.map((rail) => {
+          const line = rail.querySelector('.bf-rail-line span');
+          const items = Array.from(rail.querySelectorAll('[data-bf-rail-item]'));
+          const isSlow = rail.classList.contains('bf-rail--slow');
 
-      gsapRef.set(items, { opacity: 0, y: 18 });
+          gsapRef.set(items, { opacity: 0, y: 18 });
 
-      const timeline = gsapRef.timeline({
-        scrollTrigger: {
-          trigger: rail,
-          start: 'top 78%',
-          end: 'bottom 48%',
-          scrub: 0.45,
+          const timeline = gsapRef.timeline({
+            scrollTrigger: {
+              trigger: rail,
+              start: 'top 78%',
+              end: 'bottom 48%',
+              scrub: 0.45,
+              invalidateOnRefresh: true,
+            },
+          });
+
+          if (line) {
+            timeline.to(line, {
+              scaleX: 1,
+              duration: isSlow ? 3.2 : 1.05,
+              ease: isSlow ? 'power1.inOut' : 'power3.out',
+            }, 0);
+          }
+
+          timeline.to(items, {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: isSlow ? 0.72 : 0.2,
+            ease: 'power2.out',
+          }, isSlow ? 0.4 : 0.12);
+
+          return timeline;
+        });
+
+        return () => {
+          timelines.forEach((timeline) => {
+            timeline.scrollTrigger?.kill();
+            timeline.kill();
+          });
+        };
+      },
+      '(max-width: 720px)': () => {
+        const lines = rails.map((rail) => rail.querySelector('.bf-rail-line span')).filter(Boolean);
+        const slowItems = Array.from(rails[0]?.querySelectorAll('[data-bf-rail-item]') || []);
+        const fastItems = Array.from(rails[1]?.querySelectorAll('[data-bf-rail-item]') || []);
+        const allItems = [...slowItems, ...fastItems];
+        let played = false;
+        let locked = false;
+        let previousRootOverflow = '';
+        let previousBodyOverflow = '';
+        let previousOverscroll = '';
+
+        gsapRef.set(lines, { scaleX: 0 });
+        gsapRef.set(allItems, { opacity: 0, y: 18 });
+
+        const preventScroll = (event) => event.preventDefault();
+        const preventScrollKey = (event) => {
+          if (['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', ' ', 'Home', 'End'].includes(event.key)) {
+            event.preventDefault();
+          }
+        };
+
+        const unlockScroll = () => {
+          if (!locked) return;
+          locked = false;
+          section.classList.remove('is-auto-playing');
+          document.documentElement.style.overflow = previousRootOverflow;
+          document.body.style.overflow = previousBodyOverflow;
+          document.documentElement.style.overscrollBehavior = previousOverscroll;
+          window.removeEventListener('wheel', preventScroll);
+          window.removeEventListener('touchmove', preventScroll);
+          window.removeEventListener('keydown', preventScrollKey);
+          ST.update();
+        };
+
+        const timeline = gsapRef.timeline({ paused: true, onComplete: unlockScroll });
+        if (lines[0]) timeline.to(lines[0], { scaleX: 1, duration: 0.48, ease: 'power2.out' }, 0);
+        timeline.to(slowItems, {
+          opacity: 1,
+          y: 0,
+          duration: 0.42,
+          stagger: 0.075,
+          ease: 'power3.out',
+        }, 0.08);
+        if (lines[1]) timeline.to(lines[1], { scaleX: 1, duration: 0.4, ease: 'power3.out' }, 0.5);
+        timeline.to(fastItems, {
+          opacity: 1,
+          y: 0,
+          duration: 0.38,
+          stagger: 0.065,
+          ease: 'power3.out',
+        }, 0.58);
+
+        const playAtSection = () => {
+          if (played) return;
+          played = true;
+          locked = true;
+          const sectionTop = Math.max(0, Math.round(window.scrollY + section.getBoundingClientRect().top));
+          previousRootOverflow = document.documentElement.style.overflow;
+          previousBodyOverflow = document.body.style.overflow;
+          previousOverscroll = document.documentElement.style.overscrollBehavior;
+          section.classList.add('is-auto-playing');
+          window.scrollTo(0, sectionTop);
+          document.documentElement.style.overflow = 'hidden';
+          document.body.style.overflow = 'hidden';
+          document.documentElement.style.overscrollBehavior = 'none';
+          window.addEventListener('wheel', preventScroll, { passive: false });
+          window.addEventListener('touchmove', preventScroll, { passive: false });
+          window.addEventListener('keydown', preventScrollKey, { passive: false });
+          window.requestAnimationFrame(() => timeline.play(0));
+        };
+
+        const trigger = ST.create({
+          trigger: section,
+          start: 'top top',
+          onEnter: playAtSection,
           invalidateOnRefresh: true,
-        },
-      });
+        });
 
-      if (line) {
-        timeline.to(line, {
-          scaleX: 1,
-          duration: isSlow ? 3.2 : 1.05,
-          ease: isSlow ? 'power1.inOut' : 'power3.out',
-        }, 0);
-      }
-
-      timeline.to(items, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: isSlow ? 0.72 : 0.2,
-        ease: 'power2.out',
-      }, isSlow ? 0.4 : 0.12);
+        return () => {
+          unlockScroll();
+          trigger.kill();
+          timeline.kill();
+          gsapRef.set([...lines, ...allItems], { clearProps: 'transform,opacity' });
+        };
+      },
     });
   }
 
@@ -538,37 +645,52 @@
       return;
     }
 
-    gsapRef.set(rows, { opacity: 0, y: 16 });
+    ST.matchMedia({
+      '(max-width: 720px)': () => {
+        finish();
+        gsapRef.set(rows, { opacity: 1, y: 0 });
 
-    const timeline = gsapRef.timeline({
-      scrollTrigger: {
-        trigger: receipt,
-        start: 'top 74%',
-        end: 'bottom 48%',
-        scrub: 0.45,
-        invalidateOnRefresh: true,
+        return () => gsapRef.set(rows, { clearProps: 'transform,opacity' });
       },
-    });
+      '(min-width: 721px)': () => {
+        gsapRef.set(rows, { opacity: 0, y: 16 });
 
-    timeline.to(rows, {
-      opacity: 1,
-      y: 0,
-      duration: 0.55,
-      stagger: 0.16,
-      ease: 'power2.out',
-    }, 0);
+        const timeline = gsapRef.timeline({
+          scrollTrigger: {
+            trigger: receipt,
+            start: 'top 74%',
+            end: 'bottom 48%',
+            scrub: 0.45,
+            invalidateOnRefresh: true,
+          },
+        });
 
-    counters.forEach((el, index) => {
-      const target = Number(el.dataset.bfCount);
-      const proxy = { value: 0 };
-      timeline.to(proxy, {
-        value: target,
-        duration: 1.1,
-        ease: 'power2.out',
-        onUpdate: () => {
-          el.textContent = Math.round(proxy.value).toLocaleString('en-GB');
-        },
-      }, 0.18 + (index * 0.16));
+        timeline.to(rows, {
+          opacity: 1,
+          y: 0,
+          duration: 0.55,
+          stagger: 0.16,
+          ease: 'power2.out',
+        }, 0);
+
+        counters.forEach((el, index) => {
+          const target = Number(el.dataset.bfCount);
+          const proxy = { value: 0 };
+          timeline.to(proxy, {
+            value: target,
+            duration: 1.1,
+            ease: 'power2.out',
+            onUpdate: () => {
+              el.textContent = Math.round(proxy.value).toLocaleString('en-GB');
+            },
+          }, 0.18 + (index * 0.16));
+        });
+
+        return () => {
+          timeline.scrollTrigger?.kill();
+          timeline.kill();
+        };
+      },
     });
   }
 
@@ -624,6 +746,40 @@
         );
 
         return () => {
+          tween.scrollTrigger?.kill();
+          tween.kill();
+          gsapRef.set(track, { clearProps: 'transform' });
+          setFocusedWord(0);
+        };
+      },
+      '(max-width: 720px)': () => {
+        section.classList.add('bf-fit--mobile-pinned');
+
+        const startInset = 32;
+        const travel = () => Math.max(track.scrollWidth - window.innerWidth, 0);
+        const tween = gsapRef.fromTo(track,
+          { x: startInset },
+          {
+            x: () => startInset - travel(),
+            ease: 'none',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top top',
+              end: () => `+=${Math.max(travel(), window.innerHeight * 1.35)}`,
+              pin: true,
+              scrub: 0.18,
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+              onUpdate: (self) => {
+                const index = Math.round(self.progress * (words.length - 1));
+                setFocusedWord(index);
+              },
+            },
+          }
+        );
+
+        return () => {
+          section.classList.remove('bf-fit--mobile-pinned');
           tween.scrollTrigger?.kill();
           tween.kill();
           gsapRef.set(track, { clearProps: 'transform' });

@@ -7791,3 +7791,35 @@ html[data-theme="light"] .screenshot-card.is-active img {
     gap: 26px;
   }
 }
+
+/* Mobile hero headline: large, centred, and safely contained. */
+@media (max-width: 700px) {
+  .hero-copy--overlay {
+    overflow: visible;
+  }
+
+  .hero-title,
+  .hero-title-mobile {
+    width: min(100%, calc(100vw - 24px));
+    max-width: none;
+  }
+
+  .hero-title {
+    margin: 0 auto 12px;
+    font-size: clamp(2.25rem, 9.2vw, 2.85rem);
+    line-height: .91;
+    letter-spacing: -.06em;
+    white-space: normal;
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  .hero-title-mobile .hero-title-line {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .hero-subheadline {
+    display: none;
+  }
+}
