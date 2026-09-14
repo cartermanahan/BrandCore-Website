@@ -644,7 +644,7 @@
   height: 100%;
   background:
     #02040d
-    url("../images/visuals/hero-cover-frames/frame-001.webp")
+    url("../images/video/hero-cover-frames/frame-001.webp")
     center center / cover no-repeat;
   transform: translateZ(0);
   backface-visibility: hidden;

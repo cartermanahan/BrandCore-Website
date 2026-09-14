@@ -2594,7 +2594,7 @@ html[data-theme="light"] .bf-pack-tabs { background: rgba(255, 255, 255, 0.6); }
   border-color: var(--x-border-strong);
 }
 
-.bf-pack-card h4 {
+.bf-pack-card h3 {
   margin: 0 0 7px;
   font-size: 1rem;
   font-weight: 650;
@@ -2641,7 +2641,7 @@ html[data-theme="light"] .bf-pack-tabs { background: rgba(255, 255, 255, 0.6); }
   box-shadow: 0 10px 26px rgba(109, 94, 252, 0.4);
 }
 
-.bf-pack-extra h4 {
+.bf-pack-extra h3 {
   margin: 0 0 3px;
   font-size: 0.99rem;
   font-weight: 650;
@@ -3445,7 +3445,7 @@ html[data-theme="light"] .bf-proof-support a { color: #6d5efc; }
     scroll-snap-align: start;
   }
 
-  .bf-pack-card h4 { font-size: .92rem; }
+  .bf-pack-card h3 { font-size: .92rem; }
   .bf-pack-card p {
     display: -webkit-box;
     overflow: hidden;
@@ -3465,7 +3465,7 @@ html[data-theme="light"] .bf-proof-support a { color: #6d5efc; }
     border-radius: 15px;
   }
   .bf-pack-extra-badge { width: 36px; height: 36px; border-radius: 10px; font-size: .65rem; }
-  .bf-pack-extra h4 { margin: 0; font-size: .76rem; line-height: 1.2; }
+  .bf-pack-extra h3 { margin: 0; font-size: .76rem; line-height: 1.2; }
   .bf-pack-extra p { display: none; }
 }
 

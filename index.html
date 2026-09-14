@@ -1,46 +1,683 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Redirecting to BrandFounder…</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#07070d" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#fbfbfc" media="(prefers-color-scheme: light)" />
 
-    <meta http-equiv="refresh" content="0; url=pages/home.html" />
-    <link rel="canonical" href="pages/home.html" />
+  <title>BrandFounder — Turn your idea into a brand you can launch</title>
+  <meta name="description" content="Describe your idea and build a launch-ready brand direction with a logo, palette, launch visuals, AI-assisted market analysis and a 30-day plan." />
+  <meta name="apple-itunes-app" content="app-id=6759218062" />
 
-    <script>
-        window.location.replace("pages/home.html");
-    </script>
+  <link rel="canonical" href="https://brandfounder.ai/" />
+  <meta property="og:title" content="BrandFounder — Turn your idea into a brand you can launch" />
+  <meta property="og:description" content="Describe your idea and build a logo direction, launch visuals, AI-assisted market analysis and a 30-day plan." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://brandfounder.ai/" />
+  <meta property="og:image" content="https://brandfounder.ai/images/logos/brandfounder-logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="BrandFounder — Turn your idea into a brand you can launch" />
+  <meta name="twitter:description" content="Build a logo direction, launch visuals, AI-assisted market analysis and a 30-day plan from your brief." />
+  <meta name="twitter:image" content="https://brandfounder.ai/images/logos/brandfounder-logo.png" />
 
-    <style>
-        html, body {
-            margin: 0;
-            width: 100%;
-            min-height: 100%;
-            background: #050712;
-            color: #ffffff;
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-        }
+  <link rel="icon" type="image/png" href="images/logos/brandfounder-logo.png" />
+  <link rel="apple-touch-icon" href="images/icons/brandfounder-icon.png" />
 
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            font-size: 0.95rem;
-            opacity: 0.84;
-            letter-spacing: 0.01em;
-        }
+  <script>
+    (() => {
+      try {
+        const t = window.localStorage.getItem('brandfounder-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+      } catch (e) { /* storage unavailable */ }
+    })();
+  </script>
 
-        @media (prefers-color-scheme: light) {
-            html, body {
-                background: #f5f5f7;
-                color: #0b0b10;
-            }
-        }
-    </style>
+  <link rel="stylesheet" href="styles/fonts.css" />
+  <link rel="stylesheet" href="styles/site.css" />
+  <link rel="stylesheet" href="styles/navbar.css" />
+
+  <script src="scripts/navbar.js" defer></script>
+  <script src="scripts/site.js" defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "BrandFounder",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "iOS",
+    "url": "https://brandfounder.ai/",
+    "sameAs": "https://apps.apple.com/app/id6759218062",
+    "description": "BrandFounder turns a brief into a brand direction with a logo, palette, launch visuals, AI-assisted market analysis, positioning, promotion planning and a 30-day launch schedule."
+  }
+  </script>
 </head>
 <body>
-    Redirecting to BrandFounder…
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <header class="navbar">
+    <div class="navbar-shell">
+      <button class="navbar-brand" id="navbar-brand-toggle" type="button" aria-label="Open navigation" aria-controls="nav-menu" aria-expanded="true">
+        <picture>
+          <source srcset="images/logos/logo_white.png" media="(prefers-color-scheme: dark)" data-theme-dark-source />
+          <img src="images/logos/logo_gradient.png" alt="" class="logo-icon" width="28" height="28" decoding="async" />
+        </picture>
+      </button>
+
+      <div class="navbar-pill">
+        <nav class="nav-links" aria-label="Primary">
+          <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Toggle menu" aria-controls="nav-menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+          <ul id="nav-menu">
+            <li><a href="#top">Home</a></li>
+            <li><a href="#how-it-works">How it works</a></li>
+            <li><a href="#inside">What you get</a></li>
+            <li><a href="#preview">Free preview</a></li>
+            <li><a href="#examples">Logo examples</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li class="nav-legal"><a href="pages/privacy-policy.html">Privacy</a></li>
+            <li class="nav-legal"><a href="pages/terms.html">Terms</a></li>
+          </ul>
+        </nav>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode">
+          <span class="theme-toggle-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <a class="navbar-cta" href="https://apps.apple.com/app/id6759218062" target="_blank" rel="noopener noreferrer">Launch your brand</a>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============================ HERO ============================ -->
+    <section class="hero-section hero" id="top">
+      <img class="hero-frame" src="images/video/hero-cover-frames/frame-193.webp"
+           alt="" width="2880" height="1608" fetchpriority="high" decoding="async" />
+
+      <div class="wrap hero-inner">
+        <h1 class="h1 hero-title r" data-r>
+          Turn your idea into <span class="ser">a brand</span> you can actually launch.
+        </h1>
+        <a class="btn btn-light hero-cta r" data-r data-r-d="2" href="https://apps.apple.com/app/id6759218062" target="_blank" rel="noopener noreferrer">
+          <svg class="btn-glyph" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M16.5 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.9-3.5.9s-1.8-.8-3-.8c-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.6 2.3 2.8 2.2 1.1 0 1.6-.7 3-.7s1.8.7 3 .7 2-1.1 2.8-2.1c.9-1.2 1.2-2.4 1.3-2.4-.1 0-2.4-.9-2.4-3.8zM14.3 5.3c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 0 2.1-.5 2.7-1.3z"/></svg>
+          <span>I'm ready to launch my own brand</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ======================= PLATFORM BANNER ======================= -->
+    <div class="plat">
+      <div class="wrap plat-inner r" data-r>
+        <span class="plat-item">
+          <img src="images/web/icons/ios.png" alt="" width="128" height="128" loading="lazy" decoding="async" />
+          <span><strong>iOS</strong><em>Out now</em></span>
+        </span>
+        <span class="plat-rule" aria-hidden="true"></span>
+        <span class="plat-item plat-item--soon">
+          <img src="images/web/icons/macos.png" alt="" width="128" height="128" loading="lazy" decoding="async" />
+          <span><strong>macOS</strong><em>Coming soon</em></span>
+        </span>
+<!--
+        <span class="plat-rule" aria-hidden="true"></span>
+        <span class="plat-item plat-item--ai">
+          <span class="plat-oai">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21.6 9.8a5.9 5.9 0 0 0-.5-4.9 6 6 0 0 0-6.4-2.9A5.9 5.9 0 0 0 10.2.1a6 6 0 0 0-5.7 4.1A5.9 5.9 0 0 0 .5 7.1a6 6 0 0 0 .7 7 5.9 5.9 0 0 0 .5 4.9 6 6 0 0 0 6.4 2.9 5.9 5.9 0 0 0 4.5 2 6 6 0 0 0 5.7-4.2 5.9 5.9 0 0 0 4-2.9 6 6 0 0 0-.7-7Zm-9 12.5a4.4 4.4 0 0 1-2.8-1l.1-.1 4.7-2.7a.8.8 0 0 0 .4-.7v-6.6l2 1.2v5.5a4.5 4.5 0 0 1-4.4 4.4ZM3 18a4.4 4.4 0 0 1-.5-3v.2l4.6 2.6a.8.8 0 0 0 .8 0l5.7-3.3v2.3l-4.8 2.8A4.5 4.5 0 0 1 3 18ZM1.8 8a4.4 4.4 0 0 1 2.3-2v5.6a.8.8 0 0 0 .4.7l5.7 3.3-2 1.1-4.8-2.7A4.5 4.5 0 0 1 1.8 8Zm16.3 3.8-5.7-3.3 2-1.1 4.8 2.7a4.5 4.5 0 0 1-.7 8.1v-5.6a.8.8 0 0 0-.4-.8ZM20.1 8.7l-.1-.1-4.7-2.7a.8.8 0 0 0-.8 0L8.8 9.2V6.9l4.8-2.8a4.5 4.5 0 0 1 6.5 4.6ZM7.7 12.9l-2-1.1V6.2a4.5 4.5 0 0 1 7.4-3.5l-.1.1-4.7 2.7a.8.8 0 0 0-.4.7Zm1.1-2.4L11.3 9l2.6 1.5v3L11.3 15l-2.5-1.5Z"/></svg>
+          </span>
+          <span><strong>Powered by OpenAI</strong><em>AI-assisted creation</em></span>
+        </span>
+-->
+      </div>
+    </div>
+
+    <!-- ========================= MANIFESTO ========================= -->
+    <section class="sec manifesto" data-manifesto aria-label="What BrandFounder does">
+      <div class="bloom" data-bloom aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="wrap">
+        <p class="mani" data-mani-text>
+          You already have the beginning of something real.
+          We turn it into a brand people can understand, remember, and buy from. <span class="mani-icons" data-mani-icons aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.05 1.8.25 2.2.42.6.22 1 .48 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c0 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2 0-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c0-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2Zm0 3.1A6.7 6.7 0 1 0 18.7 12 6.7 6.7 0 0 0 12 5.3Zm0 11A4.3 4.3 0 1 1 16.3 12 4.3 4.3 0 0 1 12 16.3Zm6.9-11.2a1.6 1.6 0 1 1-1.6-1.6 1.6 1.6 0 0 1 1.6 1.6Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.8a4.3 4.3 0 0 1-1-2.8h-3v11.6a2.5 2.5 0 1 1-1.8-2.4V9.1a5.6 5.6 0 1 0 4.8 5.5V8.9a7.2 7.2 0 0 0 4.2 1.4V7.3a4.3 4.3 0 0 1-3.2-1.5Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8ZM10 15V9l5.2 3Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></span>
+          So instead of sitting on the idea, you can finally move on it.
+        </p>
+      </div>
+    </section>
+
+    <!-- ======================= HOW IT WORKS ======================== -->
+    <section id="how-it-works" class="how sec--tint">
+      <div class="wrap sec-head">
+        <h2 class="h2 r" data-r>One sentence in. <span class="ser">A whole brand out.</span></h2>
+      </div>
+
+      <div class="how-track" data-stages="3">
+        <div class="how-stage" data-stage="0">
+          <div class="bloom bloom--stage" data-bloom aria-hidden="true"><i></i><i></i><i></i></div>
+
+          <div class="how-ideas">
+            <div class="tbox" data-idea="0">
+              <span class="tbox-label">Your idea</span>
+              <div class="tbox-field">
+                <span class="tbox-text"></span><span class="tbox-caret" aria-hidden="true"></span>
+              </div>
+              <span class="sr-only">A vintage streetwear label reselling curated one-off pieces.</span>
+            </div>
+            <div class="tbox" data-idea="1">
+              <span class="tbox-label">Your idea</span>
+              <div class="tbox-field">
+                <span class="tbox-text"></span><span class="tbox-caret" aria-hidden="true"></span>
+              </div>
+              <span class="sr-only">A self-improvement starter kit shipped as a monthly box.</span>
+            </div>
+          </div>
+
+          <svg class="how-wires" viewBox="0 0 400 100" preserveAspectRatio="none" aria-hidden="true">
+            <path class="wire" pathLength="100" data-wire="0" d="M56 0 C56 62 200 40 200 100" />
+            <path class="wire" pathLength="100" data-wire="1" d="M344 0 C344 62 200 40 200 100" />
+          </svg>
+
+          <div class="how-phones">
+            <!-- floating satellite panels -->
+            <div class="sat sat--wheel" aria-hidden="true">
+              <span class="sat-wheel"></span>
+              <span class="sat-cap">Palette</span>
+            </div>
+            <div class="sat sat--type" aria-hidden="true">
+              <span class="sat-aa"><em>Aa</em><i>Aa</i></span>
+              <span class="sat-cap">Type</span>
+            </div>
+            <div class="sat sat--price" aria-hidden="true">
+              <span class="sat-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0l-7.2-7.2A2 2 0 0 1 2.8 12V4.8A2 2 0 0 1 4.8 2.8H12a2 2 0 0 1 1.4.6l7.2 7.2a2 2 0 0 1 0 2.8Z"/><circle cx="7.6" cy="7.6" r="1.2" fill="currentColor" stroke="none"/></svg>
+                <b><span class="price price--northline">£42.99</span><span class="price price--self">£89.99</span></b>
+              </span>
+              <span class="sat-cap">Pricing</span>
+            </div>
+            <div class="sat sat--promo" aria-hidden="true">
+              <svg class="sat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m4 13 12-6v10L4 13Z"/><path d="M16 10.2c2 .2 3.5 1.4 3.5 2.8S18 15.6 16 15.8M6.5 14l1.2 5h3.1l-1-4.2"/></svg>
+              <span class="sat-cap sat-cap--stack">Promotional<br />plan</span>
+            </div>
+            <div class="sat sat--launch" aria-hidden="true">
+              <svg class="sat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5c2.2-2.2 4.6-2 5.5-1.8.2.9.4 3.3-1.8 5.5l-5.9 5.9-4.2-4.2 6.4-5.4Z"/><path d="m8.8 9.2-4.1.6-2 2 5.4.3M13 13.4l-.6 4.1-2 2-.3-5.4"/><circle cx="16" cy="6.7" r="1.2"/><path d="M5.7 15.7c-1.8.5-2.8 1.6-3 3.6 2-.2 3.1-1.2 3.6-3"/></svg>
+              <span class="sat-cap">Launch plan</span>
+            </div>
+
+            <div class="phoneset" data-brand="0">
+              <figure class="ph ph--l">
+                <picture>
+                  <source media="(prefers-color-scheme: dark)" data-theme-dark-source sizes="(min-width: 860px) 236px, 170px"
+                    srcset="images/web/mockups/380/northline_overview_dark.png 380w, images/web/mockups/560/northline_overview_dark.png 560w" />
+                  <img src="images/web/mockups/560/northline_overview_light.png" sizes="(min-width: 860px) 236px, 170px"
+                    srcset="images/web/mockups/380/northline_overview_light.png 380w, images/web/mockups/560/northline_overview_light.png 560w"
+                    alt="Northline brand overview in the app" width="560" height="1152" loading="lazy" decoding="async" />
+                </picture>
+              </figure>
+              <figure class="ph ph--r">
+                <picture>
+                  <source media="(prefers-color-scheme: dark)" data-theme-dark-source sizes="(min-width: 860px) 236px, 170px"
+                    srcset="images/web/mockups/380/northline_launch_dark.png 380w, images/web/mockups/560/northline_launch_dark.png 560w" />
+                  <img src="images/web/mockups/560/northline_launch_light.png" sizes="(min-width: 860px) 236px, 170px"
+                    srcset="images/web/mockups/380/northline_launch_light.png 380w, images/web/mockups/560/northline_launch_light.png 560w"
+                    alt="Northline 30-day launch plan in the app" width="560" height="1152" loading="lazy" decoding="async" />
+                </picture>
+              </figure>
+              <figure class="ph ph--f">
+                <picture>
+                  <source media="(prefers-color-scheme: dark)" data-theme-dark-source sizes="(min-width: 860px) 236px, 170px"
+                    srcset="images/web/mockups/380/northline_assets_dark.png 380w, images/web/mockups/560/northline_assets_dark.png 560w" />
+                  <img src="images/web/mockups/560/northline_assets_light.png" sizes="(min-width: 860px) 236px, 170px"
+                    srcset="images/web/mockups/380/northline_assets_light.png 380w, images/web/mockups/560/northline_assets_light.png 560w"
+                    alt="Northline generated assets in the app" width="560" height="1152" loading="lazy" decoding="async" />
+                </picture>
+              </figure>
+            </div>
+
+            <div class="phoneset" data-brand="1">
+              <figure class="ph ph--l">
+                <picture>
+                  <source media="(prefers-color-scheme: dark)" data-theme-dark-source sizes="(min-width: 860px) 236px, 170px"
+                    srcset="images/web/mockups/380/self_package_overview_dark.png 380w, images/web/mockups/560/self_package_overview_dark.png 560w" />
+                  <img src="images/web/mockups/560/self_package_overview_light.png" sizes="(min-width: 860px) 236px, 170px"
+                    srcset="images/web/mockups/380/self_package_overview_light.png 380w, images/web/mockups/560/self_package_overview_light.png 560w"
+                    alt="Self Package brand overview in the app" width="560" height="1152" loading="lazy" decoding="async" />
+                </picture>
+              </figure>
+              <figure class="ph ph--r">
+                <picture>
+                  <source media="(prefers-color-scheme: dark)" data-theme-dark-source sizes="(min-width: 860px) 236px, 170px"
+                    srcset="images/web/mockups/380/self_package_launch_dark.png 380w, images/web/mockups/560/self_package_launch_dark.png 560w" />
+                  <img src="images/web/mockups/560/self_package_launch_light.png" sizes="(min-width: 860px) 236px, 170px"
+                    srcset="images/web/mockups/380/self_package_launch_light.png 380w, images/web/mockups/560/self_package_launch_light.png 560w"
+                    alt="Self Package 30-day launch plan in the app" width="560" height="1152" loading="lazy" decoding="async" />
+                </picture>
+              </figure>
+              <figure class="ph ph--f">
+                <picture>
+                  <source media="(prefers-color-scheme: dark)" data-theme-dark-source sizes="(min-width: 860px) 236px, 170px"
+                    srcset="images/web/mockups/380/self_package_assets_dark.png 380w, images/web/mockups/560/self_package_assets_dark.png 560w" />
+                  <img src="images/web/mockups/560/self_package_assets_light.png" sizes="(min-width: 860px) 236px, 170px"
+                    srcset="images/web/mockups/380/self_package_assets_light.png 380w, images/web/mockups/560/self_package_assets_light.png 560w"
+                    alt="Self Package generated assets in the app" width="560" height="1152" loading="lazy" decoding="async" />
+                </picture>
+              </figure>
+            </div>
+          </div>
+
+          <div class="how-out">
+            <div class="outset" data-brand="0">
+              <span class="out-label"><img src="images/web/marks/northline.png" alt="" width="18" height="18" loading="lazy" decoding="async" />Northline · what it shipped with</span>
+              <div class="out-row">
+                <img src="images/web/visuals/northline_visual_1.jpg" alt="Northline launch visual" width="380" height="380" loading="lazy" decoding="async" />
+                <img src="images/web/visuals/northline_visual_2.jpg" alt="Northline campaign ad" width="380" height="380" loading="lazy" decoding="async" />
+                <img src="images/web/visuals/northline_visual_3.jpg" alt="Northline product visual" width="380" height="380" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="outset" data-brand="1">
+              <span class="out-label"><img src="images/web/marks/self_package.png" alt="" width="18" height="18" loading="lazy" decoding="async" />Self Package · what it shipped with</span>
+              <div class="out-row">
+                <img src="images/web/visuals/self_package_visual_1.jpg" alt="Self Package launch visual" width="380" height="380" loading="lazy" decoding="async" />
+                <img src="images/web/visuals/self_package_visual_2.jpg" alt="Self Package campaign ad" width="380" height="380" loading="lazy" decoding="async" />
+                <img src="images/web/visuals/self_package_visual_3.jpg" alt="Self Package product visual" width="380" height="380" loading="lazy" decoding="async" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= WHAT YOU GET ======================== -->
+    <section id="inside" class="sec rows">
+      <div class="wrap sec-head">
+        <h2 class="h2 r" data-r>Everything you walk away with</h2>
+      </div>
+
+      <div class="wrap rows-list">
+
+        <article class="row r" data-r>
+          <div class="row-copy">
+            <p class="eyebrow">Identity</p>
+            <h3 class="h3">A brand that looks decided</h3>
+            <p class="body">A logo direction built around your brief, a wordmark, and a five-tone palette with suggested roles.</p>
+          </div>
+          <div class="row-viz">
+            <div class="viz card tilt viz--identity">
+              <div class="idn-head">
+                <span class="idn-tile"><img src="images/web/marks/northline.png" alt="" width="34" height="34" loading="lazy" decoding="async" /></span>
+                <span class="idn-name"><strong>Your brand</strong><small>Generated for you</small></span>
+              </div>
+              <div class="idn-grid">
+                <div class="idn-cell">
+                  <svg class="donut" viewBox="0 0 100 100" aria-hidden="true">
+                    <g transform="rotate(-90 50 50)" fill="none" stroke-width="11" stroke-linecap="butt">
+                      <circle class="arc" cx="50" cy="50" r="36" stroke="#C8A45C" stroke-dasharray="41.2 185" stroke-dashoffset="0" />
+                      <circle class="arc" cx="50" cy="50" r="36" stroke="#B09A9E" stroke-dasharray="41.2 185" stroke-dashoffset="-45.2" />
+                      <circle class="arc" cx="50" cy="50" r="36" stroke="#5B54C8" stroke-dasharray="41.2 185" stroke-dashoffset="-90.5" />
+                      <circle class="arc" cx="50" cy="50" r="36" stroke="#C08FA8" stroke-dasharray="41.2 185" stroke-dashoffset="-135.7" />
+                      <circle class="arc" cx="50" cy="50" r="36" stroke="#E4E1F2" stroke-dasharray="41.2 185" stroke-dashoffset="-181" />
+                    </g>
+                  </svg>
+                  <span class="idn-cap">Palette</span>
+                </div>
+                <div class="idn-cell">
+                  <span class="idn-type"><em>Aa</em><i>Aa</i></span>
+                  <span class="idn-cap">Type</span>
+                </div>
+                <div class="idn-cell">
+                  <img class="idn-shot" src="images/web/visuals/northline_visual_1.jpg" alt="" width="180" height="180" loading="lazy" decoding="async" />
+                  <span class="idn-cap">Assets</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="row r" data-r>
+          <div class="row-copy">
+            <p class="eyebrow">Market</p>
+            <h3 class="h3">AI-assisted market analysis</h3>
+            <p class="body">A starting view of demand patterns based on your brief, ready for you to review against current market evidence.</p>
+          </div>
+          <div class="row-viz">
+            <div class="viz card tilt viz--market">
+              <div class="viz-top">
+                <span class="viz-key"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 10 L10 2 M5 2h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Rising</span>
+                <span class="viz-note">Peaks in Nov</span>
+              </div>
+              <svg class="chart" viewBox="0 0 320 168" preserveAspectRatio="none" aria-hidden="true">
+                <defs>
+                  <linearGradient id="mkFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.36" />
+                    <stop offset="100%" stop-color="var(--accent)" stop-opacity="0" />
+                  </linearGradient>
+                </defs>
+                <g class="grid" stroke="currentColor" stroke-width="1">
+                  <line x1="20" y1="46" x2="300" y2="46" /><line x1="20" y1="98" x2="300" y2="98" />
+                </g>
+                <path class="area" fill="url(#mkFill)" d="M20 104 C24.4 104.5 36.2 107.7 45 107 C53.8 106.3 61.1 101.9 70 100 C78.9 98.1 87.1 96.2 96 96 C104.9 95.8 112.2 100.4 121 99 C129.8 97.6 137.1 90.6 146 88 C154.9 85.4 163.1 86.1 172 84 C180.9 81.9 188.2 78.5 197 76 C205.8 73.5 213.1 74.2 222 70 C230.9 65.8 239.1 59.4 248 52 C256.9 44.6 264.2 29.4 273 28 C281.8 26.6 293.6 41.2 298 44 L298 150 L20 150 Z" />
+                <path class="line" pathLength="100" fill="none" stroke="var(--accent)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="M20 104 C24.4 104.5 36.2 107.7 45 107 C53.8 106.3 61.1 101.9 70 100 C78.9 98.1 87.1 96.2 96 96 C104.9 95.8 112.2 100.4 121 99 C129.8 97.6 137.1 90.6 146 88 C154.9 85.4 163.1 86.1 172 84 C180.9 81.9 188.2 78.5 197 76 C205.8 73.5 213.1 74.2 222 70 C230.9 65.8 239.1 59.4 248 52 C256.9 44.6 264.2 29.4 273 28 C281.8 26.6 293.6 41.2 298 44" />
+                <circle class="peak" cx="273" cy="28" r="5" fill="var(--accent)" stroke="var(--card)" stroke-width="3" />
+              </svg>
+              <div class="viz-axis"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span>S</span><span>O</span><span>N</span><span>D</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="row r" data-r>
+          <div class="row-copy">
+            <p class="eyebrow">Positioning</p>
+            <h3 class="h3">Your place in the market</h3>
+            <p class="body">Plotted against the field, with the gap you can credibly own marked out.</p>
+          </div>
+          <div class="row-viz">
+            <div class="viz card tilt viz--map">
+              <span class="map-lab map-lab--t">Premium</span>
+              <span class="map-lab map-lab--b">Everyday</span>
+              <span class="map-lab map-lab--l">Classic</span>
+              <span class="map-lab map-lab--r">Bold</span>
+              <svg class="mapchart" viewBox="0 0 320 200" aria-hidden="true">
+                <g class="grid" stroke="currentColor" stroke-width="1">
+                  <rect x="20" y="14" width="280" height="172" fill="none" rx="6" />
+                  <line x1="160" y1="14" x2="160" y2="186" /><line x1="20" y1="100" x2="300" y2="100" />
+                </g>
+                <g class="dots" fill="currentColor">
+                  <circle cx="86" cy="56" r="5" /><circle cx="106" cy="84" r="4" />
+                  <circle cx="72" cy="146" r="4.5" /><circle cx="136" cy="158" r="4" />
+                  <circle cx="214" cy="132" r="4" />
+                </g>
+                <g class="you">
+                  <circle class="you-halo" cx="236" cy="52" r="17" fill="var(--accent)" opacity="0.16" />
+                  <circle cx="236" cy="52" r="10" fill="none" stroke="var(--accent)" stroke-width="3" />
+                  <circle cx="236" cy="52" r="4" fill="var(--accent)" />
+                </g>
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <article class="row r" data-r>
+          <div class="row-copy">
+            <p class="eyebrow">Promotion</p>
+            <h3 class="h3">A plan for getting seen</h3>
+            <p class="body">Five posts and five reels with the hook, the script and the caption written — plus what goes out when.</p>
+          </div>
+          <div class="row-viz">
+            <div class="viz card tilt viz--post">
+              <div class="viz-top">
+                <span class="viz-key">Post 01</span>
+                <span class="viz-note">Guide + script</span>
+              </div>
+              <p class="post-k">Hook</p>
+              <blockquote class="post-hook ser">“I was sick of seeing the best-dressed people gatekeep where they got their clothes.”</blockquote>
+              <div class="post-meta"><span>Caption</span><span>CTA</span><span>Hashtags</span></div>
+              <div class="post-apps" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.05 1.8.25 2.2.42.6.22 1 .48 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c0 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2 0-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c0-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2Zm0 3.1A6.7 6.7 0 1 0 18.7 12 6.7 6.7 0 0 0 12 5.3Zm0 11A4.3 4.3 0 1 1 16.3 12 4.3 4.3 0 0 1 12 16.3Zm6.9-11.2a1.6 1.6 0 1 1-1.6-1.6 1.6 1.6 0 0 1 1.6 1.6Z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.8a4.3 4.3 0 0 1-1-2.8h-3v11.6a2.5 2.5 0 1 1-1.8-2.4V9.1a5.6 5.6 0 1 0 4.8 5.5V8.9a7.2 7.2 0 0 0 4.2 1.4V7.3a4.3 4.3 0 0 1-3.2-1.5Z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8ZM10 15V9l5.2 3Z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="row r" data-r>
+          <div class="row-copy">
+            <p class="eyebrow">Assets</p>
+            <h3 class="h3">Ready to post, ready to send</h3>
+            <p class="body">Launch visuals, campaign ads and a reusable backdrop — exported as one file you keep.</p>
+          </div>
+          <div class="row-viz">
+            <div class="viz card tilt viz--assets">
+              <div class="fan">
+                <img class="fan-i fan-i--l" src="images/web/visuals/northline_visual_1.jpg" alt="" width="380" height="380" loading="lazy" decoding="async" />
+                <img class="fan-i fan-i--r" src="images/web/visuals/northline_visual_3.jpg" alt="" width="380" height="380" loading="lazy" decoding="async" />
+                <img class="fan-i fan-i--c" src="images/web/visuals/northline_visual_2.jpg" alt="Generated launch visuals" width="380" height="380" loading="lazy" decoding="async" />
+              </div>
+              <span class="fan-file">
+                <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8m0 0 3-3m-3 3L5 7M3 12.5h10"/></svg>
+                brand-pack.zip
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="row r" data-r>
+          <div class="row-copy">
+            <p class="eyebrow">Launch</p>
+            <h3 class="h3">Thirty days, in order</h3>
+            <p class="body">Every day has a task, the asset it needs, and a reason it lands when it does.</p>
+          </div>
+          <div class="row-viz">
+            <div class="viz card tilt viz--plan">
+              <div class="viz-top"><span class="viz-key">30-day plan</span><span class="viz-note">Sequenced</span></div>
+              <ol class="plan">
+                <li><span class="plan-d">01</span><span class="plan-t">Set up your launch presence</span><span class="plan-bar" style="--w:100%"></span></li>
+                <li><span class="plan-d">03</span><span class="plan-t">Introduce the brand</span><span class="plan-bar" style="--w:78%"></span></li>
+                <li><span class="plan-d">07</span><span class="plan-t">Run the first campaign</span><span class="plan-bar" style="--w:62%"></span></li>
+                <li><span class="plan-d">30</span><span class="plan-t">Review and scale</span><span class="plan-bar" style="--w:44%"></span></li>
+              </ol>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ==================== SEE IT BEFORE YOU PAY =================== -->
+    <section id="preview" class="sec preview">
+      <span id="why-brand" class="anchor" aria-hidden="true"></span>
+      <div class="bloom" data-bloom aria-hidden="true"><i></i><i></i><i></i></div>
+
+      <div class="wrap sec-head sec-head--mid">
+        <h2 class="h2 r" data-r>You'll see it <span class="ser">before you sign up.</span></h2>
+        <p class="lede r" data-r data-r-d="1">
+          The onboarding walks you through it. Describe what you'd sell and who'd buy it,
+          and your logo and palette appear right there — no account, no card.
+        </p>
+      </div>
+
+      <div class="wrap steps">
+        <ol class="step-list">
+          <li class="step card r" data-r>
+            <span class="step-n">01</span>
+            <h3 class="step-t">Describe the idea</h3>
+            <p class="step-b">What you'd sell, who it's for, how you want it to feel. Plain words, no forms to wrestle.</p>
+            <div class="step-viz" aria-hidden="true">
+              <span class="mini-field">A vintage streetwear label<span class="mini-caret"></span></span>
+            </div>
+          </li>
+          <li class="step card r" data-r data-r-d="1">
+            <span class="step-n">02</span>
+            <h3 class="step-t">Watch it appear</h3>
+            <p class="step-b">A logo and a full palette are generated in front of you — still no account, still nothing paid.</p>
+            <div class="step-viz" aria-hidden="true">
+              <span class="mini-tile"><img src="images/web/marks/northline.png" alt="" width="120" height="120" loading="lazy" decoding="async" /></span>
+              <span class="mini-pal">
+                <i style="--c:#C8A45C"></i><i style="--c:#B09A9E"></i><i style="--c:#5B54C8"></i><i style="--c:#C08FA8"></i><i style="--c:#ECEAF6"></i>
+              </span>
+            </div>
+          </li>
+          <li class="step card r" data-r data-r-d="2">
+            <span class="step-n">03</span>
+            <h3 class="step-t">Unlock the rest</h3>
+            <p class="step-b">Like it? Sign up and unlock the exports, the research, the visuals and the 30-day plan.</p>
+            <div class="step-viz" aria-hidden="true">
+              <span class="mini-unlock">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 7.5-1.9"/></svg>
+                <b>Full pack</b>
+              </span>
+              <span class="mini-chips"><i>Exports</i><i>Research</i><i>Visuals</i><i>30-day plan</i></span>
+            </div>
+          </li>
+        </ol>
+
+        <div class="preview-cta r" data-r data-r-d="3">
+          <p class="preview-note">If the preview doesn't look like something you'd want to own, just close the app.</p>
+          <a class="btn btn-grad" href="https://apps.apple.com/app/id6759218062" target="_blank" rel="noopener noreferrer">
+            <svg class="btn-glyph" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M16.5 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.9-3.5.9s-1.8-.8-3-.8c-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.6 2.3 2.8 2.2 1.1 0 1.6-.7 3-.7s1.8.7 3 .7 2-1.1 2.8-2.1c.9-1.2 1.2-2.4 1.3-2.4-.1 0-2.4-.9-2.4-3.8zM14.3 5.3c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 0 2.1-.5 2.7-1.3z"/></svg>
+            <span>See mine</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== BUILT FOR MANY BRANDS ==================== -->
+    <section class="fits sec--tint" aria-labelledby="fits-title">
+      <div class="wrap fits-stage" data-r-group>
+        <span class="pill pill--1" aria-hidden="true">Clothing</span>
+        <span class="pill pill--2" aria-hidden="true">Coffee shops</span>
+        <span class="pill pill--3" aria-hidden="true">Skincare</span>
+        <span class="pill pill--4" aria-hidden="true">Apps</span>
+        <span class="pill pill--5" aria-hidden="true">Coaching</span>
+        <span class="pill pill--6" aria-hidden="true">Resale</span>
+        <span class="pill pill--7" aria-hidden="true">Subscriptions</span>
+        <span class="pill pill--8" aria-hidden="true">Studios</span>
+
+        <h2 class="h2 fits-title r" data-r id="fits-title">Works for any type of brand</h2>
+        <p class="sr-only">
+          BrandFounder is built for ideas including clothing, coffee shops, skincare, apps, coaching,
+          resale, subscription boxes and studios.
+        </p>
+      </div>
+    </section>
+
+    <!-- ======================= LOGO MARQUEE ======================== -->
+    <section id="examples" class="sec marks" aria-labelledby="marks-title">
+      <div class="wrap">
+        <h2 class="h2 marks-title r" data-r id="marks-title">Logos generated in <span class="ser">BrandFounder.</span></h2>
+        <div class="marquee" data-marquee>
+          <div class="marquee-row" data-marquee-row>
+            <div class="marquee-set">
+              <img src="images/web/marks/northline.png" alt="Northline" width="120" height="120" loading="lazy" decoding="async" />
+              <img src="images/web/marks/self_package.png" alt="Self Package" width="120" height="120" loading="lazy" decoding="async" />
+              <img src="images/web/marks/coffequick.png" alt="CoffeeQuick" width="120" height="120" loading="lazy" decoding="async" />
+              <img src="images/web/marks/henley_standard.png" alt="Henley Standard" width="120" height="120" loading="lazy" decoding="async" />
+              <img src="images/web/marks/endometer.png" alt="Endometer" width="120" height="120" loading="lazy" decoding="async" />
+              <img src="images/web/marks/goalsreach.png" alt="GoalsReach" width="120" height="120" loading="lazy" decoding="async" />
+              <img src="images/web/marks/lockin.png" alt="LockIn" width="120" height="120" loading="lazy" decoding="async" />
+            </div>
+          </div>
+          <div class="marquee-row marquee-row--rev" data-marquee-row>
+            <div class="marquee-set">
+              <img src="images/web/marks/mindflame.png" alt="MindFlame" width="120" height="120" loading="lazy" decoding="async" />
+              <img src="images/web/marks/learnova.png" alt="Learnova" width="120" height="120" loading="lazy" decoding="async" />
+              <img src="images/web/marks/treehouse_teahouse.png" alt="Treehouse Teahouse" width="120" height="120" loading="lazy" decoding="async" />
+              <img src="images/web/marks/rentmydog.png" alt="RentMyDog" width="120" height="120" loading="lazy" decoding="async" />
+              <img src="images/web/marks/windowsill_pond.png" alt="Windowsill Pond" width="120" height="120" loading="lazy" decoding="async" />
+              <img src="images/web/marks/zero_alt_night.png" alt="Zero Alt Night" width="120" height="120" loading="lazy" decoding="async" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ FAQ =========================== -->
+    <section id="faq" class="sec sec--tint faq">
+      <div class="wrap sec-head sec-head--mid">
+        <h2 class="h2 r" data-r>Only the <span class="ser">useful bits.</span></h2>
+      </div>
+      <div class="wrap faq-list r" data-r>
+        <details class="q card">
+          <summary><span>Do I need any design experience?</span><i class="q-x" aria-hidden="true"></i></summary>
+          <div class="q-wrap"><div class="q-in"><p>No. You describe the idea in plain words. BrandFounder generates a direction you can review and refine using the options available in the app.</p></div></div>
+        </details>
+        <details class="q card">
+          <summary><span>What actually lands in my library?</span><i class="q-x" aria-hidden="true"></i></summary>
+          <div class="q-wrap"><div class="q-in"><p>A logo direction with vector export, a palette, typography choices, launch visuals, a reusable brand backdrop, AI-assisted market and pricing starting points, positioning, promotion guidance and a 30-day launch schedule. Review name, trademark and originality questions before commercial use; the app shows the current pack contents before purchase.</p></div></div>
+        </details>
+        <details class="q card">
+          <summary><span>Can I see it before I pay?</span><i class="q-x" aria-hidden="true"></i></summary>
+          <div class="q-wrap"><div class="q-in"><p>Yes. The onboarding generates your logo and palette as a preview before you make an account. You can't export or copy anything at that stage — it's there so you can judge the direction before deciding.</p></div></div>
+        </details>
+        <details class="q card">
+          <summary><span>Can I change what it makes?</span><i class="q-x" aria-hidden="true"></i></summary>
+          <div class="q-wrap"><div class="q-in"><p>Yes. Regenerate the mark, swap tones, rework the wordmark, or push the direction somewhere else. Nothing is locked.</p></div></div>
+        </details>
+        <details class="q card">
+          <summary><span>How long does the whole thing take?</span><i class="q-x" aria-hidden="true"></i></summary>
+          <div class="q-wrap"><div class="q-in"><p>Brand generation normally takes minutes, but timing varies with request complexity, connectivity and provider availability. The 30-day plan then paces the launch out for you, day by day.</p></div></div>
+        </details>
+        <details class="q card">
+          <summary><span>Will it work for my kind of business?</span><i class="q-x" aria-hidden="true"></i></summary>
+          <div class="q-wrap"><div class="q-in"><p>If you can describe what you'd sell and who'd buy it, it has enough to work with — physical products, digital ones, or services.</p></div></div>
+        </details>
+        <details class="q card">
+          <summary><span>Is it only on iPhone?</span><i class="q-x" aria-hidden="true"></i></summary>
+          <div class="q-wrap"><div class="q-in"><p>iPhone for now, with macOS coming. The iPhone app is the currently available version.</p></div></div>
+        </details>
+        <details class="q card">
+          <summary><span>What does the full pack cost?</span><i class="q-x" aria-hidden="true"></i></summary>
+          <div class="q-wrap"><div class="q-in"><p>The UK Brand Pack is a £17.99 one-time in-app purchase. Regional App Store pricing may vary, and the price shown by Apple before purchase is the price that applies.</p></div></div>
+        </details>
+        <details class="q card">
+          <summary><span>Who handles billing and refunds?</span><i class="q-x" aria-hidden="true"></i></summary>
+          <div class="q-wrap"><div class="q-in"><p>Apple processes App Store billing and refund requests under its policies; your statutory consumer rights are unaffected. Contact <a href="mailto:support@brandfounder.ai">BrandFounder support</a> if a generation or delivery problem needs investigating.</p></div></div>
+        </details>
+        <details class="q card">
+          <summary><span>How are analytics and generation inputs handled?</span><i class="q-x" aria-hidden="true"></i></summary>
+          <div class="q-wrap"><div class="q-in"><p>Optional product analytics is off unless you enable it. Inputs needed for an AI feature are still processed when you request that feature after the in-app disclosure. “Share inputs to improve results” is a separate setting and is also off by default. See the <a href="pages/privacy-policy.html">Privacy Policy</a> for details.</p></div></div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ========================= FINAL CTA ========================= -->
+    <section class="close">
+      <img class="close-bg" src="images/web/visuals/cta_cube.jpg" alt="" width="1600" height="893" loading="lazy" decoding="async" />
+      <div class="wrap close-inner">
+        <h2 class="h2 close-title r" data-r>Your idea is already <span class="ser">good enough.</span></h2>
+        <p class="close-sub r" data-r data-r-d="1">It just needs everything around it.</p>
+        <a class="btn btn-light r" data-r data-r-d="2" href="https://apps.apple.com/app/id6759218062" target="_blank" rel="noopener noreferrer">
+          <svg class="btn-glyph" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M16.5 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.9-3.5.9s-1.8-.8-3-.8c-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.6 2.3 2.8 2.2 1.1 0 1.6-.7 3-.7s1.8.7 3 .7 2-1.1 2.8-2.1c.9-1.2 1.2-2.4 1.3-2.4-.1 0-2.4-.9-2.4-3.8zM14.3 5.3c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 0 2.1-.5 2.7-1.3z"/></svg>
+          <span>I'm ready to launch my own brand</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <aside class="trust-strip" aria-label="App Store availability and support">
+    <div class="wrap trust-strip-inner">
+      <p><strong>Available on the App Store</strong><span>iPhone app · one-time Brand Pack purchase</span></p>
+      <a href="mailto:support@brandfounder.ai">support@brandfounder.ai</a>
+    </div>
+  </aside>
+
+  <!-- ============================ FOOTER ========================== -->
+  <footer class="foot">
+    <div class="wrap foot-top">
+      <div class="foot-brand">
+        <picture>
+          <source srcset="images/logos/logo_white.png" media="(prefers-color-scheme: dark)" data-theme-dark-source />
+          <img src="images/logos/logo_black.png" alt="BrandFounder" width="38" height="38" loading="lazy" decoding="async" />
+        </picture>
+        <p class="foot-line">Turn your idea into a brand <span class="ser">you can actually launch.</span></p>
+      </div>
+
+      <div class="foot-side">
+        <ul class="foot-social">
+          <li>
+            <a href="https://www.instagram.com/brandfounder.ai/" target="_blank" rel="noopener noreferrer" aria-label="BrandFounder on Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.05 1.8.25 2.2.42.6.22 1 .48 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c0 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2 0-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c0-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2Zm0 3.1A6.7 6.7 0 1 0 18.7 12 6.7 6.7 0 0 0 12 5.3Zm0 11A4.3 4.3 0 1 1 16.3 12 4.3 4.3 0 0 1 12 16.3Zm6.9-11.2a1.6 1.6 0 1 1-1.6-1.6 1.6 1.6 0 0 1 1.6 1.6Z"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.tiktok.com/@brandfounder.ai" target="_blank" rel="noopener noreferrer" aria-label="BrandFounder on TikTok">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.8a4.3 4.3 0 0 1-1-2.8h-3v11.6a2.5 2.5 0 1 1-1.8-2.4V9.1a5.6 5.6 0 1 0 4.8 5.5V8.9a7.2 7.2 0 0 0 4.2 1.4V7.3a4.3 4.3 0 0 1-3.2-1.5Z"/></svg>
+            </a>
+          </li>
+        </ul>
+        <a class="foot-mail" href="mailto:support@brandfounder.ai">support@brandfounder.ai</a>
+      </div>
+    </div>
+
+    <div class="wrap foot-bar">
+      <p>© <span id="year">2026</span> BrandFounder</p>
+      <nav class="foot-legal" aria-label="Legal">
+        <a href="pages/privacy-policy.html">Privacy</a>
+        <a href="pages/terms.html">Terms</a>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>
